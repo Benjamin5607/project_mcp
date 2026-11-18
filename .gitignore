@@ -1,6 +1,7 @@
 node_modules
 .next
 data/index.json
+data/onepagers/
 __pycache__
 *.pyc
 .DS_Store

@@ -46,7 +46,17 @@ export default function GuidePage() {
       </section>
       <section className="section">
         <h2>실행</h2>
-        <p>npm test 로 검증하고, npm run dev 로 라이브러리를 엽니다. npm run ask -- "질문" 은 터미널 초안입니다.</p>
+        <p>npm test 로 검증하고, npm run dev 로 라이브러리를 엽니다. npm run ask -- "질문" 은 터미널 초안입니다. npm run onepager 는 페인포인트로 원페이저 초안을 만듭니다.</p>
+      </section>
+      <section className="section">
+        <h2>원페이저 생성기</h2>
+        <p>
+          /onepager 에 페인포인트와 특별 요구를 넣으면 케이스 뱅크에서 참고 사례를 고르고, 제약에 맞는 기술 솔루션과 이해관계자, RACI, 자원, 리스크를 채웁니다.
+          모델은 NVIDIA API 카탈로그 프로파일에서 고릅니다. 비밀 이름은 NVIDIA_API_KEY 입니다.
+          요구가 인트라넷만을 말하면 페인포인트 원문은 API로 나가지 않고, 선정 모델의 페르소나만 로컬 케이스 뱅크에 연결됩니다.
+          PM이 고치고 승인하기 전에는 보고서 HTML과 슬라이드 HTML을 내려받지 않습니다.
+          GitHub Actions의 One-pager specialist 워크플로는 같은 초안을 아티팩트로 올리고, use_nvidia 를 켠 경우에만 시크릿을 사용합니다.
+        </p>
       </section>
     </article>
   );

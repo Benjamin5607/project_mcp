@@ -12,7 +12,7 @@ npm test
 npm run dev
 ```
 
-브라우저에서 라이브러리, `/ask`, `/compare`, `/guide`를 엽니다.
+브라우저에서 라이브러리, `/ask`, `/onepager`, `/compare`, `/guide`를 엽니다.
 
 ```bash
 npm run ask -- "금융권 고객의 AI 애플리케이션 보안 가시성 확보를 위한 Hypershield 도입 사례와 RACI 매트릭스 초안을 작성해 줘"
@@ -60,6 +60,20 @@ psql "$DATABASE_URL" -f supabase/seed.sql
 - RACI, WBS, 위험 관리 계획, 제안 이메일, 경영진 브리프
 - 질문 문장에 RACI, WBS, 위험, 이메일이 있으면 산출물을 고릅니다
 - 초안 끝에 출처 등급과 계획 밴드 고지가 붙습니다
+
+## 프로젝트 원페이저
+
+`/onepager`는 고객 페인포인트와 특별 요구를 받아 케이스 뱅크에서 참고 사례를 고르고, 솔루션·이해관계자·RACI·자원·리스크가 채워진 초안을 만듭니다. PM이 고치고 승인한 뒤에만 보고서 HTML과 슬라이드 HTML을 내려받습니다.
+
+모델 선정은 NVIDIA 통합 API 카탈로그의 내장 프로파일을 점수로 정렬합니다. 런타임 비밀 이름은 `NVIDIA_API_KEY`입니다. 값을 채팅이나 저장소에 넣지 않습니다. GitHub Actions에서는 저장소 시크릿 `NVIDIA_API_KEY`를 워크플로 `One-pager specialist`가 읽습니다. `use_nvidia`가 꺼져 있으면 `ONEPAGER_ALLOW_NVIDIA=false`라 시크릿이 있어도 호출하지 않습니다.
+
+특별 요구에 인트라넷, 폐쇄망, 클라우드와 연결되지 않음이 있으면 페인포인트 원문을 API로 보내지 않습니다. 그때는 선정된 컴팩트 모델의 페르소나만 로컬 초안에 연결됩니다. 그래픽카드 최소화가 있으면 대형 모델보다 컴팩트 프로파일을 위에 두고, 검색 경로의 그래픽카드는 0장으로 적습니다.
+
+검토 문서는 `data/onepagers`에만 저장되며 공개 케이스 시드에 들어가지 않습니다. 디렉터리는 git에서 제외합니다.
+
+```bash
+npm run onepager -- --pain "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림" --requirements "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화"
+```
 
 ## 데이터 모델
 

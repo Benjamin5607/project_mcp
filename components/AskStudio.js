@@ -105,7 +105,7 @@ export function AskStudio({ defaultQuery, industries }) {
           </div>
         ) : (
           <div className="panel">
-            <p>질문을 보내면 벡터 검색으로 상위 5개 청크를 고르고, 가장 가까운 사례의 RACI·WBS·리스크로 초안을 합성합니다.</p>
+            <p>질문을 보내면 벡터 검색으로 상위 5개 청크를 고르고, 가장 가까운 사례의 RACI·WBS·리스크로 초안을 합성합니다. 고객 페인포인트와 제약으로 원페이저를 만들려면 원페이저 화면을 엽니다.</p>
           </div>
         )}
       </div>

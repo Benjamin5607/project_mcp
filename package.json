@@ -12,6 +12,7 @@
     "index": "node scripts/build-index.mjs",
     "seed": "node scripts/export-seed-sql.mjs",
     "ask": "node scripts/ask.mjs",
+    "onepager": "node scripts/onepager.mjs",
     "test": "node scripts/materialize-cases.mjs --check && node scripts/validate-cases.mjs && node --test tests/*.test.mjs && python3 -m unittest collector.test_collect"
   },
   "dependencies": {
