@@ -49,6 +49,14 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   assert.equal(doc.solution.primaryCaseCode === "CSCO-AIF-NVD-001", false);
   assert.ok(doc.rejected.some((item) => item.caseCode === "CSCO-AIF-NVD-001"));
   assert.equal(doc.references.length, 3);
+  assert.ok(doc.goals.length >= 3);
+  assert.ok(doc.successMeasures.length >= 3);
+  assert.ok(doc.expectedOutcomes.length >= 3);
+  assert.ok(doc.rollout.length >= 4);
+  assert.ok(doc.postmortem.questions.length >= 4);
+  assert.match(doc.governance.note, /one Accountable|only Accountable/);
+  assert.match(doc.header.classification, /Intranet retrieval pilot/);
+  assert.equal(JSON.stringify(doc).includes("85%"), false);
   assert.match(doc.resources.find((item) => item.name === "GPUs").amount, /0 cards/);
   for (const row of doc.raci) {
     assert.equal(typeof row.accountable, "string");
@@ -95,6 +103,14 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   assert.match(report, /Planning band/);
   assert.match(report, /Business sponsor/);
   assert.match(report, /Accountable is exactly one role/);
+  assert.match(report, /Project goals/);
+  assert.match(report, /Success measurement/);
+  assert.match(report, /Expected outcomes/);
+  assert.match(report, /Postmortem/);
+  assert.match(report, /RACI and vendor governance/);
+  assert.match(report, /Deliverable/);
+  assert.match(slides, /Postmortem/);
+  assert.match(slides, /Phased rollout and fallback/);
   assert.match(slides, /Accountable/);
   assert.match(slides, /<th>Quantity<\/th>/);
   assert.match(slides, /Business sponsor/);
@@ -166,6 +182,9 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.equal(doc.references[0].caseCode, "CSCO-HYP-FIN-001");
   assert.equal(doc.language, "en");
   assert.equal(doc.stakeholders[0].roleName, "CISO (sponsor)");
+  assert.match(doc.rollout.map((item) => item.phase).join(" "), /Shadow/);
+  assert.match(doc.governance.note, /does not promise an MTTR/);
+  assert.equal(JSON.stringify(doc).includes("85%"), false);
   assert.equal(doc.raci.some((item) => /[가-힣]/.test(item.activity)), false);
   assert.equal(JSON.stringify(doc).includes(key), false);
   rmSync(dir, { recursive: true, force: true });
@@ -265,6 +284,9 @@ test("Korean stays available when language is set to ko", async () => {
   assert.equal(doc.profile.airgap, true);
   assert.equal(doc.profile.minGpu, true);
   assert.equal(doc.solution.name, "인트라넷 경량 RAG");
+  assert.ok(doc.goals.length >= 3);
+  assert.match(doc.postmortem.purpose, /배운 점/);
+  assert.ok(doc.rollout.length >= 4);
   assert.match(doc.resources.find((item) => item.name === "그래픽카드").amount, /0/);
   rmSync(dir, { recursive: true, force: true });
 });

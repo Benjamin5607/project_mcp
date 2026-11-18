@@ -45,6 +45,13 @@ function copy(language) {
       raci: "RACI",
       raciNote: "Accountable은 한 역할만 적습니다.",
       resources: "필요 자원",
+      goals: "프로젝트 목표",
+      measurement: "성공 측정",
+      outcomes: "기대 결과",
+      rollout: "단계별 롤아웃과 폴백",
+      governance: "벤더 거버넌스",
+      postmortem: "포스트모텀",
+      learning: "러닝 포인트",
       risks: "리스크와 결정",
       assumptions: "가정",
       save: "수정 저장",
@@ -100,6 +107,13 @@ function copy(language) {
     raci: "RACI",
     raciNote: "Accountable is exactly one role.",
     resources: "Resources required",
+    goals: "Project goals",
+    measurement: "Success measurement",
+    outcomes: "Expected outcomes",
+    rollout: "Phased rollout and fallback",
+    governance: "Vendor governance",
+    postmortem: "Postmortem",
+    learning: "Learning points",
     risks: "Risks and decisions",
     assumptions: "Assumptions",
     save: "Save edits",
@@ -155,6 +169,12 @@ function toForm(doc) {
     resources: doc.resources,
     risks: doc.risks,
     decisions: doc.decisions,
+    goals: (doc.goals || []).map((item) => item.statement).join("\n"),
+    successMeasures: doc.successMeasures || [],
+    expectedOutcomes: (doc.expectedOutcomes || []).map((item) => item.outcome).join("\n"),
+    rollout: doc.rollout || [],
+    governanceNote: doc.governance?.note || "",
+    postmortemQuestions: (doc.postmortem?.questions || []).join("\n"),
   };
 }
 
@@ -363,6 +383,48 @@ export function OnePagerStudio({ initial, recent }) {
               </tbody>
             </table>
           </div>
+          <h2>{text.goals}</h2>
+          <label className="field">
+            {text.goals}
+            <textarea data-testid="onepager-goals" value={form.goals} onChange={(event) => setForm({ ...form, goals: event.target.value })} />
+          </label>
+          <h2>{text.measurement}</h2>
+          {(form.successMeasures || []).map((item, index) => (
+            <div className="split" key={`${item.name}-${index}`}>
+              <input aria-label={`${text.measurement} ${index + 1}`} value={item.name} onChange={(event) => updateRow("successMeasures", index, "name", event.target.value)} />
+              <input aria-label={`${text.measurement} rule ${index + 1}`} value={item.target} onChange={(event) => updateRow("successMeasures", index, "target", event.target.value)} />
+            </div>
+          ))}
+          <h2>{text.rollout}</h2>
+          <div className="table-wrap">
+            <table>
+              <thead><tr><th>{text.rollout}</th><th>Pass rule</th><th>Fallback</th></tr></thead>
+              <tbody>
+                {(form.rollout || []).map((item, index) => (
+                  <tr key={`${item.phase}-${index}`}>
+                    <td><input aria-label={`Phase ${index + 1}`} value={item.phase} onChange={(event) => updateRow("rollout", index, "phase", event.target.value)} /></td>
+                    <td><textarea aria-label={`Phase success ${index + 1}`} rows={2} value={item.success} onChange={(event) => updateRow("rollout", index, "success", event.target.value)} /></td>
+                    <td><textarea aria-label={`Phase fallback ${index + 1}`} rows={2} value={item.fallback} onChange={(event) => updateRow("rollout", index, "fallback", event.target.value)} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h2>{text.outcomes}</h2>
+          <label className="field">
+            {text.outcomes}
+            <textarea data-testid="onepager-outcomes" value={form.expectedOutcomes} onChange={(event) => setForm({ ...form, expectedOutcomes: event.target.value })} />
+          </label>
+          <h2>{text.governance}</h2>
+          <label className="field">
+            {text.governance}
+            <textarea data-testid="onepager-governance" value={form.governanceNote} onChange={(event) => setForm({ ...form, governanceNote: event.target.value })} />
+          </label>
+          <h2>{text.postmortem}</h2>
+          <label className="field">
+            {text.learning}
+            <textarea data-testid="onepager-postmortem" value={form.postmortemQuestions} onChange={(event) => setForm({ ...form, postmortemQuestions: event.target.value })} />
+          </label>
           <label className="field">{text.headline}<input value={form.headline} onChange={(event) => setForm({ ...form, headline: event.target.value })} /></label>
           <label className="field">{text.summary}<textarea value={form.executiveSummary} onChange={(event) => setForm({ ...form, executiveSummary: event.target.value })} /></label>
           <label className="field">{text.solution}<textarea value={form.solutionSummary} onChange={(event) => setForm({ ...form, solutionSummary: event.target.value })} /></label>
