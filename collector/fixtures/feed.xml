@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fixture</title>
+    <item>
+      <title>Cisco expands Hypershield for AI data centers</title>
+      <link>https://example.com/hypershield-update</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[<p>A public note about Hypershield and AI Defense visibility.</p>]]></description>
+    </item>
+    <item>
+      <title>Campus switch maintenance window</title>
+      <link>https://example.com/maintenance</link>
+      <description>Routine hardware replacement with no AI content.</description>
+    </item>
+    <entry>
+      <title>Already known Webex item</title>
+      <link href="https://example.com/known-webex"/>
+      <summary>Webex AI noise cancellation update.</summary>
+    </entry>
+  </channel>
+</rss>

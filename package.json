@@ -1,0 +1,22 @@
+{
+  "name": "cisco-ai-case-bank",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3000",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3000",
+    "materialize": "node scripts/materialize-cases.mjs",
+    "validate": "node scripts/validate-cases.mjs",
+    "index": "node scripts/build-index.mjs",
+    "seed": "node scripts/export-seed-sql.mjs",
+    "ask": "node scripts/ask.mjs",
+    "test": "node scripts/materialize-cases.mjs --check && node scripts/validate-cases.mjs && node --test tests/*.test.mjs && python3 -m unittest collector.test_collect"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

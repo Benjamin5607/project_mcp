@@ -1,0 +1,792 @@
+{
+  "caseCode": "CSCO-XDR-SOC-001",
+  "slug": "xdr-ai-security-operations",
+  "title": "Cisco XDR — AI가 돕는 보안 운영과 디지털 회복탄력성",
+  "titleEn": "AI-assisted security operations with Cisco XDR",
+  "recordType": "video_demo",
+  "fidelity": "primary_source",
+  "fidelityNote": "CiscoKorea 영상 ‘[Digital Resilience] AI가 도와주는 보안 운영 Cisco XDR’과 XDR 백서, Instant Attack Verification 블로그, 2026년 에이전트 SOC 설명을 바탕으로 한다. 영상 속 클릭 순서를 이 기록이 재현한다고 보지 않는다. 시간 절감 비율은 공개된 보편 수치가 없어 계획 목표로 두지 않았다.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "보안 운영팀이 경보를 사건으로 묶고, AI로 요약을 만들고, 신뢰도가 있을 때만 플레이북을 실행하는 운영 모델입니다. Cisco XDR은 엔드포인트, 네트워크, 클라우드, 이메일, 신원 이벤트를 영향도 기준으로 묶고 LLM으로 제목·설명·요약과 보고서 초안을 만듭니다. Instant Attack Verification은 여러 에이전트가 공격을 검증해 판정과 신뢰도를 내고, 사전 플레이북을 XDR 또는 Splunk SOAR에서 돌립니다. 고영향 조치는 사람이 승인합니다. CiscoKorea 영상은 이 운영 모델을 볼 때 여는 데모입니다.",
+  "problemStatement": "분석가는 사건마다 여러 이벤트를 읽고 보고서를 다시 쓴다. 경보는 많고 조사는 얕아 확신이 없다. 자동 대응을 확신 없이 켜면 정상 사용자를 끊는다. 네트워크에만 보이는 횡적 이동이 엔드포인트 경보 밖에 남는다.",
+  "opportunity": "공개된 XDR 능력은 상관, 우선순위, LLM 요약, 보고서 초안, 공격 검증, 포렌식, 공격 스토리보드, Talos 정보, Secure Access와의 실시간 격리를 포함한다. 자동화 활동의 AI Agent는 정한 워크플로 안에서 에이전트와 결정적 단계를 섞고 승인으로 통제한다고 제품 문서가 설명한다.",
+  "strategicAlignment": "디지털 회복탄력성은 탐지를 늘리는 일이 아니라, 사람이 검증할 판정과 실행할 플레이북을 짧게 만드는 일이다.",
+  "businessValue": "분석가는 빈 보고서 대신 초안을 고치고, 낮은 확신의 경보에 자동 격리를 걸지 않는다. 측정은 파일럿 전후 같은 사건 유형의 착수 시간과 보고서 작성 시간으로 한다. 특정 퍼센트를 사전에 약속하지 않는다.",
+  "industry": "cross_industry",
+  "industryLabel": "전 산업",
+  "customerSegment": "security_operations",
+  "customerSegmentLabel": "보안 운영 조직",
+  "region": "APAC",
+  "regulatoryContext": [
+    "개인정보보호법",
+    "사고 대응 절차",
+    "변경 승인"
+  ],
+  "companySizeBand": "SOC를 운영하는 조직",
+  "deploymentModel": "hybrid",
+  "deploymentModelLabel": "하이브리드 텔레메트리",
+  "architecturePattern": "XDR이 네트워크·엔드포인트·클라우드·이메일·신원과 Talos를 묶어 사건을 만든다. LLM은 요약과 보고서 초안. 에이전트는 검증과 저위험 조사. 플레이북은 XDR 또는 Splunk SOAR. 고영향 조치는 사람. Secure Access는 위험 사용자·기기 격리에 연결할 수 있다.",
+  "complexity": "high",
+  "planningBandNote": "XDR과 연계·플레이북 정비의 1차년도 계획 밴드입니다. 고시 가격이 아닙니다.",
+  "dealSizeLowUsd": 400000,
+  "dealSizeHighUsd": 1800000,
+  "dealSizeBand": "L",
+  "leadTimeWeeksLow": 4,
+  "leadTimeWeeksHigh": 10,
+  "durationWeeksLow": 12,
+  "durationWeeksHigh": 24,
+  "ciscoSolutions": [
+    "Cisco XDR",
+    "Cisco Talos",
+    "Splunk SOAR",
+    "Cisco Secure Access"
+  ],
+  "partnerTechnologies": [
+    "Splunk"
+  ],
+  "aiCapabilities": [
+    "사건 요약 LLM",
+    "보고서 초안",
+    "Instant Attack Verification",
+    "트리아지 에이전트",
+    "자연어 질의 보조"
+  ],
+  "securityCapabilities": [
+    "교차 도메인 상관",
+    "플레이북 대응",
+    "사람 승인",
+    "포렌식",
+    "공격 스토리보드"
+  ],
+  "aliases": [
+    "XDR",
+    "보안 운영",
+    "SOC",
+    "플레이북",
+    "회복탄력성",
+    "인시던트",
+    "사건",
+    "Talos",
+    "디지털 회복"
+  ],
+  "scopeIn": [
+    "우선 사건 유형 3개의 상관과 요약",
+    "보고서 초안 템플릿과 분석가 수정 절차",
+    "저위험 플레이북 1개와 고영향 조치의 승인 규칙",
+    "CiscoKorea 데모와 공개 문서를 대조하는 운영 워크숍"
+  ],
+  "scopeOut": [
+    "모든 경보의 무인 격리",
+    "핵심 인터페이스 차단이나 계정 삭제의 완전 자동화",
+    "LLM이 만든 문장을 고객 통지 원문으로 바로 발송"
+  ],
+  "assumptions": [
+    {
+      "statement": "네트워크, 엔드포인트 중 최소 두 텔레메트리 소스를 연결할 수 있다.",
+      "ownerRole": "보안 운영 리드",
+      "status": "open"
+    },
+    {
+      "statement": "고영향 조치의 승인자 명단이 있다.",
+      "ownerRole": "SOC 매니저",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "organizational",
+      "statement": "자동 조치는 신뢰 규칙에 적힌 유형만 가능하다."
+    },
+    {
+      "type": "privacy",
+      "statement": "LLM에 넣는 사건 데이터 범위는 개인정보 검토를 통과한 필드만이다."
+    }
+  ],
+  "successCriteria": [
+    "사건 유형 3개의 요약 초안을 분석가가 수정해 닫는다",
+    "고영향 플레이북은 승인 없이 실행되지 않는다",
+    "파일럿 전후 착수 시간을 같은 정의로 측정한다"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "공개 설명: 상관된 사건을 LLM이 제목·설명·요약으로 만들고, 여러 프롬프트 변형 중 분석가에게 유용한 응답을 고른다",
+    "공개 설명: 보고서 초안은 분석가가 수정한다",
+    "공개 설명: Instant Attack Verification은 판정과 신뢰도를 만들고, 조직 절차에 따라 사람 개입 있이 또는 없이 플레이북을 호출한다",
+    "공개 설명: 고영향 조치는 신뢰 프레임에서 사람 확인을 남긴다"
+  ],
+  "sourceUrls": [
+    {
+      "title": "[Digital Resilience] AI가 도와주는 보안 운영 Cisco XDR",
+      "url": "https://www.youtube.com/watch?v=pYz-1Qr1AsY",
+      "publisher": "CiscoKorea",
+      "publishedOn": null
+    },
+    {
+      "title": "How Cisco XDR’s AI empowers SOC analysts",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/security/xdr/xdr-ai-empowers-soc-analysts-wp.pdf",
+      "publisher": "Cisco",
+      "publishedOn": null
+    },
+    {
+      "title": "Cisco XDR changed the game again",
+      "url": "https://blogs.cisco.com/security/cisco-xdr-just-changed-the-game-again",
+      "publisher": "Cisco Blog",
+      "publishedOn": null
+    },
+    {
+      "title": "Instant Attack Verification",
+      "url": "https://blogs.cisco.com/security/instant-attack-verification-verification-to-trust-automated-response",
+      "publisher": "Cisco Blog",
+      "publishedOn": null
+    },
+    {
+      "title": "The architectural reality of the agentic SOC",
+      "url": "https://news-blogs.cisco.com/apjc/2026/02/24/the-architectural-reality-of-the-agentic-soc/",
+      "publisher": "Cisco News Network APJC",
+      "publishedOn": "2026-02-24"
+    },
+    {
+      "title": "XDR Automate AI Agent activity",
+      "url": "https://docs.xdr.security.cisco.com/Content/Automate/activities-ai-agent.htm",
+      "publisher": "Cisco XDR docs",
+      "publishedOn": null
+    }
+  ],
+  "videoUrl": "https://www.youtube.com/watch?v=pYz-1Qr1AsY",
+  "videoTitle": "[Digital Resilience] AI가 도와주는 보안 운영 Cisco XDR",
+  "publishedOn": "2026-02-24",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "CISO(스폰서)",
+      "organization": "고객",
+      "interest": "자동 대응의 신뢰 한도",
+      "influence": "high",
+      "engagement": "고영향 규칙 승인",
+      "cadence": "월간"
+    },
+    {
+      "roleCode": "MGR",
+      "roleName": "SOC 매니저",
+      "organization": "고객",
+      "interest": "분석가 시간과 보고서 품질",
+      "influence": "high",
+      "engagement": "사건 유형 선정",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "고객 PM",
+      "organization": "고객",
+      "interest": "플레이북과 텔레메트리 범위",
+      "influence": "medium",
+      "engagement": "일정",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "DET",
+      "roleName": "탐지 엔지니어",
+      "organization": "고객",
+      "interest": "상관과 오탐",
+      "influence": "high",
+      "engagement": "유형 3개의 규칙",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "L2",
+      "roleName": "시니어 분석가",
+      "organization": "고객",
+      "interest": "초안을 고치는 시간",
+      "influence": "medium",
+      "engagement": "평가자",
+      "cadence": "사건 유형별"
+    },
+    {
+      "roleCode": "IR",
+      "roleName": "대응 리드",
+      "organization": "고객",
+      "interest": "격리와 차단의 승인",
+      "influence": "high",
+      "engagement": "플레이북 소유",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "PRIV",
+      "roleName": "개인정보",
+      "organization": "고객",
+      "interest": "LLM에 들어가는 필드",
+      "influence": "medium",
+      "engagement": "필드 허용 목록",
+      "cadence": "착수"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "security",
+      "priority": "must",
+      "statement": "사건 유형 3개에 대해 요약 초안이 분석가 화면에 나온다.",
+      "acceptance": "각 유형 샘플 1건",
+      "source": "XDR 백서"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "quality",
+      "priority": "must",
+      "statement": "보고서 초안은 발송 전에 분석가가 수정한다.",
+      "acceptance": "수정 이력",
+      "source": "XDR 백서"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "risk",
+      "priority": "must",
+      "statement": "고영향 조치 목록과 승인자가 플레이북에 적힌다.",
+      "acceptance": "승인 테스트에서 무인 실행이 실패",
+      "source": "에이전트 SOC 신뢰 프레임"
+    },
+    {
+      "reqCode": "REQ-04",
+      "knowledgeArea": "security",
+      "priority": "should",
+      "statement": "검증 판정에는 신뢰도가 함께 남는다.",
+      "acceptance": "샘플 사건에 판정과 신뢰 표시",
+      "source": "Instant Attack Verification"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "사건 유형 3개 선정",
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "SOC 매니저"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "탐지 엔지니어",
+        "대응 리드"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "LLM 입력 필드 허용 목록",
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "개인정보"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "SOC 매니저"
+      ],
+      "informed": [
+        "탐지 엔지니어"
+      ]
+    },
+    {
+      "activity": "텔레메트리 연결",
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "탐지 엔지니어"
+      ],
+      "accountable": "SOC 매니저",
+      "consulted": [
+        "고객 PM"
+      ],
+      "informed": [
+        "CISO(스폰서)"
+      ]
+    },
+    {
+      "activity": "요약·보고서 프롬프트 평가",
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "시니어 분석가"
+      ],
+      "accountable": "SOC 매니저",
+      "consulted": [
+        "탐지 엔지니어"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "저위험 플레이북",
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "responsible": [
+        "대응 리드"
+      ],
+      "accountable": "SOC 매니저",
+      "consulted": [
+        "탐지 엔지니어"
+      ],
+      "informed": [
+        "CISO(스폰서)"
+      ]
+    },
+    {
+      "activity": "고영향 승인 규칙",
+      "phase": "execute",
+      "knowledgeArea": "risk",
+      "responsible": [
+        "대응 리드"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "SOC 매니저",
+        "개인정보"
+      ],
+      "informed": [
+        "시니어 분석가"
+      ]
+    },
+    {
+      "activity": "운영 리듬 인수",
+      "phase": "close",
+      "knowledgeArea": "resource",
+      "responsible": [
+        "SOC 매니저"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "대응 리드",
+        "시니어 분석가"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "name": "유형 선정",
+      "description": "반복되고 플레이북이 있는 사건 3개만 고른다.",
+      "deliverable": "유형 카드",
+      "ownerRole": "SOC 매니저",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [],
+      "acceptance": "각 유형의 완료 정의",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "name": "필드 허용 목록",
+      "description": "LLM에 넣을 사건 필드를 정한다.",
+      "deliverable": "허용 목록",
+      "ownerRole": "개인정보",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "금지 필드가 적힘",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "name": "소스 연결",
+      "description": "최소 두 도메인을 XDR에 연결한다.",
+      "deliverable": "연결 체크",
+      "ownerRole": "탐지 엔지니어",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 20,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "샘플 사건 생성",
+      "milestone": false,
+      "sort": 21
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "communications",
+      "name": "데모 대조 워크숍",
+      "description": "CiscoKorea 영상과 백서의 요약·대응 흐름을 내부 절차와 나란히 적는다.",
+      "deliverable": "대조표",
+      "ownerRole": "고객 PM",
+      "durationDaysLow": 2,
+      "durationDaysHigh": 4,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "내부 절차와 다른 점이 이슈로 남음",
+      "milestone": false,
+      "sort": 22
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "요약 평가",
+      "description": "유형별 샘플에 대해 분석가가 초안이 유용한지 기록한다.",
+      "deliverable": "평가 표",
+      "ownerRole": "시니어 분석가",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "2.1",
+        "2.2"
+      ],
+      "acceptance": "수정이 필요한 문장이 표시됨",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "name": "플레이북 분리",
+      "description": "저위험 자동과 고영향 승인을 다른 플레이북으로 만든다.",
+      "deliverable": "플레이북 2종",
+      "ownerRole": "대응 리드",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "2.2"
+      ],
+      "acceptance": "무인 고영향 실행 테스트 실패",
+      "milestone": true,
+      "sort": 31
+    },
+    {
+      "wbsCode": "3.3",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "기준선 측정",
+      "description": "파일럿 전 착수 시간과 보고서 시간을 같은 정의로 재서 전후를 비교할 수 있게 한다.",
+      "deliverable": "측정 정의",
+      "ownerRole": "SOC 매니저",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "시계 정의가 한 문단",
+      "milestone": false,
+      "sort": 32
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "integration",
+      "name": "운영 인수",
+      "description": "온콜이 초안을 고치고 승인을 호출하는 절차를 인수한다.",
+      "deliverable": "런북",
+      "ownerRole": "SOC 매니저",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "3.1",
+        "3.2"
+      ],
+      "acceptance": "스폰서 승인",
+      "milestone": true,
+      "sort": 40
+    }
+  ],
+  "milestones": [
+    {
+      "name": "유형 카드",
+      "phase": "initiate",
+      "weekOffsetLow": 2,
+      "weekOffsetHigh": 3,
+      "criteria": "사건 3개"
+    },
+    {
+      "name": "샘플 사건",
+      "phase": "plan",
+      "weekOffsetLow": 6,
+      "weekOffsetHigh": 10,
+      "criteria": "두 도메인 연결"
+    },
+    {
+      "name": "승인 테스트",
+      "phase": "execute",
+      "weekOffsetLow": 10,
+      "weekOffsetHigh": 16,
+      "criteria": "고영향 무인 실행이 막힘"
+    },
+    {
+      "name": "인수",
+      "phase": "close",
+      "weekOffsetLow": 12,
+      "weekOffsetHigh": 24,
+      "criteria": "런북과 전후 측정 정의"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "무인 격리",
+      "description": "신뢰도 표시를 승인으로 오해한다.",
+      "category": "security",
+      "probability": 3,
+      "impact": 5,
+      "response": "mitigate",
+      "mitigation": "고영향 목록을 CISO가 승인하고 테스트로 무인 실행을 막는다.",
+      "contingency": "자동 플레이북을 끈다.",
+      "ownerRole": "CISO(스폰서)",
+      "trigger": "승인 테스트 실패가 아님, 즉 무인 실행이 성공해 버림"
+    },
+    {
+      "riskCode": "R2",
+      "title": "요약 환각을 고객 통지에 사용",
+      "description": "LLM 문장이 사실처럼 나간다.",
+      "category": "communications",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "외부 문장은 초안을 사람이 고친 뒤에만 보낸다.",
+      "contingency": "외부 통지는 기존 템플릿만 사용한다.",
+      "ownerRole": "SOC 매니저",
+      "trigger": "초안 문장이 티켓 외부 코멘트에 등장"
+    },
+    {
+      "riskCode": "R3",
+      "title": "텔레메트리 공백",
+      "description": "네트워크가 없으면 횡적 이동 주장이 약하다.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "최소 두 도메인을 연결하기 전에는 효과 주장을 하지 않는다.",
+      "contingency": "파일럿 유형을 연결된 도메인으로 줄인다.",
+      "ownerRole": "탐지 엔지니어",
+      "trigger": "샘플 사건에 도메인이 하나"
+    },
+    {
+      "riskCode": "R4",
+      "title": "시간 절감 수치를 미리 약속",
+      "description": "백서는 유용성을 말하지만 보편 퍼센트를 주지 않는다.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 2,
+      "response": "avoid",
+      "mitigation": "제안서에는 측정 정의만 적는다.",
+      "contingency": "이미 적힌 퍼센트는 삭제한다.",
+      "ownerRole": "고객 PM",
+      "trigger": "초안에 절감 퍼센트"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Splunk SOAR와 XDR 플레이북 중 시스템 오브 레코드",
+      "status": "open",
+      "ownerRole": "대응 리드",
+      "nextAction": "이미 있는 쪽을 실행 엔진으로 정하고 다른 쪽은 연계만"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "착수 시간",
+      "baseline": "파일럿 전 표본",
+      "target": "같은 정의로 전후 비교",
+      "unit": "분",
+      "method": "숫자를 사전에 약속하지 않는다. 정의는 사건 열람부터 가설 한 문장까지.",
+      "ownerRole": "SOC 매니저",
+      "cadence": "유형별 5건"
+    },
+    {
+      "name": "보고서 초안 수정률",
+      "baseline": "없음",
+      "target": "초안을 그대로 외부 발송한 건수 0",
+      "unit": "건",
+      "method": "수정 이력",
+      "ownerRole": "시니어 분석가",
+      "cadence": "주간"
+    },
+    {
+      "name": "고영향 무인 실행",
+      "baseline": "미정",
+      "target": "0",
+      "unit": "건",
+      "method": "승인 테스트와 운영 로그",
+      "ownerRole": "대응 리드",
+      "cadence": "주간"
+    },
+    {
+      "name": "검증 판정 부착",
+      "baseline": "없음",
+      "target": "파일럿 유형 샘플에 판정과 신뢰 표시",
+      "unit": "건",
+      "method": "제품이 표시하는 필드를 기록",
+      "ownerRole": "탐지 엔지니어",
+      "cadence": "샘플마다"
+    }
+  ],
+  "costs": [
+    {
+      "category": "software",
+      "name": "XDR 구독",
+      "costType": "opex",
+      "lowUsd": 250000,
+      "highUsd": 900000,
+      "notes": "텔레메트리 규모에 따른 계획 밴드"
+    },
+    {
+      "category": "software",
+      "name": "SOAR 플레이북 정비",
+      "costType": "opex",
+      "lowUsd": 50000,
+      "highUsd": 250000,
+      "notes": "기존 Splunk가 있으면 서비스 위주"
+    },
+    {
+      "category": "services",
+      "name": "연동과 평가 워크숍",
+      "costType": "opex",
+      "lowUsd": 80000,
+      "highUsd": 200000,
+      "notes": "내부 탐지 엔지니어가 하면 축소"
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "필드 게이트",
+      "criteria": "허용 목록이 있다.",
+      "ownerRole": "개인정보"
+    },
+    {
+      "phase": "execute",
+      "name": "승인 게이트",
+      "criteria": "고영향 무인 실행 테스트가 실패한다(막혀야 정상).",
+      "ownerRole": "CISO(스폰서)"
+    },
+    {
+      "phase": "close",
+      "name": "측정 게이트",
+      "criteria": "전후 비교 정의가 런북에 있다.",
+      "ownerRole": "SOC 매니저"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "분석가",
+      "message": "초안은 사실의 확정이 아니다",
+      "channel": "런북과 스탠드업",
+      "cadence": "주간",
+      "ownerRole": "SOC 매니저"
+    },
+    {
+      "audience": "CISO",
+      "message": "무인 실행 0과 남은 유형",
+      "channel": "월간",
+      "cadence": "월간",
+      "ownerRole": "SOC 매니저"
+    },
+    {
+      "audience": "현업 IT",
+      "message": "격리 승인 창구",
+      "channel": "온콜 명단",
+      "cadence": "인수 시",
+      "ownerRole": "대응 리드"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "Cisco XDR",
+      "vendorType": "Cisco",
+      "strategy": "파일럿 소스 상한",
+      "leadWeeks": 6,
+      "notes": "소스 추가를 성공 기준과 분리"
+    },
+    {
+      "item": "플레이북 엔진",
+      "vendorType": "XDR 또는 Splunk SOAR",
+      "strategy": "기존 엔진 우선",
+      "leadWeeks": 4,
+      "notes": "이슈 I1을 닫은 뒤 발주"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "자동화 한도",
+      "choice": "저위험 조사·농축은 자동, 격리·차단·계정 조치는 사람 승인.",
+      "rationale": "에이전트 SOC 자료의 신뢰 점수와 같다. 사람은 최전선 작업자가 아니라 검증자가 되되, 고영향의 Accountable은 남는다.",
+      "date": null,
+      "ownerRole": "CISO(스폰서)"
+    },
+    {
+      "decisionCode": "D2",
+      "title": "성과 표현",
+      "choice": "퍼센트 절감을 제안서에 쓰지 않고 측정 정의만 쓴다.",
+      "rationale": "백서는 전문가 평가로 유용하다고 했지 보편 절감률을 주지 않았다.",
+      "date": null,
+      "ownerRole": "고객 PM"
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "데모",
+      "statement": "CiscoKorea 영상은 운영 감각을 맞추는 자료이고, 클릭 단계를 작업기술서로 베끼지 않는다.",
+      "applicability": "워크숍 2.3"
+    },
+    {
+      "theme": "사람",
+      "statement": "자동 대응의 테스트는 실행 성공이 아니라, 고영향 무인 실행이 실패하는 것이다.",
+      "applicability": "품질 게이트"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "조사 착수",
+      "measure": "전후 비교 가능한 분",
+      "beneficiary": "분석가",
+      "timing": "파일럿 후"
+    },
+    {
+      "name": "보고서 표준",
+      "measure": "빈 페이지가 아닌 초안",
+      "beneficiary": "SOC 매니저",
+      "timing": "실행"
+    },
+    {
+      "name": "회복 조치의 통제",
+      "measure": "고영향 무인 실행 0",
+      "beneficiary": "CISO",
+      "timing": "인수"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "AI가 보안 운영에 붙는 지점",
+      "body": "Cisco 백서는 분석가가 사건 이벤트를 읽고 보고서를 쓰는 시간을 줄이는 세 단계를 설명한다. XDR이 네트워크, 클라우드, 엔드포인트, 이메일과 일부 서드파티 이벤트를 시나리오와 공통 속성으로 묶어 영향도 순으로 올리고, LLM이 제목·설명·요약을 만들며, 같은 방식으로 보고서 초안을 만든다. 프롬프트는 분석가 착수에 맞게 조정되고 여러 변형을 보내 적절한 응답을 고른다. 전문가가 테스트에서 초안이 유용한지 보았다고 적는다. 분석가는 초안을 고친다.\n\nInstant Attack Verification 블로그는 에이전트 AI가 엔드포인트, 네트워크, 클라우드, 이메일, 신원과 Talos, 포렌식을 모아 공격인지 판정하고 영향과 신뢰도를 붙인다고 설명한다. 기계학습, 기계 추론, LLM이 단계별 에이전트를 부른다. 그 판정이 XDR 또는 Splunk SOAR의 사전 플레이북을 호출하며, 조직 절차에 따라 사람 개입이 있을 수 있다. 후속 블로그는 Secure Access와 묶어 위험 사용자·기기를 실시간으로 끊는 방향을 말한다.\n\n2026년 2월 APJC 글은 XDR을 에이전트 SOC의 오케스트레이션으로 두고, 트리아지 에이전트, 악성 스크립트 설명 에이전트, 저위험의 자율 조사, 자연어에서 SPL·API로의 질의 보조를 구분한다. 신뢰 프레임에서는 데이터 수집과 타임라인은 에이전트가 하되, 핵심 인터페이스를 내리거나 계정을 지우는 고영향 조치는 사람 확인 없이 100% 권한을 갖지 않는다. 제품 문서의 AI Agent 활동은 프롬프트로 정의한 작업을 미리 고른 워크플로 안에서 실행해 에이전트 단계와 결정적 단계를 섞는다.\n\nCiscoKorea 영상 https://www.youtube.com/watch?v=pYz-1Qr1AsY 의 제목은 ‘[Digital Resilience] AI가 도와주는 보안 운영 Cisco XDR’이다. 케이스 뱅크 워크숍은 이 영상을 운영 모델의 데모로 보고, 위 공개 문서와 다른 주장만 따로 적는다. 영상 자막 전체를 이 기록에 옮기지는 않았다."
+    },
+    {
+      "section": "delivery",
+      "heading": "회복탄력성을 일정으로",
+      "body": "12–24주 프로그램에서 먼저 유형을 줄이고, 필드를 제한하고, 요약을 평가하고, 플레이북을 둘로 나눈다. 디지털 회복탄력성 KPI는 탐지 건수 증가가 아니다. 착수 시간의 전후, 외부로 나간 미수정 초안 0건, 고영향 무인 실행 0건이다. 금융권 Hypershield 프로그램과 붙일 때는 경보 연계만 선택 과업으로 두고, 이 사례의 승인 규칙을 덮어쓰지 않는다."
+    }
+  ]
+}
