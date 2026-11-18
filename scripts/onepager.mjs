@@ -10,16 +10,17 @@ function arg(name, fallback = "") {
   return process.argv[index + 1] || fallback;
 }
 
-const pain = arg("pain", process.env.ONEPAGER_PAIN || "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림");
+const pain = arg("pain", process.env.ONEPAGER_PAIN || "AI is too slow when it retrieves information from the database");
 const requirements = arg(
   "requirements",
-  process.env.ONEPAGER_REQUIREMENTS || "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화",
+  process.env.ONEPAGER_REQUIREMENTS || "Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.",
 );
-const customer = arg("customer", process.env.ONEPAGER_CUSTOMER || "내부 지식검색");
+const customer = arg("customer", process.env.ONEPAGER_CUSTOMER || "Internal knowledge search");
+const language = arg("language", process.env.ONEPAGER_LANGUAGE || "en");
 const out = arg("out", "");
 const reviewer = arg("reviewer", "");
 
-const created = await createOnePager({ pain, requirements, customerLabel: customer });
+const created = await createOnePager({ pain, requirements, customerLabel: customer, language });
 const doc = reviewer ? applyReview(created.id, { action: "approve", reviewer }) : created;
 const summary = {
   id: doc.id,

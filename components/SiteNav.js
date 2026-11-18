@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   ["/", "라이브러리"],
   ["/ask", "질의"],
-  ["/onepager", "원페이저"],
+  ["/onepager", "One-pager"],
   ["/compare", "비교"],
   ["/guide", "구축 가이드"],
 ];

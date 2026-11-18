@@ -4,17 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       pain:
-        description: 고객 페인포인트
+        description: Customer pain point
         required: true
-        default: AI가 데이터베이스에서 정보를 찾아오는데 너무 느림
+        default: AI is too slow when it retrieves information from the database
       requirements:
-        description: 특별 요구사항
+        description: Special requirements
         required: true
-        default: 클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화
+        default: Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.
       customer:
-        description: 고객 표시 이름
+        description: Customer label
         required: false
-        default: 내부 지식검색
+        default: Internal knowledge search
+      language:
+        description: Charter language. en is the default.
+        required: false
+        default: en
       use_nvidia:
         description: NVIDIA_API_KEY로 클라우드 모델을 호출합니다. 폐쇄망 요구가 있으면 코드가 호출을 막습니다.
         type: boolean
@@ -44,6 +48,7 @@ jobs:
           ONEPAGER_PAIN: ${{ inputs.pain }}
           ONEPAGER_REQUIREMENTS: ${{ inputs.requirements }}
           ONEPAGER_CUSTOMER: ${{ inputs.customer }}
+          ONEPAGER_LANGUAGE: ${{ inputs.language }}
         run: node scripts/onepager.mjs --out artifacts/onepager
 
       - uses: actions/upload-artifact@v4

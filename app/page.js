@@ -16,7 +16,7 @@ export default function HomePage() {
         금액과 기간은 계획 밴드입니다.
       </p>
       <p className="row">
-        <Link className="badge teal" href="/onepager">프로젝트 원페이저</Link>
+        <Link className="badge teal" href="/onepager">One-pager</Link>
         <Link className="badge" href="/ask">질의로 초안</Link>
       </p>
       <section className="stats">

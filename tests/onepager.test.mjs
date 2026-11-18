@@ -9,8 +9,10 @@ import { renderExport } from "../lib/onepager/export-html.mjs";
 import { applyReview } from "../lib/onepager/review.mjs";
 import { createOnePager } from "../lib/onepager/run.mjs";
 
-const SLOW = "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림";
-const INTRANET = "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화";
+const SLOW = "AI is too slow when it retrieves information from the database";
+const INTRANET = "Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.";
+const SLOW_KO = "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림";
+const INTRANET_KO = "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화";
 
 function tempDir() {
   return mkdtempSync(path.join(tmpdir(), "onepager-"));
@@ -35,14 +37,19 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   assert.equal(doc.profile.minGpu, true);
   assert.equal(doc.profile.dominantTheme, "retrieval");
   assert.equal(doc.solution.kind, "synthesized");
-  assert.equal(doc.solution.name, "인트라넷 경량 RAG");
+  assert.equal(doc.language, "en");
+  assert.equal(doc.solution.name, "Intranet retrieval pilot");
+  assert.ok(doc.stakeholders.length >= 6);
+  assert.ok(doc.raci.length >= 8);
+  assert.equal(doc.stakeholders.some((item) => /[가-힣]/.test(item.roleName)), false);
+  assert.equal(doc.raci.some((item) => /[가-힣]/.test(item.activity)), false);
   assert.equal(doc.specialist.connection, "local-persona");
   assert.equal(doc.specialist.called, false);
   assert.equal(doc.specialist.authoringModelId, "nvidia/nemotron-3.5-bolt-e4b");
   assert.equal(doc.solution.primaryCaseCode === "CSCO-AIF-NVD-001", false);
   assert.ok(doc.rejected.some((item) => item.caseCode === "CSCO-AIF-NVD-001"));
   assert.equal(doc.references.length, 3);
-  assert.match(doc.resources.find((item) => item.name === "그래픽카드").amount, /0/);
+  assert.match(doc.resources.find((item) => item.name === "GPUs").amount, /0 cards/);
   for (const row of doc.raci) {
     assert.equal(typeof row.accountable, "string");
     assert.equal(row.accountable.includes(","), false);
@@ -52,7 +59,7 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   assert.equal(JSON.stringify(doc).includes("신한은행"), false);
   assert.equal(doc.status, "draft");
 
-  await assert.rejects(() => Promise.resolve().then(() => renderExport(doc, "report")), /승인/);
+  await assert.rejects(() => Promise.resolve().then(() => renderExport(doc, "report")), /approv/);
   const commented = applyReview(doc.id, { action: "request_changes", author: "PM", text: "GPU 0장을 자원 표 첫머리로 올려 주세요." }, { dir });
   assert.equal(commented.status, "changes_requested");
   assert.equal(commented.reviews.at(-1).text.includes("GPU 0장"), true);
@@ -84,9 +91,14 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   const report = renderExport(approved, "report");
   const slides = renderExport(approved, "slides");
   assert.match(report, /박PM/);
-  assert.match(report, /인트라넷 경량 RAG/);
-  assert.match(report, /계획 밴드/);
-  assert.equal((slides.match(/class="slide"/g) || []).length, 8);
+  assert.match(report, /Intranet retrieval pilot/);
+  assert.match(report, /Planning band/);
+  assert.match(report, /Business sponsor/);
+  assert.match(report, /Accountable is exactly one role/);
+  assert.match(slides, /Accountable/);
+  assert.match(slides, /<th>Quantity<\/th>/);
+  assert.match(slides, /Business sponsor/);
+  assert.ok((slides.match(/class="slide"/g) || []).length >= 8);
   assert.equal(report.includes("<script>alert"), false);
   rmSync(dir, { recursive: true, force: true });
 });
@@ -95,8 +107,8 @@ test("escaped pain cannot become markup in the approved HTML", async () => {
   const dir = tempDir();
   const doc = await createOnePager(
     {
-      pain: "검색이 느립니다 <script>alert(1)</script>",
-      requirements: "인트라넷에서만 작동하고 그래픽카드 최소화",
+      pain: "Retrieval is slow <script>alert(1)</script>",
+      requirements: "Intranet only, and minimize the GPU footprint.",
     },
     { dir, apiKey: "", fetchImpl: async () => { throw new Error("no"); } },
   );
@@ -152,6 +164,9 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.equal(doc.specialist.narrativeSource, "nvidia");
   assert.equal(doc.headline, "금융 가시성 파일럿");
   assert.equal(doc.references[0].caseCode, "CSCO-HYP-FIN-001");
+  assert.equal(doc.language, "en");
+  assert.equal(doc.stakeholders[0].roleName, "CISO (sponsor)");
+  assert.equal(doc.raci.some((item) => /[가-힣]/.test(item.activity)), false);
   assert.equal(JSON.stringify(doc).includes(key), false);
   rmSync(dir, { recursive: true, force: true });
 });
@@ -170,6 +185,8 @@ test("a factory request with GPUs allowed keeps the AI factory case", async () =
     assert.equal(doc.profile.minGpu, false);
     assert.equal(doc.solution.kind, "case_led");
     assert.equal(doc.solution.primaryCaseCode, "CSCO-AIF-NVD-001");
+    assert.equal(doc.language, "en");
+    assert.equal(doc.stakeholders[0].roleName, "Infrastructure sponsor");
     assert.equal(doc.specialist.connection, "local-persona");
     assert.equal(doc.specialist.called, false);
   } finally {
@@ -234,6 +251,20 @@ test("editing an approved one-pager locks the download again", async () => {
   assert.equal(reopened.status, "in_review");
   assert.equal(reopened.approval, null);
   assert.equal(reopened.headline, "수정된 제목");
-  assert.throws(() => renderExport(reopened, "slides"), /승인/);
+  assert.throws(() => renderExport(reopened, "slides"), /approv/);
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("Korean stays available when language is set to ko", async () => {
+  const dir = tempDir();
+  const doc = await createOnePager(
+    { customerLabel: "내부 지식검색", pain: SLOW_KO, requirements: INTRANET_KO, language: "ko" },
+    { dir, apiKey: "" },
+  );
+  assert.equal(doc.language, "ko");
+  assert.equal(doc.profile.airgap, true);
+  assert.equal(doc.profile.minGpu, true);
+  assert.equal(doc.solution.name, "인트라넷 경량 RAG");
+  assert.match(doc.resources.find((item) => item.name === "그래픽카드").amount, /0/);
   rmSync(dir, { recursive: true, force: true });
 });
