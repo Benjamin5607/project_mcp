@@ -1,0 +1,723 @@
+{
+  "caseCode": "IND-MOD-MRNA-001",
+  "slug": "moderna-mrna-design-on-aws",
+  "title": "Moderna mRNA design and the AWS digital platform",
+  "titleEn": "Moderna mRNA design and the AWS digital platform",
+  "vendor": "Moderna",
+  "recordType": "public_announcement",
+  "fidelity": "primary_source",
+  "fidelityNote": "Two AWS pages state the early COVID-19 timeline differently. The 5 August 2020 AWS press release says the first clinical batch of mRNA-1273 reached NIH 42 days after the virus was sequenced. A later AWS case-study page says the sequence was completed in 2 days with machine learning on AWS and the first clinical batch was released 25 days later. Both sentences are stored. They are not merged into one number.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "Moderna runs its Drug Design Studio and manufacturing data path on AWS. Public AWS accounts describe a digital loop from sequence design, through machine learning, to an automated preclinical plant. The COVID-19 timeline is published in two forms, 42 days and 25 days, and this record keeps both with their sources. A PM using the story plans a design-to-batch path, a human quality review, and a citation rule so the two timelines are never collapsed.",
+  "problemStatement": "mRNA constructs used to take years to reach even preclinical work. Sequence choice, compute, lab execution, and quality review sat in different systems. Cryo-EM and other instruments add tens of terabytes a day. A single heroic timeline in a slide hides which source said 25 days and which said 42.",
+  "opportunity": "AWS describes Drug Design Studio on AWS: scientists pick proteins, algorithms propose mRNA sequences, jobs run through a queue and EC2, and an automated plant can make up to 1,000 constructs a month. The 5 August 2020 AWS release says Moderna selected AWS as its preferred cloud and standard for analytics and machine learning, and that the first clinical batch of mRNA-1273 went to NIH for Phase 1 42 days after sequencing. The case-study page states the 2-day sequence and 25-day batch. A 2017 AWS case quotes Marcello Damiani that a Zika vaccine candidate reached clinical trials in a year, against years in a traditional path.",
+  "strategicAlignment": "The platform is the asset. A pandemic timeline is a published example with a source note, not a service level for the next program.",
+  "businessValue": "Scientists can order a construct and reach preclinical experiments in weeks rather than years, which is how Damiani described the 2017 studio. The organization can show a regulator or partner which source supports which day count.",
+  "industry": "life_sciences",
+  "industryLabel": "Life sciences",
+  "customerSegment": "biopharma",
+  "customerSegmentLabel": "Biopharma research and early manufacturing",
+  "region": "Global",
+  "regulatoryContext": [
+    "FDA IND and GMP expectations",
+    "GLP where nonclinical work requires it",
+    "Data integrity for electronic records"
+  ],
+  "companySizeBand": "Biopharma",
+  "deploymentModel": "cloud",
+  "deploymentModelLabel": "AWS for design, data, and manufacturing analytics",
+  "architecturePattern": "Drug Design Studio proposes sequences, batch jobs move through a queue to compute, results return to the studio, and an automated plant makes the physical mRNA. Instrument data is centralized before a scientist trusts it. Quality review stays with a person.",
+  "complexity": "very_high",
+  "planningBandNote": "Amounts and durations below are planning bands for a similar program. They are not the publisher's result and not a price quote.",
+  "dealSizeLowUsd": 1000000,
+  "dealSizeHighUsd": 8000000,
+  "dealSizeBand": "L",
+  "leadTimeWeeksLow": 8,
+  "leadTimeWeeksHigh": 16,
+  "durationWeeksLow": 16,
+  "durationWeeksHigh": 40,
+  "ciscoSolutions": [
+    "Drug Design Studio",
+    "Automated mRNA manufacturing",
+    "AWS analytics and machine learning"
+  ],
+  "partnerTechnologies": [
+    "Amazon Web Services"
+  ],
+  "aiCapabilities": [
+    "Sequence design",
+    "Machine learning on experimental results",
+    "Automated quality-control review support"
+  ],
+  "securityCapabilities": [
+    "Partitioned research and manufacturing accounts",
+    "Audit trail on sequence release",
+    "Human release of a clinical batch"
+  ],
+  "aliases": [
+    "Moderna",
+    "mRNA",
+    "mRNA-1273",
+    "Drug Design Studio",
+    "AWS",
+    "vaccine design"
+  ],
+  "scopeIn": [
+    "One new sequence program from design ticket to preclinical batch",
+    "A citation sheet for the 2-day, 25-day, and 42-day statements",
+    "Human quality release before a batch is called clinical",
+    "A data path for instrument files into a single store"
+  ],
+  "scopeOut": [
+    "Promising either 25 or 42 days for a future pathogen",
+    "Using the COVID-19 timeline as a manufacturing SLA",
+    "Skipping QA release because the studio job finished"
+  ],
+  "assumptions": [
+    {
+      "statement": "Research and GMP-adjacent systems can be separated.",
+      "ownerRole": "Quality",
+      "status": "open"
+    },
+    {
+      "statement": "The citation sheet is mandatory in any external timeline slide.",
+      "ownerRole": "Program PM",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "regulatory",
+      "statement": "A batch is not clinical until Quality releases it. A finished compute job is not a release."
+    },
+    {
+      "type": "communications",
+      "statement": "External timelines quote the AWS page and the date. They do not blend 25 and 42 into one figure."
+    }
+  ],
+  "successCriteria": [
+    "The citation sheet lists both AWS wordings with URLs",
+    "The pilot program has a design ticket, a batch record, and a quality release",
+    "Instrument data for the pilot lands in one store before analysis"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "AWS press release, 5 August 2020: Moderna delivered the first clinical batch of mRNA-1273 to NIH for the Phase 1 trial 42 days after the initial sequencing of the virus.",
+    "AWS case-study page: Moderna completed the mRNA COVID-19 vaccine sequence in 2 days using machine learning on AWS, and the first clinical batch was released 25 days later.",
+    "AWS 2017 case study: the automated preclinical plant can create as many as 1,000 mRNA constructs a month, and Damiani said a Zika candidate reached clinical trials in a year."
+  ],
+  "sourceUrls": [
+    {
+      "title": "AWS powers Moderna's digital biotechnology platform",
+      "url": "https://press.aboutamazon.com/2020/8/aws-powers-modernas-digital-biotechnology-platform-to-develop-new-class-of-vaccines-and-therapeutics",
+      "publisher": "AWS",
+      "publishedOn": "2020-08-05"
+    },
+    {
+      "title": "Moderna machine learning on AWS",
+      "url": "https://aws.amazon.com/solutions/case-studies/moderna-machine-learning/",
+      "publisher": "AWS",
+      "publishedOn": null
+    },
+    {
+      "title": "Moderna Therapeutics on AWS, 2017 case",
+      "url": "https://aws.amazon.com/solutions/case-studies/moderna-therapeutics/",
+      "publisher": "AWS",
+      "publishedOn": null
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2020-08-05",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "Research sponsor",
+      "organization": "Customer",
+      "interest": "Cycle time without a false timeline",
+      "influence": "high",
+      "engagement": "Citation rule and release policy",
+      "cadence": "Monthly"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "Program PM",
+      "organization": "Customer",
+      "interest": "One program from ticket to batch",
+      "influence": "high",
+      "engagement": "Schedule and the citation sheet",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "SCI",
+      "roleName": "Computational scientist",
+      "organization": "Customer",
+      "interest": "Sequence design and job status",
+      "influence": "high",
+      "engagement": "Studio and queue",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "MFG",
+      "roleName": "Preclinical manufacturing lead",
+      "organization": "Customer",
+      "interest": "A computable order becomes a physical construct",
+      "influence": "high",
+      "engagement": "Plant slot",
+      "cadence": "Per batch"
+    },
+    {
+      "roleCode": "QA",
+      "roleName": "Quality",
+      "organization": "Customer",
+      "interest": "Release is a person, not a job status",
+      "influence": "high",
+      "engagement": "Release gate",
+      "cadence": "Per batch"
+    },
+    {
+      "roleCode": "DATA",
+      "roleName": "Data platform lead",
+      "organization": "Customer",
+      "interest": "Instrument files land once",
+      "influence": "medium",
+      "engagement": "Ingestion path",
+      "cadence": "Weekly"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "communications",
+      "priority": "must",
+      "statement": "The citation sheet quotes the 42-day press sentence and the 2-day and 25-day case-study sentences separately.",
+      "acceptance": "Sheet with URLs",
+      "source": "AWS 2020 press and AWS case study"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "quality",
+      "priority": "must",
+      "statement": "Quality releases a batch. A completed studio job does not.",
+      "acceptance": "Release record",
+      "source": "GMP practice"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "integration",
+      "priority": "must",
+      "statement": "Instrument data for the pilot program is in one store before analysis.",
+      "acceptance": "Ingestion log",
+      "source": "AWS description of centralized instrument data"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "Citation rule",
+      "phase": "initiate",
+      "knowledgeArea": "communications",
+      "responsible": [
+        "Program PM"
+      ],
+      "accountable": "Research sponsor",
+      "consulted": [
+        "Computational scientist"
+      ],
+      "informed": [
+        "Quality"
+      ]
+    },
+    {
+      "activity": "Design ticket",
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "Computational scientist"
+      ],
+      "accountable": "Program PM",
+      "consulted": [
+        "Preclinical manufacturing lead"
+      ],
+      "informed": [
+        "Data platform lead"
+      ]
+    },
+    {
+      "activity": "Account separation",
+      "phase": "plan",
+      "knowledgeArea": "security",
+      "responsible": [
+        "Data platform lead"
+      ],
+      "accountable": "Quality",
+      "consulted": [
+        "Preclinical manufacturing lead"
+      ],
+      "informed": [
+        "Program PM"
+      ]
+    },
+    {
+      "activity": "Sequence and job",
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "Computational scientist"
+      ],
+      "accountable": "Computational scientist",
+      "consulted": [
+        "Data platform lead"
+      ],
+      "informed": [
+        "Program PM"
+      ]
+    },
+    {
+      "activity": "Preclinical batch",
+      "phase": "execute",
+      "knowledgeArea": "resource",
+      "responsible": [
+        "Preclinical manufacturing lead"
+      ],
+      "accountable": "Quality",
+      "consulted": [
+        "Computational scientist"
+      ],
+      "informed": [
+        "Program PM"
+      ]
+    },
+    {
+      "activity": "External timeline review",
+      "phase": "close",
+      "knowledgeArea": "communications",
+      "responsible": [
+        "Program PM"
+      ],
+      "accountable": "Research sponsor",
+      "consulted": [
+        "Quality"
+      ],
+      "informed": [
+        "Computational scientist"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "communications",
+      "name": "Citation sheet",
+      "description": "Paste both AWS timeline sentences with URLs. Do not edit them into one number.",
+      "deliverable": "Citation sheet",
+      "ownerRole": "Program PM",
+      "durationDaysLow": 2,
+      "durationDaysHigh": 4,
+      "predecessors": [],
+      "acceptance": "Sponsor signs the rule",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "name": "One program",
+      "description": "Name the protein target and the success evidence for this pilot.",
+      "deliverable": "Design ticket",
+      "ownerRole": "Computational scientist",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "One target",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "security",
+      "name": "Accounts",
+      "description": "Separate research compute from the manufacturing record.",
+      "deliverable": "Account map",
+      "ownerRole": "Data platform lead",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Quality agrees",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "name": "Instrument path",
+      "description": "Land the pilot's instrument files in one store.",
+      "deliverable": "Ingestion test",
+      "ownerRole": "Data platform lead",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "2.2"
+      ],
+      "acceptance": "A file round-trip",
+      "milestone": false,
+      "sort": 40
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Design jobs",
+      "description": "Run studio jobs for the named target and keep the job log.",
+      "deliverable": "Job log",
+      "ownerRole": "Computational scientist",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 20,
+      "predecessors": [
+        "2.1",
+        "2.3"
+      ],
+      "acceptance": "Results back in the studio",
+      "milestone": false,
+      "sort": 50
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "resource",
+      "name": "Physical construct",
+      "description": "Make the preclinical batch only after the design ticket is accepted.",
+      "deliverable": "Batch record",
+      "ownerRole": "Preclinical manufacturing lead",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 20,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "Batch ties to the ticket",
+      "milestone": false,
+      "sort": 60
+    },
+    {
+      "wbsCode": "3.3",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Quality release",
+      "description": "A person releases or holds the batch.",
+      "deliverable": "Release",
+      "ownerRole": "Quality",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "3.2"
+      ],
+      "acceptance": "Named releaser",
+      "milestone": true,
+      "sort": 70
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "communications",
+      "name": "Timeline check",
+      "description": "Any external slide is checked against the citation sheet.",
+      "deliverable": "Review note",
+      "ownerRole": "Program PM",
+      "durationDaysLow": 2,
+      "durationDaysHigh": 4,
+      "predecessors": [
+        "3.3"
+      ],
+      "acceptance": "No blended day count",
+      "milestone": false,
+      "sort": 80
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Citation rule",
+      "phase": "initiate",
+      "weekOffsetLow": 1,
+      "weekOffsetHigh": 2,
+      "criteria": "Both AWS sentences on the sheet"
+    },
+    {
+      "name": "Design ticket",
+      "phase": "plan",
+      "weekOffsetLow": 3,
+      "weekOffsetHigh": 6,
+      "criteria": "One target"
+    },
+    {
+      "name": "Release",
+      "phase": "execute",
+      "weekOffsetLow": 10,
+      "weekOffsetHigh": 28,
+      "criteria": "Person releases the batch"
+    },
+    {
+      "name": "External check",
+      "phase": "close",
+      "weekOffsetLow": 16,
+      "weekOffsetHigh": 40,
+      "criteria": "No blended timeline"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "25 days and 42 days are averaged",
+      "description": "The two AWS pages do not say the same thing.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 4,
+      "response": "avoid",
+      "mitigation": "The citation sheet is the only source for external day counts.",
+      "contingency": "Retract the slide.",
+      "ownerRole": "Program PM",
+      "trigger": "A draft has one day count and no URL"
+    },
+    {
+      "riskCode": "R2",
+      "title": "A finished job is treated as a released batch",
+      "description": "Compute completion is not a quality release.",
+      "category": "quality",
+      "probability": 3,
+      "impact": 5,
+      "response": "mitigate",
+      "mitigation": "The release gate is a person.",
+      "contingency": "Quarantine the batch.",
+      "ownerRole": "Quality",
+      "trigger": "A status page says released with no signature"
+    },
+    {
+      "riskCode": "R3",
+      "title": "The next program inherits the COVID timeline as an SLA",
+      "description": "The published speed was for mRNA-1273 under pandemic conditions.",
+      "category": "scope",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "The charter says the timeline is a citation, not a target.",
+      "contingency": "Remove the day count from the goal sheet.",
+      "ownerRole": "Research sponsor",
+      "trigger": "A goal says 25 or 42 days"
+    },
+    {
+      "riskCode": "R4",
+      "title": "Instrument data stays on the microscope",
+      "description": "Analysis then depends on a manual copy.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 3,
+      "response": "mitigate",
+      "mitigation": "The ingestion test is a plan gate.",
+      "contingency": "Do not start the design claim until the file lands.",
+      "ownerRole": "Data platform lead",
+      "trigger": "A scientist analyzes a local copy"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Which AWS page the communications team has been using",
+      "status": "open",
+      "ownerRole": "Program PM",
+      "nextAction": "Replace loose timeline slides with the citation sheet"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Citation completeness",
+      "baseline": "Mixed oral timelines",
+      "target": "Every external day count has a URL",
+      "unit": "count",
+      "method": "Review of the deck",
+      "ownerRole": "Program PM",
+      "cadence": "Each external draft"
+    },
+    {
+      "name": "Release discipline",
+      "baseline": "Unset",
+      "target": "Zero batches called clinical without a quality signature",
+      "unit": "count",
+      "method": "Batch record",
+      "ownerRole": "Quality",
+      "cadence": "Per batch"
+    },
+    {
+      "name": "Ticket to batch trace",
+      "baseline": "Unset",
+      "target": "The pilot batch cites its design ticket",
+      "unit": "count",
+      "method": "Batch record",
+      "ownerRole": "Preclinical manufacturing lead",
+      "cadence": "Per batch"
+    }
+  ],
+  "costs": [
+    {
+      "category": "software",
+      "name": "Cloud compute and storage for one program",
+      "costType": "opex",
+      "lowUsd": 200000,
+      "highUsd": 1500000,
+      "notes": "Planning band. Not Moderna's AWS spend."
+    },
+    {
+      "category": "services",
+      "name": "Data platform work for instrument landing",
+      "costType": "opex",
+      "lowUsd": 150000,
+      "highUsd": 800000,
+      "notes": "Planning band."
+    },
+    {
+      "category": "quality",
+      "name": "QA release support",
+      "costType": "opex",
+      "lowUsd": 50000,
+      "highUsd": 200000,
+      "notes": "Internal quality time."
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "initiate",
+      "name": "Citation gate",
+      "criteria": "Both day-count sentences are on the sheet.",
+      "owner": "SPONSOR",
+      "ownerRole": "Research sponsor"
+    },
+    {
+      "phase": "execute",
+      "name": "Release gate",
+      "criteria": "A named quality role has released or held the batch.",
+      "owner": "QA",
+      "ownerRole": "Quality"
+    },
+    {
+      "phase": "close",
+      "name": "External gate",
+      "criteria": "The deck does not blend 25 and 42.",
+      "owner": "PM",
+      "ownerRole": "Program PM"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "Executives",
+      "message": "Which AWS page a day count comes from",
+      "channel": "Citation sheet",
+      "cadence": "Before any external use",
+      "owner": "PM",
+      "ownerRole": "Program PM"
+    },
+    {
+      "audience": "Scientists",
+      "message": "A finished job is not a release",
+      "channel": "Studio note",
+      "cadence": "At kickoff",
+      "owner": "QA",
+      "ownerRole": "Quality"
+    },
+    {
+      "audience": "Manufacturing",
+      "message": "The ticket number on the batch",
+      "channel": "Batch record",
+      "cadence": "Per batch",
+      "owner": "MFG",
+      "ownerRole": "Preclinical manufacturing lead"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "Cloud analytics and machine learning standard",
+      "vendorType": "AWS",
+      "strategy": "Use the existing preferred-cloud agreement if one exists",
+      "leadWeeks": 6,
+      "notes": "Do not buy a timeline"
+    },
+    {
+      "item": "Instrument data landing",
+      "vendorType": "Internal or integrator",
+      "strategy": "One store for the pilot program",
+      "leadWeeks": 8,
+      "notes": "Gate before analysis claims"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "Timeline language",
+      "choice": "Quote the 5 August 2020 press release and the case-study page separately.",
+      "rationale": "They do not state the same interval.",
+      "owner": "SPONSOR",
+      "ownerRole": "Research sponsor",
+      "date": null
+    },
+    {
+      "decisionCode": "D2",
+      "title": "What finished means",
+      "choice": "Quality release, not job success.",
+      "rationale": "The studio finishing is an upstream event.",
+      "owner": "QA",
+      "ownerRole": "Quality",
+      "date": null
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "Two sources",
+      "statement": "When two primary pages disagree, store both. Do not pick the faster one for the slide.",
+      "applicability": "Any borrowed success metric"
+    },
+    {
+      "theme": "Platform versus event",
+      "statement": "The reusable asset is the design-to-batch path. The COVID interval is a dated example.",
+      "applicability": "Portfolio reviews"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "A traceable design ticket",
+      "measure": "Ticket on the batch",
+      "beneficiary": "Quality and manufacturing",
+      "timing": "Each batch"
+    },
+    {
+      "name": "Honest external timelines",
+      "measure": "Citation sheet",
+      "beneficiary": "Sponsor",
+      "timing": "Before a deck leaves"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "The published platform and the two timelines",
+      "body": "Moderna's Drug Design Studio, described in the 2017 AWS case, lets scientists select proteins and compute mRNA sequences. Jobs are stored, queued, processed, and returned to the studio. The preclinical plant was described as able to create as many as 1,000 constructs a month. Marcello Damiani said a Zika candidate reached clinical trials in a year, and that scientists could go from an idea to a preclinical experiment in less than a month, against years in a traditional path.\n\nOn 5 August 2020 AWS said Moderna had selected AWS as its preferred cloud and its standard for analytics and machine learning, and that the first clinical batch of mRNA-1273 was delivered to NIH for Phase 1 42 days after the virus was sequenced. An AWS case-study page says the sequence was completed in 2 days using machine learning on AWS and the first clinical batch was released 25 days later. Both statements stay in this record with their sources.\n\nThe same case-study page says cryo-EM can generate tens of terabytes a day and that Moderna used a data cloud on AWS to land, check, and harmonize instrument data. That is the integration requirement in this charter. It is not a license to quote a single pandemic interval as the next program's goal."
+    },
+    {
+      "section": "delivery",
+      "heading": "The PM rule",
+      "body": "One target. One ticket. One batch. One human release. Any day count in a slide has a URL, and 25 and 42 are never averaged."
+    }
+  ]
+}

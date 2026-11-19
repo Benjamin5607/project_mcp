@@ -1,0 +1,725 @@
+{
+  "caseCode": "IND-DBS-AI-001",
+  "slug": "dbs-bank-industrialized-ai",
+  "title": "DBS industrialized AI and the published value claim",
+  "titleEn": "DBS industrialized AI and the published value claim",
+  "vendor": "DBS Bank",
+  "recordType": "public_announcement",
+  "fidelity": "primary_source",
+  "fidelityNote": "Model counts and the SGD 1 billion figure are DBS's own statements, and they moved between the 16 September 2024 newsroom quote and a later DBS page. This record stores both dates. It is not an independent valuation.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "DBS has industrialized machine learning across the bank and published the scale. On 16 September 2024 the DBS newsroom quoted CEO Piyush Gupta: more than 800 AI models across 350 use cases, with measured economic impact expected to exceed SGD 1 billion in 2025. A later DBS page, current as of May 2025, says more than 1,500 models across 370 use cases and the same 2025 value figure. Harvard Business School published a case on the journey, including the bank's PURE ethical framework. The PM pattern is a use-case portfolio with an owner, a value method, and a human in the loop, not a single model.",
+  "problemStatement": "A bank can accumulate models that nobody owns, with a value story that is a slide rather than a method. Generative use cases then arrive on top of unclear data rights. Staff and customers cannot tell which decisions are assisted and which are automatic.",
+  "opportunity": "DBS's published approach is a portfolio: hundreds of models, hundreds of use cases, and a stated economic impact. The September 2024 newsroom also says DBS ranked first for AI strategy leadership in the 2023 Global Evident AI Index and tenth overall, the only Asian bank in that top ten. The HBS case describes the PURE framework for ethical use: purposeful, unsurprising, respectful, and explainable. A May 2025 DBS article says the bank keeps a human in the loop and treats generative AI as a copilot.",
+  "strategicAlignment": "Industrializing AI means a registry, a value method, and a governance forum. A new generative pilot joins that registry. It does not start a second one.",
+  "businessValue": "The sponsor can see which use cases have an owner and a measurement, and can retire the rest. The SGD 1 billion figure remains DBS's published expectation, cited with the date of the page that stated it.",
+  "industry": "financial_services",
+  "industryLabel": "Financial services",
+  "customerSegment": "retail_bank",
+  "customerSegmentLabel": "Retail and corporate bank",
+  "region": "APAC",
+  "regulatoryContext": [
+    "MAS FEAT and AI risk expectations",
+    "PDPA",
+    "Model risk management"
+  ],
+  "companySizeBand": "Bank",
+  "deploymentModel": "hybrid",
+  "deploymentModelLabel": "Hybrid, with a central model registry",
+  "architecturePattern": "A registry of models and use cases, a value-capture method, a governance forum using the PURE tests, and a human accountable for customer-facing or risk decisions. Generative tools sit inside that registry as copilots.",
+  "complexity": "high",
+  "planningBandNote": "Amounts and durations below are planning bands for a similar program. They are not the publisher's result and not a price quote.",
+  "dealSizeLowUsd": 500000,
+  "dealSizeHighUsd": 3000000,
+  "dealSizeBand": "L",
+  "leadTimeWeeksLow": 4,
+  "leadTimeWeeksHigh": 10,
+  "durationWeeksLow": 16,
+  "durationWeeksHigh": 32,
+  "ciscoSolutions": [
+    "Model and use-case registry",
+    "PURE governance",
+    "Generative copilot pattern"
+  ],
+  "partnerTechnologies": [],
+  "aiCapabilities": [
+    "Hundreds of supervised models",
+    "Personalized customer nudges",
+    "Generative copilot for staff"
+  ],
+  "securityCapabilities": [
+    "Human in the loop on customer and risk decisions",
+    "Purpose limitation",
+    "Explainability review"
+  ],
+  "aliases": [
+    "DBS",
+    "PURE",
+    "model registry",
+    "Evident AI Index",
+    "Singapore bank",
+    "responsible AI"
+  ],
+  "scopeIn": [
+    "A registry with owner, purpose, and value method for every in-scope model",
+    "A PURE review on new use cases",
+    "One generative copilot with a named human decision",
+    "A citation note when DBS's published counts are used externally"
+  ],
+  "scopeOut": [
+    "Adopting SGD 1 billion as this bank's target",
+    "Unattended credit or complaint decisions",
+    "A second AI governance forum beside the existing one"
+  ],
+  "assumptions": [
+    {
+      "statement": "An inventory of current models can be extracted from the teams that trained them.",
+      "ownerRole": "Model risk",
+      "status": "open"
+    },
+    {
+      "statement": "Finance will accept the value method or mark the use case as unmeasured.",
+      "ownerRole": "Finance partner",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "regulatory",
+      "statement": "Customer-facing recommendations stay explainable to the reviewer who owns the use case."
+    },
+    {
+      "type": "organizational",
+      "statement": "A model with no owner is not in production. It is an issue."
+    }
+  ],
+  "successCriteria": [
+    "Every in-scope production model has an owner and a purpose",
+    "Value is either measured with the agreed method or marked unmeasured",
+    "The generative pilot names the human who accepts the output"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "DBS newsroom, 16 September 2024, quoting Piyush Gupta: more than 800 AI models across 350 use cases, with measured economic impact expected to exceed SGD 1 billion in 2025.",
+    "Same newsroom: DBS ranked first for AI strategy leadership in the 2023 Global Evident AI Index, tenth overall, and was the only Asian bank in that top ten.",
+    "DBS page current as of May 2025: more than 1,500 models across 370 use cases, still tied to SGD 1 billion of economic value by 2025, and a human-in-the-loop copilot stance.",
+    "Harvard Business School case: DBS developed the PURE framework, purposeful, unsurprising, respectful, and explainable."
+  ],
+  "sourceUrls": [
+    {
+      "title": "Harvard Business School examines DBS AI strategy",
+      "url": "https://www.dbs.com/newsroom/Harvard_Business_School_examines_DBS_AI_strategy_and_implementation_in_its_first_case_study_focusing_on_AI_in_an_Asian_bank",
+      "publisher": "DBS",
+      "publishedOn": "2024-09-16"
+    },
+    {
+      "title": "DBS' AI Journey",
+      "url": "https://hbsp.harvard.edu/product/625053-PDF-ENG",
+      "publisher": "Harvard Business School",
+      "publishedOn": null
+    },
+    {
+      "title": "Responsible AI in banking",
+      "url": "https://www.dbs.com/artificial-intelligence-machine-learning/artificial-intelligence/responsible-ai-in-banking-gaining-a-competitive-edge.html",
+      "publisher": "DBS",
+      "publishedOn": null
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2024-09-16",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "Business sponsor",
+      "organization": "Customer",
+      "interest": "A portfolio with owners, not a pile of models",
+      "influence": "high",
+      "engagement": "Registry policy",
+      "cadence": "Monthly"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "AI program PM",
+      "organization": "Customer",
+      "interest": "The registry actually closes",
+      "influence": "high",
+      "engagement": "Schedule",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "MRM",
+      "roleName": "Model risk",
+      "organization": "Customer",
+      "interest": "Every production model has an owner and a test",
+      "influence": "high",
+      "engagement": "Registry standard",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "FIN",
+      "roleName": "Finance partner",
+      "organization": "Customer",
+      "interest": "Value math that finance will sign",
+      "influence": "high",
+      "engagement": "Method",
+      "cadence": "Fortnightly"
+    },
+    {
+      "roleCode": "USE",
+      "roleName": "Use-case owner",
+      "organization": "Customer",
+      "interest": "Their model stays in production only with a purpose",
+      "influence": "medium",
+      "engagement": "Records",
+      "cadence": "Per model"
+    },
+    {
+      "roleCode": "RISK",
+      "roleName": "Conduct and privacy",
+      "organization": "Customer",
+      "interest": "PURE tests on new cases",
+      "influence": "high",
+      "engagement": "Forum",
+      "cadence": "Per new case"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "integration",
+      "priority": "must",
+      "statement": "The registry fields are owner, purpose, data class, human decision, and value method.",
+      "acceptance": "Field list approved",
+      "source": "DBS portfolio pattern"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "ai_governance",
+      "priority": "must",
+      "statement": "A new use case passes a PURE review before production.",
+      "acceptance": "Forum minute",
+      "source": "HBS case description of PURE"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "cost",
+      "priority": "must",
+      "statement": "Value is measured with the finance method or explicitly unmeasured.",
+      "acceptance": "No blank value cell",
+      "source": "DBS published value claim"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "Registry standard",
+      "phase": "initiate",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "Model risk"
+      ],
+      "accountable": "Business sponsor",
+      "consulted": [
+        "Finance partner",
+        "Conduct and privacy"
+      ],
+      "informed": [
+        "AI program PM"
+      ]
+    },
+    {
+      "activity": "Value method",
+      "phase": "plan",
+      "knowledgeArea": "cost",
+      "responsible": [
+        "Finance partner"
+      ],
+      "accountable": "Business sponsor",
+      "consulted": [
+        "Use-case owner"
+      ],
+      "informed": [
+        "AI program PM"
+      ]
+    },
+    {
+      "activity": "Inventory",
+      "phase": "execute",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "Use-case owner"
+      ],
+      "accountable": "Model risk",
+      "consulted": [
+        "AI program PM"
+      ],
+      "informed": [
+        "Business sponsor"
+      ]
+    },
+    {
+      "activity": "PURE review of the generative pilot",
+      "phase": "execute",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "Conduct and privacy"
+      ],
+      "accountable": "Business sponsor",
+      "consulted": [
+        "Use-case owner",
+        "Model risk"
+      ],
+      "informed": [
+        "Finance partner"
+      ]
+    },
+    {
+      "activity": "Close models with no owner",
+      "phase": "monitor",
+      "knowledgeArea": "risk",
+      "responsible": [
+        "Model risk"
+      ],
+      "accountable": "Business sponsor",
+      "consulted": [
+        "Use-case owner"
+      ],
+      "informed": [
+        "AI program PM"
+      ]
+    },
+    {
+      "activity": "External citation check",
+      "phase": "close",
+      "knowledgeArea": "communications",
+      "responsible": [
+        "AI program PM"
+      ],
+      "accountable": "Business sponsor",
+      "consulted": [
+        "Finance partner"
+      ],
+      "informed": [
+        "Model risk"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "integration",
+      "name": "Registry charter",
+      "description": "Fix the fields. Cite DBS counts only with a date.",
+      "deliverable": "Charter",
+      "ownerRole": "AI program PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [],
+      "acceptance": "Sponsor signs",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "cost",
+      "name": "Value method",
+      "description": "Finance writes what counts as value and what stays unmeasured.",
+      "deliverable": "Method note",
+      "ownerRole": "Finance partner",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "No implied billion",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "name": "PURE checklist",
+      "description": "Translate purposeful, unsurprising, respectful, and explainable into review questions.",
+      "deliverable": "Checklist",
+      "ownerRole": "Conduct and privacy",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Forum accepts it",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "scope",
+      "name": "Inventory",
+      "description": "Load production models. A missing owner becomes an issue, not a blank.",
+      "deliverable": "Registry",
+      "ownerRole": "Model risk",
+      "durationDaysLow": 15,
+      "durationDaysHigh": 25,
+      "predecessors": [
+        "2.1"
+      ],
+      "acceptance": "Every row has an owner or an issue",
+      "milestone": false,
+      "sort": 40
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "ai_governance",
+      "name": "One copilot",
+      "description": "Put one generative assistant through PURE and name the human decision.",
+      "deliverable": "Review minute",
+      "ownerRole": "Conduct and privacy",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "2.2",
+        "3.1"
+      ],
+      "acceptance": "Human decision is named",
+      "milestone": false,
+      "sort": 50
+    },
+    {
+      "wbsCode": "3.3",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "cost",
+      "name": "Value pass",
+      "description": "Apply the method or mark unmeasured.",
+      "deliverable": "Value column",
+      "ownerRole": "Finance partner",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "No blank cells",
+      "milestone": false,
+      "sort": 60
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "monitor",
+      "knowledgeArea": "risk",
+      "name": "Retire or assign",
+      "description": "Models with no owner are turned off or assigned.",
+      "deliverable": "Exception log",
+      "ownerRole": "Model risk",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "Sponsor sees the list",
+      "milestone": false,
+      "sort": 70
+    },
+    {
+      "wbsCode": "5",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "communications",
+      "name": "Citation note",
+      "description": "If a deck quotes DBS, it quotes the 16 September 2024 numbers and the later May 2025 numbers as two dates.",
+      "deliverable": "Citation note",
+      "ownerRole": "AI program PM",
+      "durationDaysLow": 2,
+      "durationDaysHigh": 4,
+      "predecessors": [
+        "3.2",
+        "3.3"
+      ],
+      "acceptance": "Both dates present",
+      "milestone": true,
+      "sort": 80
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Charter",
+      "phase": "initiate",
+      "weekOffsetLow": 2,
+      "weekOffsetHigh": 3,
+      "criteria": "Fields fixed"
+    },
+    {
+      "name": "Inventory",
+      "phase": "execute",
+      "weekOffsetLow": 8,
+      "weekOffsetHigh": 14,
+      "criteria": "Owners or issues"
+    },
+    {
+      "name": "Copilot review",
+      "phase": "execute",
+      "weekOffsetLow": 12,
+      "weekOffsetHigh": 20,
+      "criteria": "PURE minute"
+    },
+    {
+      "name": "Citation note",
+      "phase": "close",
+      "weekOffsetLow": 16,
+      "weekOffsetHigh": 32,
+      "criteria": "Dates not merged"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "SGD 1 billion is copied onto this bank",
+      "description": "That figure is DBS's stated expectation, dated in their pages.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 4,
+      "response": "avoid",
+      "mitigation": "External text names DBS, the date, and the page.",
+      "contingency": "Remove the figure.",
+      "ownerRole": "AI program PM",
+      "trigger": "A draft says we will deliver 1 billion"
+    },
+    {
+      "riskCode": "R2",
+      "title": "The model count is frozen",
+      "description": "DBS itself moved from 800 models and 350 use cases in September 2024 to more than 1,500 and 370 by May 2025.",
+      "category": "communications",
+      "probability": 3,
+      "impact": 2,
+      "response": "mitigate",
+      "mitigation": "Quote both dates or quote only the page you opened.",
+      "contingency": "Add the date in the footnote.",
+      "ownerRole": "AI program PM",
+      "trigger": "A slide has a count and no date"
+    },
+    {
+      "riskCode": "R3",
+      "title": "Orphan models stay in production",
+      "description": "A registry that allows blanks is a list, not a control.",
+      "category": "risk",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "No owner means an issue and a retirement clock.",
+      "contingency": "Sponsor turns the model off.",
+      "ownerRole": "Model risk",
+      "trigger": "A production model has a blank owner after the inventory gate"
+    },
+    {
+      "riskCode": "R4",
+      "title": "The copilot answers a customer with no human decision",
+      "description": "DBS describes a copilot and a human in the loop, especially for risk and customer interaction.",
+      "category": "ai_governance",
+      "probability": 3,
+      "impact": 5,
+      "response": "mitigate",
+      "mitigation": "The PURE minute names the person who accepts the output.",
+      "contingency": "Take the copilot off the customer path.",
+      "ownerRole": "Conduct and privacy",
+      "trigger": "A channel sends model text without a named role"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Where the current model list lives",
+      "status": "open",
+      "ownerRole": "Model risk",
+      "nextAction": "Name the system of record before the inventory workshop"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Owned models",
+      "baseline": "Unknown",
+      "target": "Every in-scope production model has an owner",
+      "unit": "percent",
+      "method": "Registry",
+      "ownerRole": "Model risk",
+      "cadence": "Weekly during inventory"
+    },
+    {
+      "name": "Value cells",
+      "baseline": "Anecdote",
+      "target": "Measured or explicitly unmeasured",
+      "unit": "percent",
+      "method": "Finance method",
+      "ownerRole": "Finance partner",
+      "cadence": "At the value pass"
+    },
+    {
+      "name": "Generative decisions with a person",
+      "baseline": "Unset",
+      "target": "The pilot copilot has one named acceptor",
+      "unit": "count",
+      "method": "PURE minute",
+      "ownerRole": "Conduct and privacy",
+      "cadence": "Once, then on change"
+    }
+  ],
+  "costs": [
+    {
+      "category": "services",
+      "name": "Registry and inventory",
+      "costType": "opex",
+      "lowUsd": 200000,
+      "highUsd": 900000,
+      "notes": "Planning band for the program team."
+    },
+    {
+      "category": "software",
+      "name": "Registry tooling",
+      "costType": "opex",
+      "lowUsd": 50000,
+      "highUsd": 400000,
+      "notes": "Planning band. An existing model-risk system may be enough."
+    },
+    {
+      "category": "training",
+      "name": "PURE reviewer training",
+      "costType": "opex",
+      "lowUsd": 20000,
+      "highUsd": 80000,
+      "notes": "Internal conduct and model-risk time."
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "Method gate",
+      "criteria": "Finance has defined measured versus unmeasured.",
+      "owner": "FIN",
+      "ownerRole": "Finance partner"
+    },
+    {
+      "phase": "execute",
+      "name": "Inventory gate",
+      "criteria": "No production model is blank. It has an owner or an issue.",
+      "owner": "MRM",
+      "ownerRole": "Model risk"
+    },
+    {
+      "phase": "close",
+      "name": "Citation gate",
+      "criteria": "DBS figures in external material carry a date.",
+      "owner": "PM",
+      "ownerRole": "AI program PM"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "Use-case owners",
+      "message": "No owner means the model is an issue",
+      "channel": "Inventory workshop",
+      "cadence": "Once",
+      "owner": "MRM",
+      "ownerRole": "Model risk"
+    },
+    {
+      "audience": "Sponsor",
+      "message": "Measured, unmeasured, and retired",
+      "channel": "Monthly",
+      "cadence": "Monthly",
+      "owner": "PM",
+      "ownerRole": "AI program PM"
+    },
+    {
+      "audience": "Communications",
+      "message": "DBS numbers need the page date",
+      "channel": "Citation note",
+      "cadence": "Before external use",
+      "owner": "PM",
+      "ownerRole": "AI program PM"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "Registry tool or configuration",
+      "vendorType": "Existing risk system or new tool",
+      "strategy": "Use the current model-risk system if it can hold the fields",
+      "leadWeeks": 6,
+      "notes": "Do not wait on a new platform to start the inventory"
+    },
+    {
+      "item": "Generative copilot entitlement",
+      "vendorType": "The bank's approved model vendor",
+      "strategy": "One assistant, named users",
+      "leadWeeks": 4,
+      "notes": "After the PURE minute, not before"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "What the billion means here",
+      "choice": "It is DBS's published expectation. It is not this bank's target.",
+      "rationale": "The figure is a citation with a date.",
+      "owner": "SPONSOR",
+      "ownerRole": "Business sponsor",
+      "date": null
+    },
+    {
+      "decisionCode": "D2",
+      "title": "Orphan models",
+      "choice": "A blank owner starts a retirement clock.",
+      "rationale": "Industrializing means someone is accountable.",
+      "owner": "MRM",
+      "ownerRole": "Model risk",
+      "date": null
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "Dates",
+      "statement": "DBS's own count changed between September 2024 and May 2025. A case bank should store the movement, not the rounder number.",
+      "applicability": "Any executive benchmark"
+    },
+    {
+      "theme": "Portfolio",
+      "statement": "The success story is a registry and a value method, not a single chatbot.",
+      "applicability": "Bank AI charters"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "A portfolio a sponsor can read",
+      "measure": "Registry completeness",
+      "beneficiary": "Sponsor and model risk",
+      "timing": "After inventory"
+    },
+    {
+      "name": "Generative work inside the same forum",
+      "measure": "PURE minute",
+      "beneficiary": "Conduct and the use-case owner",
+      "timing": "Before production"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "What DBS has published",
+      "body": "On 16 September 2024 DBS said Harvard Business School had published a case on the bank's AI strategy, the first HBS AI case on an Asian bank. The newsroom quotes CEO Piyush Gupta: the bank deploys more than 800 AI models across 350 use cases and expects the measured economic impact to exceed SGD 1 billion in 2025. The same note says DBS ranked first for AI strategy leadership in the 2023 Global Evident AI Index, tenth overall, and was the only Asian bank in that top ten.\n\nThe HBS case, as described by Harvard Business Impact, covers the industrialization of AI since 2014 and the PURE framework: purposeful, unsurprising, respectful, and explainable use of customer data. A DBS article current as of May 2025 updates the scale to more than 1,500 models across 370 use cases, still associated with SGD 1 billion of economic value by 2025, and says the bank uses a copilot pattern with a human in the loop for risk and customer interaction.\n\nThose sentences are DBS's account of DBS. A different bank can copy the registry, the value method, and the forum. It cannot copy the billion."
+    },
+    {
+      "section": "delivery",
+      "heading": "The PM sequence",
+      "body": "Fix the fields. Agree the value math. Inventory the models. Put one generative assistant through the same forum. Quote DBS only with the date of the page."
+    }
+  ]
+}

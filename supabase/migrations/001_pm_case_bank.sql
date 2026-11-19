@@ -25,11 +25,11 @@ create table process_groups (
 );
 
 insert into process_groups (code, name_ko, name_en, sort_order) values
-  ('initiate', '착수', 'Initiating', 1),
-  ('plan', '계획', 'Planning', 2),
-  ('execute', '실행', 'Executing', 3),
-  ('monitor', '감시·통제', 'Monitoring and controlling', 4),
-  ('close', '종료', 'Closing', 5);
+  ('initiate', 'Initiating', 'Initiating', 1),
+  ('plan', 'Planning', 'Planning', 2),
+  ('execute', 'Executing', 'Executing', 3),
+  ('monitor', 'Monitoring and controlling', 'Monitoring and controlling', 4),
+  ('close', 'Closing', 'Closing', 5);
 
 -- PMI knowledge areas plus security and AI governance.
 create table knowledge_areas (
@@ -40,18 +40,18 @@ create table knowledge_areas (
 );
 
 insert into knowledge_areas (code, name_ko, name_en, description) values
-  ('integration', '통합', 'Integration', 'Charter, change control, stage gates, and lessons in one plan.'),
-  ('scope', '범위', 'Scope', 'In scope, out of scope, and acceptance. Do not mix a pilot with an enterprise rollout.'),
-  ('schedule', '일정', 'Schedule', 'Lead time, duration band, milestones, and predecessors.'),
-  ('cost', '원가', 'Cost', 'CapEx and OpEx planning bands. Not a list price and not a customer result.'),
-  ('quality', '품질', 'Quality', 'Stage gates and acceptance criteria.'),
-  ('resource', '자원', 'Resource', 'Roles and staffing. Tied to RACI Responsible.'),
-  ('communications', '의사소통', 'Communications', 'Sponsor reports, user notices, and the exception channel.'),
-  ('risk', '리스크', 'Risk', 'Probability times impact, response, trigger, and contingency.'),
-  ('procurement', '조달', 'Procurement', 'Licenses, hardware lead time, and contracting.'),
-  ('stakeholder', '이해관계자', 'Stakeholder', 'Influence, engagement, and the decision maker.'),
-  ('security', '보안', 'Security', 'Visibility, control placement, the runbook, and detection and response.'),
-  ('ai_governance', 'AI 거버넌스', 'AI governance', 'Training-data rights, evaluation, human approval, and model limits.');
+  ('integration', 'Integration', 'Integration', 'Charter, change control, stage gates, and lessons in one plan.'),
+  ('scope', 'Scope', 'Scope', 'In scope, out of scope, and acceptance. Do not mix a pilot with an enterprise rollout.'),
+  ('schedule', 'Schedule', 'Schedule', 'Lead time, duration band, milestones, and predecessors.'),
+  ('cost', 'Cost', 'Cost', 'CapEx and OpEx planning bands. Not a list price and not a customer result.'),
+  ('quality', 'Quality', 'Quality', 'Stage gates and acceptance criteria.'),
+  ('resource', 'Resource', 'Resource', 'Roles and staffing. Tied to RACI Responsible.'),
+  ('communications', 'Communications', 'Communications', 'Sponsor reports, user notices, and the exception channel.'),
+  ('risk', 'Risk', 'Risk', 'Probability times impact, response, trigger, and contingency.'),
+  ('procurement', 'Procurement', 'Procurement', 'Licenses, hardware lead time, and contracting.'),
+  ('stakeholder', 'Stakeholder', 'Stakeholder', 'Influence, engagement, and the decision maker.'),
+  ('security', 'Security', 'Security', 'Visibility, control placement, the runbook, and detection and response.'),
+  ('ai_governance', 'AI governance', 'AI governance', 'Training-data rights, evaluation, human approval, and model limits.');
 
 create table solution_cases (
   id uuid primary key default gen_random_uuid(),

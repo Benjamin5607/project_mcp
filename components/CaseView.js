@@ -36,7 +36,7 @@ export function CaseView({ item }) {
         <span className="badge">{item.region}</span>
       </div>
       <h1>{title}</h1>
-      <p className="lede">{item.title}</p>
+      <p className="lede">{[item.vendor, item.industryLabel, item.customerSegmentLabel].filter(Boolean).join(" · ")}</p>
       <div className="anchor-nav no-print">
         {["overview", "scope", "raci", "wbs", "risks", "cost", "sources"].map((id) => (
           <a key={id} href={`#${id}`}>{id}</a>

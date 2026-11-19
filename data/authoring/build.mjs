@@ -1,0 +1,107 @@
+function names(stakeholders, codes) {
+  const byCode = Object.fromEntries(stakeholders.map((person) => [person.roleCode, person.roleName]));
+  return codes.map((code) => {
+    if (!byCode[code]) throw new Error(`Unknown role ${code}`);
+    return byCode[code];
+  });
+}
+
+function name(stakeholders, code) {
+  return names(stakeholders, [code])[0];
+}
+
+/** Turn a compact English spec into the case record the bank stores. */
+export function defineCase(spec) {
+  const stakeholders = spec.stakeholders;
+  return {
+    caseCode: spec.caseCode,
+    slug: spec.slug,
+    title: spec.title,
+    titleEn: spec.title,
+    vendor: spec.vendor,
+    recordType: spec.recordType,
+    fidelity: spec.fidelity,
+    fidelityNote: spec.fidelityNote,
+    status: "published",
+    confidentiality: "public",
+    executiveSummary: spec.executiveSummary,
+    problemStatement: spec.problemStatement,
+    opportunity: spec.opportunity,
+    strategicAlignment: spec.strategicAlignment,
+    businessValue: spec.businessValue,
+    industry: spec.industry,
+    industryLabel: spec.industryLabel,
+    customerSegment: spec.customerSegment,
+    customerSegmentLabel: spec.customerSegmentLabel,
+    region: spec.region,
+    regulatoryContext: spec.regulatoryContext,
+    companySizeBand: spec.companySizeBand,
+    deploymentModel: spec.deploymentModel,
+    deploymentModelLabel: spec.deploymentModelLabel,
+    architecturePattern: spec.architecturePattern,
+    complexity: spec.complexity,
+    planningBandNote: spec.planningBandNote,
+    dealSizeLowUsd: spec.deal[0],
+    dealSizeHighUsd: spec.deal[1],
+    dealSizeBand: spec.dealBand,
+    leadTimeWeeksLow: spec.lead[0],
+    leadTimeWeeksHigh: spec.lead[1],
+    durationWeeksLow: spec.duration[0],
+    durationWeeksHigh: spec.duration[1],
+    ciscoSolutions: spec.solutions,
+    partnerTechnologies: spec.partners,
+    aiCapabilities: spec.ai,
+    securityCapabilities: spec.security,
+    aliases: spec.aliases,
+    scopeIn: spec.scopeIn,
+    scopeOut: spec.scopeOut,
+    assumptions: spec.assumptions,
+    constraints: spec.constraints,
+    successCriteria: spec.successCriteria,
+    outcomeType: spec.outcomeType,
+    outcomes: spec.outcomes,
+    sourceUrls: spec.sources,
+    videoUrl: spec.videoUrl || null,
+    videoTitle: spec.videoTitle || null,
+    publishedOn: spec.publishedOn,
+    stakeholders,
+    requirements: spec.requirements,
+    raci: spec.raci.map((row) => ({
+      activity: row.activity,
+      phase: row.phase,
+      knowledgeArea: row.area,
+      responsible: names(stakeholders, row.r),
+      accountable: name(stakeholders, row.a),
+      consulted: names(stakeholders, row.c || []),
+      informed: names(stakeholders, row.i || []),
+    })),
+    wbs: spec.wbs.map((row, index) => ({
+      wbsCode: row.code,
+      parentCode: row.parent || null,
+      phase: row.phase,
+      knowledgeArea: row.area,
+      name: row.name,
+      description: row.description,
+      deliverable: row.deliverable,
+      ownerRole: name(stakeholders, row.owner),
+      durationDaysLow: row.days[0],
+      durationDaysHigh: row.days[1],
+      predecessors: row.after || [],
+      acceptance: row.acceptance,
+      milestone: Boolean(row.milestone),
+      sort: (index + 1) * 10,
+    })),
+    milestones: spec.milestones,
+    risks: spec.risks,
+    issues: spec.issues,
+    kpis: spec.kpis,
+    costs: spec.costs,
+    qualityGates: spec.gates.map((row) => ({ ...row, ownerRole: name(stakeholders, row.owner) })),
+    communications: spec.communications.map((row) => ({ ...row, ownerRole: name(stakeholders, row.owner) })),
+    procurement: spec.procurement,
+    decisions: spec.decisions.map((row) => ({ ...row, ownerRole: name(stakeholders, row.owner), date: row.date || null })),
+    lessons: spec.lessons,
+    benefits: spec.benefits,
+    narrative: spec.narrative,
+  };
+}

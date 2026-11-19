@@ -28,7 +28,7 @@ export default function GuidePage() {
         The front end is this Next.js app, the API is the Node routes and the Workers handler,
         vectors sit in Supabase pgvector, and the default embedding is local.
         Ollama and Hugging Face are replacements that require a rebuilt index.
-        English is the locked default for the database setting and for this interface.
+        English is the locked default for the stored cases, the database setting, and this interface.
       </p>
       {STEPS.map((step) => (
         <section className="section" key={step.title}>

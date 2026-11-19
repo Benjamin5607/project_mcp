@@ -21,7 +21,7 @@ function min(code, list, count, label) {
 
 for (const item of cases) {
   const code = item.caseCode || "(no code)";
-  if (!/^CSCO-[A-Z0-9-]+$/.test(item.caseCode || "")) fail(code, "caseCode 형식");
+  if (!/^(CSCO|IND)-[A-Z0-9-]+$/.test(item.caseCode || "")) fail(code, "caseCode 형식");
   if (!item.slug || !/^[a-z0-9-]+$/.test(item.slug)) fail(code, "slug");
   for (const field of ["title", "titleEn", "fidelityNote", "executiveSummary", "problemStatement", "opportunity", "strategicAlignment", "businessValue", "architecturePattern", "planningBandNote", "publishedOn"]) {
     if (!item[field] || String(item[field]).trim().length < 8) fail(code, `${field}가 비었습니다.`);
@@ -95,6 +95,22 @@ for (const item of cases) {
     if (!KNOWLEDGE_CODES.includes(row.knowledgeArea)) fail(code, `요구사항 영역 ${row.reqCode}`);
   }
 }
+
+const hangul = /[가-힣]/;
+function walk(value, path, code) {
+  if (typeof value === "string") {
+    if (hangul.test(value)) fail(code, `Korean text in ${path}`);
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => walk(item, `${path}[${index}]`, code));
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, child] of Object.entries(value)) walk(child, `${path}.${key}`, code);
+  }
+}
+for (const item of cases) walk(item, item.caseCode, item.caseCode);
 
 const codes = cases.map((item) => item.caseCode);
 if (new Set(codes).size !== codes.length) fail("ALL", "caseCode 중복");

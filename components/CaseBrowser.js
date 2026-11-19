@@ -15,7 +15,7 @@ export function CaseBrowser({ cases }) {
       if (industry && item.industry !== industry) return false;
       if (solution && !item.ciscoSolutions.includes(solution)) return false;
       if (!folded) return true;
-      const haystack = `${item.title} ${item.titleEn} ${item.executiveSummary} ${item.caseCode} ${item.ciscoSolutions.join(" ")}`.toLowerCase();
+      const haystack = `${item.vendor} ${item.title} ${item.titleEn} ${item.executiveSummary} ${item.caseCode} ${item.ciscoSolutions.join(" ")}`.toLowerCase();
       return haystack.includes(folded);
     });
   }, [cases, query, industry, solution]);
@@ -49,7 +49,7 @@ export function CaseBrowser({ cases }) {
             <h2>{item.title}</h2>
             <p>{item.executiveSummary}</p>
             <p className="meta">
-              {item.ciscoSolutions.join(" · ")} · Duration {item.durationLabel} · Lead {item.leadLabel} · Planning band {item.dealLabel}
+              {[item.vendor, item.ciscoSolutions.join(" · ")].filter(Boolean).join(" · ")} · Duration {item.durationLabel} · Lead {item.leadLabel} · Planning band {item.dealLabel}
             </p>
           </Link>
         ))}

@@ -1,36 +1,37 @@
 {
   "caseCode": "CSCO-HYP-FIN-001",
   "slug": "hypershield-finance-visibility",
-  "title": "금융권 AI 애플리케이션 가시성과 접근 통제 — Hypershield와 AI Defense",
+  "title": "Financial-services visibility and access control for AI apps with Hypershield and AI Defense",
   "titleEn": "Financial-services visibility and access control for AI apps with Hypershield and AI Defense",
+  "vendor": "Cisco",
   "recordType": "reference_scenario",
   "fidelity": "public_composite",
-  "fidelityNote": "Cisco가 공개한 AI Defense와 Hypershield 설명을 금융권 파일럿 계획으로 재구성한 시나리오입니다. 특정 금융사의 도입 실적, 계약 금액, 리드타임을 기록한 것이 아닙니다.",
+  "fidelityNote": "A planning scenario composed from Cisco's public AI Defense and Hypershield material, placed under financial-services constraints. It is not a bank's results. No customer name, quote, or measured MTTR is stored here.",
   "status": "published",
   "confidentiality": "public",
-  "executiveSummary": "금융권 계획 시나리오입니다. 임직원과 개발 조직이 승인되지 않은 AI 애플리케이션을 쓰기 시작하면, 고객정보와 모형 학습 데이터가 어디로 나가는지 보안팀이 보지 못합니다. Cisco AI Defense로 섀도 AI와 승인 AI를 가시화하고 접근을 통제하며, Cisco Hypershield로 데이터센터 안 고가치 워크로드에 분산 익스플로잇 보호와 자율 세그멘테이션을 적용하는 16–28주 파일럿입니다. 금액과 기간은 계획 밴드입니다.",
-  "problemStatement": "생성형 AI 요약, 코딩 보조, 외부 SaaS 모형이 현업과 개발망에 먼저 들어옵니다. 기존 보안 스택은 애플리케이션이 어떤 모형을 호출하고 어떤 데이터 소스에 연결되는지, 프롬프트에 기밀이 실리는지 일관되게 보여 주지 못합니다. 동시에 AI 서버와 쿠버네티스 클러스터의 동-서 트래픽은 패치 속도보다 빠르게 늘어, 취약점 공개 이후 완화 통제를 사람이 수작업으로 넣기 어렵습니다.",
-  "opportunity": "네트워크에 이미 있는 관찰점으로 AI 사용과 AI 자산 목록을 만들고, 차단 전에 탐지 모드를 두면 현업 반발을 줄이면서 통제를 올릴 수 있습니다. Hypershield가 공개한 설계는 취약점의 메모리 적재 여부, 실제 악용 여부, 고가치 자산 여부를 따져 수 분 안에 우회 통제를 놓고 패치 후 걷어 내는 흐름입니다. 금융권 파일럿은 그 흐름을 거래 시스템이 아닌 인접 업무부터 검증합니다.",
-  "strategicAlignment": "디지털 금융의 AI 도입 속도와 전자금융 안전성 의무를 같은 프로그램으로 둡니다. 보안 통제가 출시를 막기만 하는 구조에서, 승인된 AI 경로와 금지 데이터 목록을 먼저 제공하는 구조로 바꿉니다.",
-  "businessValue": "파일럿 도메인에서 비인가 AI 앱과 연결 모형을 목록화하고, 기밀 데이터가 승인되지 않은 도구로 나가는 경로에 통제를 겁니다. 고가치 자산의 심각 취약점은 패치를 기다리는 동안 분산 완화 통제의 적용 시간을 측정합니다. 운영 모델과 RACI가 남아 전사 확대의 사업 케이스가 됩니다.",
+  "executiveSummary": "A financial institution wants to see which AI applications touch customer and transaction data, and to control that access, before any enforce mode. The public ingredients are AI Defense for discovery and runtime protection, and Hypershield for distributed enforcement with a dual data plane so a policy can be observed before it is enforced. The PM plan is a shadow-mode pilot, a rollback, and a separate decision to enforce. Minutes-to-mitigate is a published product design goal, not a measured customer result.",
+  "problemStatement": "AI applications in a bank cross model providers, lines of business, and the data center. Security can see the network and still not see which application is an AI application, or which one is unapproved. Turning on enforcement before the inventory exists blocks legitimate work and still misses the unknown app.",
+  "opportunity": "Cisco's public Hypershield design describes enforcement close to the workload and upgrades that qualify themselves on a dual data plane. AI Defense adds discovery of shadow and approved AI, model validation, and runtime controls. Together they give a sequence: discover, observe, then decide whether to enforce.",
+  "strategicAlignment": "The control objective is visibility and a reversible policy, aligned to electronic-financial supervision, privacy, and credit-information duties. Speed of mitigation is not the acceptance test.",
+  "businessValue": "The sponsor can point at an inventory, an observation report, and a written enforce-or-hold decision. The program does not claim a percentage reduction in MTTR.",
   "industry": "financial_services",
-  "industryLabel": "금융",
+  "industryLabel": "Financial services",
   "customerSegment": "enterprise",
-  "customerSegmentLabel": "대기업 금융",
+  "customerSegmentLabel": "Enterprise financial institution",
   "region": "APAC",
   "regulatoryContext": [
-    "전자금융감독규정",
-    "개인정보보호법",
-    "신용정보법",
+    "Regulation on Supervision of Electronic Financial Transactions",
+    "Personal Information Protection Act",
+    "Credit Information Act",
     "NIST AI RMF",
     "OWASP LLM Top 10"
   ],
-  "companySizeBand": "5000+",
+  "companySizeBand": "Enterprise bank or insurer",
   "deploymentModel": "hybrid",
-  "deploymentModelLabel": "하이브리드(온프레미스 데이터센터와 퍼블릭 클라우드)",
-  "architecturePattern": "AI Access와 AI Cloud Visibility로 사용자·개발 AI 자산을 보고, 네트워크 계층 런타임 가드레일로 프롬프트 인젝션·유출·서비스 거부를 막으며, Hypershield 분산 집행점으로 데이터센터 세그멘테이션과 익스플로잇 완화를 적용한다. Splunk가 있는 환경이면 AI Defense 경보에 생태계 문맥을 더한다.",
+  "deploymentModelLabel": "Hybrid, shadow mode before enforcement",
+  "architecturePattern": "AI Defense discovers applications and watches runtime use. Hypershield places enforcement in the data center and cloud fabric. New policy runs in shadow on the second data plane. Enforcement waits for the CISO's decision. Talos informs detection. Splunk is the investigation store only if it is already deployed.",
   "complexity": "high",
-  "planningBandNote": "아래 금액·기간·KPI 수치는 계획 밴드와 계획 목표입니다. Cisco 고시 가격도, 특정 고객 실적도 아닙니다. 내부 인건비는 포함하지 않았습니다.",
+  "planningBandNote": "The 750,000 to 2,500,000 US dollar range and the week ranges are planning bands for a first financial pilot. They are not a quote and not a bank's spend.",
   "dealSizeLowUsd": 750000,
   "dealSizeHighUsd": 2500000,
   "dealSizeBand": "L",
@@ -45,94 +46,70 @@
     "Cisco Talos",
     "Splunk"
   ],
-  "partnerTechnologies": [
-    "Splunk"
-  ],
+  "partnerTechnologies": [],
   "aiCapabilities": [
-    "섀도 AI와 승인 AI 발견",
-    "클라우드 AI 자산·데이터 소스 가시성",
-    "알고리즘 레드팀 모형 검증",
-    "런타임 가드레일",
-    "Talos 기반 자기 최적화 탐지"
+    "Shadow AI discovery",
+    "Runtime protection",
+    "Policy observation before enforcement"
   ],
   "securityCapabilities": [
-    "비인가 AI 접근 통제",
-    "기밀 데이터 유출 방지",
-    "분산 익스플로잇 보호",
-    "자율 세그멘테이션",
-    "무중단 자기 검증 업그레이드"
+    "Distributed enforcement",
+    "Dual data plane",
+    "Rollback",
+    "Access control for AI applications"
   ],
   "aliases": [
-    "금융권",
-    "금융",
-    "은행",
     "Hypershield",
-    "하이퍼실드",
+    "financial services",
+    "visibility",
+    "shadow mode",
     "AI Defense",
-    "가시성",
-    "접근 제어",
-    "접근 통제",
-    "기밀",
-    "RACI",
-    "섀도 AI",
-    "shadow AI"
+    "segmentation"
   ],
   "scopeIn": [
-    "임직원 AI 애플리케이션 가시성과 승인·비승인 분류",
-    "파일럿 계정계 인접 업무 1개와 개발 샌드박스 1개의 모형·데이터 소스 목록",
-    "금지 데이터 등급이 승인되지 않은 AI로 나가지 않도록 하는 접근 정책과 예외 절차",
-    "고가치 자산 범위의 Hypershield 관측 모드 후 제한적 강제",
-    "프롬프트 인젝션, 민감정보 유출, 모형 서비스 거부 시나리오의 런타임 검증",
-    "Splunk를 쓰는 경우 경보 연계 설계"
+    "One business line and the AI applications that touch its data",
+    "An inventory of approved and unapproved AI applications",
+    "Shadow-mode observation with a rollback",
+    "A written decision before enforce mode"
   ],
   "scopeOut": [
-    "전사 모든 자회사와 해외 법인의 일괄 차단",
-    "계정계 원장 트랜잭션 경로의 즉각적 강제 세그멘테이션",
-    "고객 데이터로 기초 모형을 새로 학습하는 작업",
-    "특정 벤더 가격을 이 밴드 숫자로 확정하는 일"
+    "Naming a bank that has not been named in the input",
+    "An MTTR percentage",
+    "Enforce mode during the observation window",
+    "A full data-center fabric replacement"
   ],
   "assumptions": [
     {
-      "statement": "파일럿 도메인의 ID 제공자와 데이터센터 흐름 로그를 읽을 수 있다.",
-      "ownerRole": "정보보호 운영",
+      "statement": "The CISO will not delegate the enforce decision.",
+      "ownerRole": "CISO (sponsor)",
       "status": "open"
     },
     {
-      "statement": "준법이 금지 데이터 목록의 최종 승인자이다.",
-      "ownerRole": "준법·개인정보",
-      "status": "open"
-    },
-    {
-      "statement": "Splunk 연계는 기존 SIEM이 있을 때의 선택 과업이다.",
-      "ownerRole": "고객 PM",
+      "statement": "The business line can name the applications and the data classes.",
+      "ownerRole": "Business owner",
       "status": "open"
     }
   ],
   "constraints": [
     {
       "type": "regulatory",
-      "statement": "고객 식별정보와 신용정보를 외부 생성형 AI에 입력하는 행위는 금지 목록 확정 전까지 기본 금지로 둔다."
+      "statement": "Customer and credit data stay in the classified stores. A new AI application does not become a second copy."
     },
     {
       "type": "technical",
-      "statement": "거래 경로 강제 통제는 관측 모드와 변경 창 검증이 끝나기 전에 켜지 않는다."
-    },
-    {
-      "type": "organizational",
-      "statement": "현업 우회가 늘지 않도록, 차단 시작 전에 승인 AI 대안을 공지한다."
+      "statement": "Shadow mode is the only mode until the observation report is accepted."
     }
   ],
   "successCriteria": [
-    "파일럿 도메인에서 표본 조사한 AI 앱·모형이 인벤토리와 대조된다.",
-    "비인가 도구로 나가는 금지 데이터 시나리오가 탐지 모드에서 재현되고, 강제 모드에서 차단된다.",
-    "고가치 자산 파일럿 CVE에 대해 완화 통제 적용 시각이 기록된다.",
-    "RACI와 예외 처리 SLA가 스폰서 승인을 받는다."
+    "The inventory separates approved and unapproved AI applications",
+    "The observation report lists what shadow mode would have blocked",
+    "Enforce mode is a signed decision, default hold"
   ],
   "outcomeType": "expected_planning",
   "outcomes": [
-    "기대 결과: 승인·비승인 AI의 단일 목록과 소유자",
-    "기대 결과: 네트워크 계층 가드레일과 데이터센터 분산 통제가 같은 운영 리듬으로 돌아감",
-    "공개된 제품 설계 목표: Hypershield는 패치 전 완화 통제를 수 분 단위로 배치하고, 패치 후 제거한다. 이 파일럿은 그 목표를 측정 항목으로 둔다."
+    "Planning outcome: an inventory and a shadow-mode report for one business line. This is not a published customer result.",
+    "Published design goal: Hypershield describes mitigation in minutes and self-qualifying upgrades on a dual data plane. That is Cisco's product design, not a measured bank outcome.",
+    "Published fact: AI Defense, announced 15 January 2025, covers discovery, validation, runtime protection, and access control."
   ],
   "sourceUrls": [
     {
@@ -171,324 +148,178 @@
   "publishedOn": "2025-01-15",
   "stakeholders": [
     {
-      "roleCode": "SPONSOR",
-      "roleName": "CISO(스폰서)",
-      "organization": "고객",
-      "interest": "규제 리스크와 AI 도입 속도를 함께 보고받는다.",
+      "roleCode": "CISO",
+      "roleName": "CISO (sponsor)",
+      "organization": "Customer",
+      "interest": "Visibility without an unplanned outage",
       "influence": "high",
-      "engagement": "차터와 강제 모드 전환만 직접 승인",
-      "cadence": "월간"
+      "engagement": "Accountable for enforce or hold",
+      "cadence": "Monthly"
     },
     {
       "roleCode": "PM",
-      "roleName": "고객 PM",
-      "organization": "고객",
-      "interest": "범위, 일정 밴드, 의사결정을 흔들리지 않게 유지",
+      "roleName": "Customer PM",
+      "organization": "Customer",
+      "interest": "One business line, one observation window",
       "influence": "high",
-      "engagement": "통합 일정과 이슈 로그 소유",
-      "cadence": "주간"
+      "engagement": "Schedule and the decision log",
+      "cadence": "Weekly"
     },
     {
-      "roleCode": "SECOPS",
-      "roleName": "정보보호 운영",
-      "organization": "고객",
-      "interest": "가시성, 정책, 오탐, 런북",
+      "roleCode": "SEC",
+      "roleName": "Security architect",
+      "organization": "Customer",
+      "interest": "Shadow mode and the rollback",
       "influence": "high",
-      "engagement": "탐지에서 강제까지의 통제 소유",
-      "cadence": "주간"
+      "engagement": "Policy design",
+      "cadence": "Weekly"
     },
     {
-      "roleCode": "NETARCH",
-      "roleName": "데이터센터 네트워크 아키텍트",
-      "organization": "고객",
-      "interest": "동-서 트래픽과 세그멘테이션이 거래를 끊지 않을 것",
+      "roleCode": "BIZ",
+      "roleName": "Business owner",
+      "organization": "Customer",
+      "interest": "Legitimate applications are not blocked by surprise",
       "influence": "high",
-      "engagement": "Hypershield 배치점과 변경 창",
-      "cadence": "주간"
+      "engagement": "Application inventory",
+      "cadence": "Weekly until the inventory freezes"
     },
     {
-      "roleCode": "AIPLAT",
-      "roleName": "AI 플랫폼 오너",
-      "organization": "고객",
-      "interest": "승인된 모형 경로의 개발 속도",
+      "roleCode": "RISK",
+      "roleName": "Operational risk",
+      "organization": "Customer",
+      "interest": "The supervision and privacy duties are named",
       "influence": "medium",
-      "engagement": "샌드박스 워크로드와 가드레일 테스트",
-      "cadence": "주간"
+      "engagement": "Regulatory check",
+      "cadence": "At gates"
     },
     {
-      "roleCode": "COMPLIANCE",
-      "roleName": "준법·개인정보",
-      "organization": "고객",
-      "interest": "금지 데이터와 국외 이전",
-      "influence": "high",
-      "engagement": "정책 문안의 최종 검토",
-      "cadence": "격주"
-    },
-    {
-      "roleCode": "DATAOWNER",
-      "roleName": "현업 데이터 오너",
-      "organization": "고객",
-      "interest": "영업·여신 보조 도구가 멈추지 않을 것",
+      "roleCode": "OPS",
+      "roleName": "Data-center operations",
+      "organization": "Customer",
+      "interest": "A change window and a rollback that operations can run",
       "influence": "medium",
-      "engagement": "파일럿 업무 선정과 수용 테스트",
-      "cadence": "격주"
-    },
-    {
-      "roleCode": "PROC",
-      "roleName": "조달",
-      "organization": "고객",
-      "interest": "라이선스와 파트너 계약",
-      "influence": "medium",
-      "engagement": "소프트웨어와 서비스 트랙 분리",
-      "cadence": "마일스톤"
-    },
-    {
-      "roleCode": "CISCO",
-      "roleName": "Cisco 보안 아키텍트",
-      "organization": "Cisco",
-      "interest": "참조 아키텍처가 고객 제약 안에서 재현될 것",
-      "influence": "medium",
-      "engagement": "설계 리뷰와 검증 시나리오",
-      "cadence": "주간"
+      "engagement": "Rehearsal",
+      "cadence": "At the observation gate"
     }
   ],
   "requirements": [
     {
       "reqCode": "REQ-01",
-      "knowledgeArea": "security",
+      "knowledgeArea": "scope",
       "priority": "must",
-      "statement": "파일럿 도메인의 서드파티 AI 앱과 내부에서 호출하는 모형을 발견한다.",
-      "acceptance": "표본 20건과 인벤토리 대조표",
-      "source": "AI Defense visibility"
+      "statement": "The pilot names one business line and the data classes in scope.",
+      "acceptance": "Signed boundary",
+      "source": "Planning scenario"
     },
     {
       "reqCode": "REQ-02",
       "knowledgeArea": "security",
       "priority": "must",
-      "statement": "비인가 AI로의 접근을 정책으로 제한하고 예외는 기한과 함께 기록한다.",
-      "acceptance": "승인·거부·예외 세 상태가 정책에 존재",
-      "source": "AI Access"
+      "statement": "Policy starts in shadow mode. Enforce mode requires the CISO's decision.",
+      "acceptance": "Decision record",
+      "source": "Hypershield dual data plane description"
     },
     {
       "reqCode": "REQ-03",
-      "knowledgeArea": "ai_governance",
+      "knowledgeArea": "communications",
       "priority": "must",
-      "statement": "금지 데이터 등급이 프롬프트와 업로드로 나가지 않는지 검증한다.",
-      "acceptance": "유출 시나리오 테스트 기록",
-      "source": "런타임 가드레일"
-    },
-    {
-      "reqCode": "REQ-04",
-      "knowledgeArea": "security",
-      "priority": "must",
-      "statement": "고가치 자산의 심각 취약점에 패치 전 완화 통제를 놓고 패치 후 제거한다.",
-      "acceptance": "적용·제거 시각이 남은 CVE 1건 이상",
-      "source": "Hypershield distributed exploit protection"
-    },
-    {
-      "reqCode": "REQ-05",
-      "knowledgeArea": "stakeholder",
-      "priority": "should",
-      "statement": "현업이 승인 도구와 예외 SLA를 차단 시작 전에 안내받는다.",
-      "acceptance": "공지 기록과 헬프데스크 스크립트",
-      "source": "변경관리"
+      "statement": "Minutes-to-mitigate is labeled as a product design goal whenever it is shown.",
+      "acceptance": "Footnote",
+      "source": "18 April 2024 Hypershield material"
     }
   ],
   "raci": [
     {
-      "activity": "사업 차터와 파일럿 경계 승인",
+      "activity": "Freeze the business line and data classes",
       "phase": "initiate",
-      "knowledgeArea": "integration",
-      "responsible": [
-        "고객 PM"
-      ],
-      "accountable": "CISO(스폰서)",
-      "consulted": [
-        "준법·개인정보",
-        "현업 데이터 오너"
-      ],
-      "informed": [
-        "조달"
-      ]
-    },
-    {
-      "activity": "금지 데이터 목록과 규제 매핑",
-      "phase": "initiate",
-      "knowledgeArea": "ai_governance",
-      "responsible": [
-        "준법·개인정보"
-      ],
-      "accountable": "CISO(스폰서)",
-      "consulted": [
-        "현업 데이터 오너",
-        "정보보호 운영"
-      ],
-      "informed": [
-        "고객 PM"
-      ]
-    },
-    {
-      "activity": "섀도 AI 조사 범위와 표본 설계",
-      "phase": "plan",
       "knowledgeArea": "scope",
       "responsible": [
-        "정보보호 운영"
+        "Business owner"
       ],
-      "accountable": "고객 PM",
+      "accountable": "CISO (sponsor)",
       "consulted": [
-        "AI 플랫폼 오너",
-        "Cisco 보안 아키텍트"
+        "Customer PM",
+        "Operational risk"
       ],
       "informed": [
-        "CISO(스폰서)"
+        "Data-center operations"
       ]
     },
     {
-      "activity": "AI Defense 배치와 Hypershield 집행점 설계",
+      "activity": "Regulatory mapping",
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "Operational risk"
+      ],
+      "accountable": "CISO (sponsor)",
+      "consulted": [
+        "Security architect"
+      ],
+      "informed": [
+        "Customer PM"
+      ]
+    },
+    {
+      "activity": "Inventory approved and unapproved AI applications",
       "phase": "plan",
       "knowledgeArea": "security",
       "responsible": [
-        "데이터센터 네트워크 아키텍트",
-        "Cisco 보안 아키텍트"
+        "Security architect"
       ],
-      "accountable": "데이터센터 네트워크 아키텍트",
+      "accountable": "Customer PM",
       "consulted": [
-        "정보보호 운영",
-        "AI 플랫폼 오너"
+        "Business owner"
       ],
       "informed": [
-        "고객 PM"
+        "CISO (sponsor)"
       ]
     },
     {
-      "activity": "라이선스·파트너 조달 패키지",
-      "phase": "plan",
-      "knowledgeArea": "procurement",
-      "responsible": [
-        "조달"
-      ],
-      "accountable": "고객 PM",
-      "consulted": [
-        "정보보호 운영",
-        "Cisco 보안 아키텍트"
-      ],
-      "informed": [
-        "CISO(스폰서)"
-      ]
-    },
-    {
-      "activity": "RACI와 예외 처리 운영 모델 합의",
-      "phase": "plan",
-      "knowledgeArea": "stakeholder",
-      "responsible": [
-        "고객 PM"
-      ],
-      "accountable": "CISO(스폰서)",
-      "consulted": [
-        "정보보호 운영",
-        "현업 데이터 오너",
-        "준법·개인정보"
-      ],
-      "informed": [
-        "조달"
-      ]
-    },
-    {
-      "activity": "비운영 테넌트 연동과 1차 인벤토리",
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "responsible": [
-        "정보보호 운영"
-      ],
-      "accountable": "정보보호 운영",
-      "consulted": [
-        "AI 플랫폼 오너",
-        "Cisco 보안 아키텍트"
-      ],
-      "informed": [
-        "고객 PM"
-      ]
-    },
-    {
-      "activity": "접근 정책 탐지 모드 운영",
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "responsible": [
-        "정보보호 운영"
-      ],
-      "accountable": "CISO(스폰서)",
-      "consulted": [
-        "준법·개인정보",
-        "현업 데이터 오너"
-      ],
-      "informed": [
-        "고객 PM"
-      ]
-    },
-    {
-      "activity": "Hypershield 관측 모드와 변경 창 검증",
+      "activity": "Shadow-mode policy and rollback rehearsal",
       "phase": "execute",
       "knowledgeArea": "quality",
       "responsible": [
-        "데이터센터 네트워크 아키텍트"
+        "Security architect"
       ],
-      "accountable": "데이터센터 네트워크 아키텍트",
+      "accountable": "Security architect",
       "consulted": [
-        "정보보호 운영",
-        "Cisco 보안 아키텍트"
+        "Data-center operations"
       ],
       "informed": [
-        "CISO(스폰서)"
+        "Customer PM"
       ]
     },
     {
-      "activity": "런타임 가드레일 시나리오 시험",
-      "phase": "execute",
-      "knowledgeArea": "ai_governance",
-      "responsible": [
-        "AI 플랫폼 오너",
-        "정보보호 운영"
-      ],
-      "accountable": "정보보호 운영",
-      "consulted": [
-        "준법·개인정보"
-      ],
-      "informed": [
-        "고객 PM"
-      ]
-    },
-    {
-      "activity": "강제 모드 전환 승인",
+      "activity": "Observation report",
       "phase": "monitor",
+      "knowledgeArea": "communications",
+      "responsible": [
+        "Customer PM"
+      ],
+      "accountable": "CISO (sponsor)",
+      "consulted": [
+        "Business owner",
+        "Security architect"
+      ],
+      "informed": [
+        "Operational risk"
+      ]
+    },
+    {
+      "activity": "Enforce or hold",
+      "phase": "close",
       "knowledgeArea": "risk",
       "responsible": [
-        "정보보호 운영"
+        "Security architect"
       ],
-      "accountable": "CISO(스폰서)",
+      "accountable": "CISO (sponsor)",
       "consulted": [
-        "데이터센터 네트워크 아키텍트",
-        "현업 데이터 오너",
-        "준법·개인정보"
+        "Business owner",
+        "Data-center operations"
       ],
       "informed": [
-        "조달"
-      ]
-    },
-    {
-      "activity": "파일럿 수용과 전사 확대 케이스",
-      "phase": "close",
-      "knowledgeArea": "integration",
-      "responsible": [
-        "고객 PM"
-      ],
-      "accountable": "CISO(스폰서)",
-      "consulted": [
-        "정보보호 운영",
-        "AI 플랫폼 오너"
-      ],
-      "informed": [
-        "현업 데이터 오너",
-        "조달"
+        "Customer PM"
       ]
     }
   ],
@@ -497,637 +328,416 @@
       "wbsCode": "1",
       "parentCode": null,
       "phase": "initiate",
-      "knowledgeArea": "integration",
-      "name": "착수",
-      "description": "스폰서와 파일럿 경계를 고정한다.",
-      "deliverable": "서명 차터",
-      "ownerRole": "고객 PM",
-      "durationDaysLow": 8,
-      "durationDaysHigh": 12,
+      "knowledgeArea": "scope",
+      "name": "Boundary",
+      "description": "Name the business line. State that this is a planning scenario, not a published bank result.",
+      "deliverable": "Charter",
+      "ownerRole": "Customer PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
       "predecessors": [],
-      "acceptance": "범위 포함·제외가 적혀 있다",
-      "milestone": false,
+      "acceptance": "CISO signs",
+      "milestone": true,
       "sort": 10
     },
     {
-      "wbsCode": "1.1",
-      "parentCode": "1",
-      "phase": "initiate",
-      "knowledgeArea": "integration",
-      "name": "차터 워크숍",
-      "description": "문제, 파일럿 도메인, 의사결정자를 한 장으로 합의한다.",
-      "deliverable": "차터",
-      "ownerRole": "고객 PM",
-      "durationDaysLow": 3,
-      "durationDaysHigh": 5,
-      "predecessors": [],
-      "acceptance": "스폰서 승인",
-      "milestone": false,
-      "sort": 11
-    },
-    {
-      "wbsCode": "1.2",
-      "parentCode": "1",
-      "phase": "initiate",
-      "knowledgeArea": "ai_governance",
-      "name": "금지 데이터 워크숍",
-      "description": "고객정보, 신용정보, 미공개 모형 가중치의 입력 금지를 목록화한다.",
-      "deliverable": "금지 데이터 목록 v1",
-      "ownerRole": "준법·개인정보",
-      "durationDaysLow": 5,
-      "durationDaysHigh": 8,
-      "predecessors": [
-        "1.1"
-      ],
-      "acceptance": "등급과 예시가 있다",
-      "milestone": false,
-      "sort": 12
-    },
-    {
-      "wbsCode": "2",
+      "wbsCode": "2.1",
       "parentCode": null,
       "phase": "plan",
-      "knowledgeArea": "scope",
-      "name": "계획",
-      "description": "조사, 설계, 조달, 운영 모델을 베이스라인한다.",
-      "deliverable": "통합 계획",
-      "ownerRole": "고객 PM",
-      "durationDaysLow": 20,
-      "durationDaysHigh": 35,
+      "knowledgeArea": "ai_governance",
+      "name": "Regulatory note",
+      "description": "Map the data classes to the supervision, privacy, and credit-information duties.",
+      "deliverable": "Note",
+      "ownerRole": "Operational risk",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
       "predecessors": [
         "1"
       ],
-      "acceptance": "리스크 등록부가 붙어 있다",
+      "acceptance": "CISO has read it",
       "milestone": false,
       "sort": 20
     },
     {
-      "wbsCode": "2.1",
-      "parentCode": "2",
-      "phase": "plan",
-      "knowledgeArea": "security",
-      "name": "가시성 조사 설계",
-      "description": "AI Access와 AI Cloud Visibility로 볼 계정, VPC, 샌드박스를 정한다.",
-      "deliverable": "조사 범위서",
-      "ownerRole": "정보보호 운영",
-      "durationDaysLow": 5,
-      "durationDaysHigh": 8,
-      "predecessors": [
-        "1.2"
-      ],
-      "acceptance": "표본 모집단이 정의된다",
-      "milestone": false,
-      "sort": 21
-    },
-    {
       "wbsCode": "2.2",
-      "parentCode": "2",
-      "phase": "plan",
-      "knowledgeArea": "security",
-      "name": "목표 아키텍처",
-      "description": "가드레일 배치점, Hypershield 집행점, 선택적 Splunk 연계를 그린다.",
-      "deliverable": "아키텍처 결정 기록",
-      "ownerRole": "데이터센터 네트워크 아키텍트",
-      "durationDaysLow": 8,
-      "durationDaysHigh": 12,
-      "predecessors": [
-        "2.1"
-      ],
-      "acceptance": "거래 경로는 강제 범위 밖이라고 적혀 있다",
-      "milestone": false,
-      "sort": 22
-    },
-    {
-      "wbsCode": "2.3",
-      "parentCode": "2",
-      "phase": "plan",
-      "knowledgeArea": "procurement",
-      "name": "조달 패키지",
-      "description": "구독, 데이터센터 집행, 파트너 서비스를 별도 트랙으로 발주한다.",
-      "deliverable": "발주 묶음",
-      "ownerRole": "조달",
-      "durationDaysLow": 10,
-      "durationDaysHigh": 20,
-      "predecessors": [
-        "2.2"
-      ],
-      "acceptance": "리드타임이 마일스톤에 반영된다",
-      "milestone": false,
-      "sort": 23
-    },
-    {
-      "wbsCode": "3",
       "parentCode": null,
-      "phase": "execute",
+      "phase": "plan",
       "knowledgeArea": "security",
-      "name": "실행",
-      "description": "탐지, 관측, 제한 강제 순서로 올린다.",
-      "deliverable": "운영 가능한 파일럿",
-      "ownerRole": "정보보호 운영",
-      "durationDaysLow": 40,
-      "durationDaysHigh": 70,
+      "name": "Inventory",
+      "description": "List approved and unapproved AI applications for the business line.",
+      "deliverable": "Inventory",
+      "ownerRole": "Security architect",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
       "predecessors": [
-        "2"
+        "1"
       ],
-      "acceptance": "런북이 있다",
+      "acceptance": "Business owner confirms the legitimate apps",
       "milestone": false,
       "sort": 30
     },
     {
-      "wbsCode": "3.1",
-      "parentCode": "3",
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "name": "1차 AI 인벤토리",
-      "description": "비운영 테넌트에서 앱·모형·연결 데이터 소스를 수집한다.",
-      "deliverable": "인벤토리 v1",
-      "ownerRole": "정보보호 운영",
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "quality",
+      "name": "Shadow design",
+      "description": "Write the policy and the rollback. Enforce stays off.",
+      "deliverable": "Runbook",
+      "ownerRole": "Security architect",
       "durationDaysLow": 8,
       "durationDaysHigh": 12,
-      "predecessors": [
-        "2.3"
-      ],
-      "acceptance": "소유자 공란이 식별된다",
-      "milestone": false,
-      "sort": 31
-    },
-    {
-      "wbsCode": "3.2",
-      "parentCode": "3",
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "name": "접근 정책 탐지 모드",
-      "description": "차단 없이 위반을 2주 기록하고 오탐을 조정한다.",
-      "deliverable": "오탐 리포트",
-      "ownerRole": "정보보호 운영",
-      "durationDaysLow": 10,
-      "durationDaysHigh": 15,
-      "predecessors": [
-        "3.1"
-      ],
-      "acceptance": "예외 후보가 분류된다",
-      "milestone": false,
-      "sort": 32
-    },
-    {
-      "wbsCode": "3.3",
-      "parentCode": "3",
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "name": "Hypershield 관측 모드",
-      "description": "고가치 자산 주변에서 흐름과 취약점 우선순위를 본다. 강제하지 않는다.",
-      "deliverable": "관측 리포트",
-      "ownerRole": "데이터센터 네트워크 아키텍트",
-      "durationDaysLow": 15,
-      "durationDaysHigh": 25,
       "predecessors": [
         "2.2"
       ],
-      "acceptance": "거래 흐름 영향이 없다",
+      "acceptance": "Operations can run the rollback",
       "milestone": false,
-      "sort": 33
+      "sort": 40
     },
     {
-      "wbsCode": "3.4",
-      "parentCode": "3",
-      "phase": "execute",
-      "knowledgeArea": "ai_governance",
-      "name": "런타임 시나리오 시험",
-      "description": "프롬프트 인젝션, 민감정보 유출, 서비스 거부 시나리오를 샌드박스에서 돌린다.",
-      "deliverable": "시험 기록",
-      "ownerRole": "AI 플랫폼 오너",
-      "durationDaysLow": 8,
-      "durationDaysHigh": 12,
-      "predecessors": [
-        "3.2"
-      ],
-      "acceptance": "탐지와 실패 사례가 모두 남는다",
-      "milestone": false,
-      "sort": 34
-    },
-    {
-      "wbsCode": "3.5",
-      "parentCode": "3",
+      "wbsCode": "3.1",
+      "parentCode": null,
       "phase": "execute",
       "knowledgeArea": "security",
-      "name": "제한 강제",
-      "description": "스폰서 승인 후 비인가 앱 차단과 파일럿 CVE 완화 통제만 켠다.",
-      "deliverable": "변경 기록",
-      "ownerRole": "정보보호 운영",
-      "durationDaysLow": 5,
-      "durationDaysHigh": 10,
+      "name": "Observation window",
+      "description": "Run shadow mode. Record what would have been blocked.",
+      "deliverable": "Observation log",
+      "ownerRole": "Security architect",
+      "durationDaysLow": 15,
+      "durationDaysHigh": 25,
       "predecessors": [
-        "3.2",
-        "3.3",
-        "3.4"
+        "2.1",
+        "2.3"
       ],
-      "acceptance": "롤백 절차가 실행 가능하다",
-      "milestone": true,
-      "sort": 35
+      "acceptance": "No enforce action in the window",
+      "milestone": false,
+      "sort": 50
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Rollback rehearsal",
+      "description": "Rehearse the rollback in the agreed change window.",
+      "deliverable": "Rehearsal note",
+      "ownerRole": "Data-center operations",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [
+        "2.3"
+      ],
+      "acceptance": "Operations signs",
+      "milestone": false,
+      "sort": 60
     },
     {
       "wbsCode": "4",
       "parentCode": null,
       "phase": "monitor",
       "knowledgeArea": "communications",
-      "name": "보고 리듬",
-      "description": "주간 오탐 리뷰와 월간 스폰서 보고를 고정한다.",
-      "deliverable": "보고 패키지",
-      "ownerRole": "고객 PM",
+      "name": "Observation report",
+      "description": "Show would-block events beside the inventory. Do not print an MTTR percentage.",
+      "deliverable": "Report",
+      "ownerRole": "Customer PM",
       "durationDaysLow": 5,
       "durationDaysHigh": 8,
       "predecessors": [
-        "3.5"
+        "3.1"
       ],
-      "acceptance": "KPI 정의와 실측이 구분된다",
+      "acceptance": "Product design goals are labeled",
       "milestone": false,
-      "sort": 40
+      "sort": 70
     },
     {
       "wbsCode": "5",
       "parentCode": null,
       "phase": "close",
-      "knowledgeArea": "integration",
-      "name": "파일럿 종료",
-      "description": "수용, 확대 케이스, 교훈을 남긴다.",
-      "deliverable": "종료 보고",
-      "ownerRole": "고객 PM",
-      "durationDaysLow": 5,
-      "durationDaysHigh": 8,
+      "knowledgeArea": "risk",
+      "name": "Enforce or hold",
+      "description": "The CISO writes enforce or hold. The default is hold.",
+      "deliverable": "Decision",
+      "ownerRole": "CISO (sponsor)",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
       "predecessors": [
-        "4"
+        "4",
+        "3.2"
       ],
-      "acceptance": "확대 범위가 별도 차터로 분리된다",
+      "acceptance": "Signed",
       "milestone": true,
-      "sort": 50
+      "sort": 80
     }
   ],
   "milestones": [
     {
-      "name": "차터 승인",
+      "name": "Boundary",
       "phase": "initiate",
       "weekOffsetLow": 2,
       "weekOffsetHigh": 3,
-      "criteria": "포함·제외·금지 데이터 목록 v1"
+      "criteria": "One business line"
     },
     {
-      "name": "설계 동결",
+      "name": "Inventory",
       "phase": "plan",
-      "weekOffsetLow": 6,
-      "weekOffsetHigh": 9,
-      "criteria": "배치점과 거래 경로 제외가 승인된다"
+      "weekOffsetLow": 5,
+      "weekOffsetHigh": 8,
+      "criteria": "Approved and unapproved are separate"
     },
     {
-      "name": "인벤토리 대조",
-      "phase": "execute",
-      "weekOffsetLow": 12,
-      "weekOffsetHigh": 16,
-      "criteria": "표본 대조표 완료"
+      "name": "Observation report",
+      "phase": "monitor",
+      "weekOffsetLow": 10,
+      "weekOffsetHigh": 20,
+      "criteria": "Would-block list, no enforce"
     },
     {
-      "name": "제한 강제",
-      "phase": "execute",
-      "weekOffsetLow": 16,
-      "weekOffsetHigh": 24,
-      "criteria": "스폰서 승인과 롤백 리허설"
-    },
-    {
-      "name": "파일럿 수용",
+      "name": "Enforce decision",
       "phase": "close",
-      "weekOffsetLow": 18,
+      "weekOffsetLow": 16,
       "weekOffsetHigh": 28,
-      "criteria": "확대 사업 케이스가 별도 문서로 존재"
+      "criteria": "CISO writes enforce or hold"
     }
   ],
   "risks": [
     {
       "riskCode": "R1",
-      "title": "인벤토리에 로컬·비표준 AI가 빠진다",
-      "description": "브라우저 확장과 개인 단말 도구는 네트워크 관찰만으로 안 잡힐 수 있다.",
-      "category": "security",
-      "probability": 4,
-      "impact": 4,
+      "title": "Enforce mode starts because the demo looked finished",
+      "description": "Shadow mode is the pilot. Enforce is a later decision.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 5,
       "response": "mitigate",
-      "mitigation": "네트워크 관찰에 IdP 로그와 엔드포인트 표본을 더하고 공백을 이슈로 남긴다.",
-      "contingency": "공백 도메인은 강제 모드에서 제외하고 별도 조사 차터를 연다.",
-      "ownerRole": "정보보호 운영",
-      "trigger": "표본 대조에서 누락 3건 이상"
+      "mitigation": "The observation window has no enforce action.",
+      "contingency": "Run the rollback and return to shadow.",
+      "ownerRole": "Security architect",
+      "trigger": "A change requests enforce before the report"
     },
     {
       "riskCode": "R2",
-      "title": "차단 이후 현업이 우회한다",
-      "description": "승인 대안 없이 막으면 개인 계정 SaaS로 데이터가 새 나갈 수 있다.",
-      "category": "change",
+      "title": "A bank name or an MTTR percentage appears",
+      "description": "This scenario has no customer result.",
+      "category": "communications",
       "probability": 4,
-      "impact": 3,
-      "response": "mitigate",
-      "mitigation": "차단 2주 전에 승인 도구와 예외 SLA를 공지한다.",
-      "contingency": "우회 급증 시 강제 범위를 축소하고 스폰서에게 보고한다.",
-      "ownerRole": "고객 PM",
-      "trigger": "예외 요청이 주간 처리 용량의 2배"
+      "impact": 4,
+      "response": "avoid",
+      "mitigation": "The report template has no customer-name field and no MTTR field.",
+      "contingency": "Pull the draft.",
+      "ownerRole": "Customer PM",
+      "trigger": "A draft names a bank or a percentage"
     },
     {
       "riskCode": "R3",
-      "title": "가드레일 오탐이 파일럿 업무를 멈춘다",
-      "description": "정상 요약 프롬프트가 유출로 오인될 수 있다.",
-      "category": "quality",
+      "title": "Minutes-to-mitigate is presented as the pilot's result",
+      "description": "That phrase is a published product design goal.",
+      "category": "communications",
       "probability": 3,
       "impact": 3,
       "response": "mitigate",
-      "mitigation": "최소 2주는 탐지 모드로 두고 오탐률을 보고 강제한다.",
-      "contingency": "업무 단위로 탐지 모드에 되돌린다.",
-      "ownerRole": "정보보호 운영",
-      "trigger": "핵심 시나리오 오탐률이 계획 목표를 넘음"
+      "mitigation": "The footnote is mandatory.",
+      "contingency": "Remove the phrase.",
+      "ownerRole": "Customer PM",
+      "trigger": "A slide has the phrase and no source"
     },
     {
       "riskCode": "R4",
-      "title": "자동 세그멘테이션이 거래 흐름을 끊는다",
-      "description": "동-서 통제가 계정계 인접 호출까지 막을 수 있다.",
-      "category": "technical",
-      "probability": 2,
-      "impact": 5,
-      "response": "mitigate",
-      "mitigation": "거래 경로는 범위 밖으로 고정하고, 관측 모드와 듀얼 데이터 플레인 검증 뒤에만 강제한다.",
-      "contingency": "해당 정책을 즉시 제거하고 변경 동결을 건다.",
-      "ownerRole": "데이터센터 네트워크 아키텍트",
-      "trigger": "파일럿 외 서비스 오류 티켓"
-    },
-    {
-      "riskCode": "R5",
-      "title": "규제 해석이 파일럿 중에 바뀐다",
-      "description": "생성형 AI 입력에 대한 감독 해석이 금지 목록을 넓힐 수 있다.",
-      "category": "compliance",
+      "title": "Legitimate applications are unknown at enforce time",
+      "description": "The business owner has not confirmed the inventory.",
+      "category": "stakeholder",
       "probability": 3,
-      "impact": 5,
+      "impact": 4,
       "response": "mitigate",
-      "mitigation": "금지 목록을 버전 관리하고 준법을 변경 승인자에 둔다.",
-      "contingency": "새 해석 범위는 확대 차터로 넘기고 파일럿 성공 기준은 유지한다.",
-      "ownerRole": "준법·개인정보",
-      "trigger": "감독 자료 또는 내부 법무 의견 변경"
-    },
-    {
-      "riskCode": "R6",
-      "title": "조달 리드타임이 실행 창을 민다",
-      "description": "구독과 데이터센터 플랫폼의 도착 시점이 다르다.",
-      "category": "schedule",
-      "probability": 3,
-      "impact": 3,
-      "response": "mitigate",
-      "mitigation": "소프트웨어 가시성 트랙과 데이터센터 통제 트랙의 마일스톤을 분리한다.",
-      "contingency": "먼저 도착한 트랙만 파일럿 수용 기준에 포함한다.",
-      "ownerRole": "조달",
-      "trigger": "발주 후 2주 안에 납기 미확정"
+      "mitigation": "Inventory acceptance is a plan gate.",
+      "contingency": "Hold enforce.",
+      "ownerRole": "Business owner",
+      "trigger": "The inventory has unconfirmed rows"
     }
   ],
   "issues": [
     {
       "issueCode": "I1",
-      "title": "파일럿 현업 도메인이 아직 지정되지 않음",
+      "title": "Which business line is first",
       "status": "open",
-      "ownerRole": "현업 데이터 오너",
-      "nextAction": "여신 문서 보조와 개발 샌드박스 중 착수 워크숍에서 확정"
-    },
-    {
-      "issueCode": "I2",
-      "title": "기존 SIEM이 Splunk인지 고객마다 다름",
-      "status": "open",
-      "ownerRole": "정보보호 운영",
-      "nextAction": "연계는 선택 과업으로 유지하고 착수 때 예/아니오로 닫기"
+      "ownerRole": "CISO (sponsor)",
+      "nextAction": "Pick the line with a named business owner and a known data class"
     }
   ],
   "kpis": [
     {
-      "name": "AI 자산 표본 대조율",
-      "baseline": "목록 없음",
-      "target": "파일럿 표본 100% 대조",
-      "unit": "%",
-      "method": "계획 목표. 표본 목록과 발견 목록을 사람이 대조한다.",
-      "ownerRole": "정보보호 운영",
-      "cadence": "파일럿 중 2회"
+      "name": "Inventory coverage",
+      "baseline": "Unknown AI applications",
+      "target": "Every in-scope application marked approved or unapproved",
+      "unit": "percent",
+      "method": "Inventory review with the business owner",
+      "ownerRole": "Security architect",
+      "cadence": "Weekly in plan"
     },
     {
-      "name": "금지 데이터 유출 시나리오 차단",
-      "baseline": "미측정",
-      "target": "강제 모드에서 재현 시나리오 차단",
-      "unit": "건",
-      "method": "계획 목표. 사전에 적은 시나리오만 센다. 벤더 SLA가 아니다.",
-      "ownerRole": "정보보호 운영",
-      "cadence": "강제 전후"
+      "name": "Enforce actions during observation",
+      "baseline": "Not allowed",
+      "target": "Zero",
+      "unit": "count",
+      "method": "Change log",
+      "ownerRole": "Data-center operations",
+      "cadence": "Weekly"
     },
     {
-      "name": "오탐률",
-      "baseline": "미측정",
-      "target": "강제 전환 시점의 핵심 업무 오탐을 팀이 수용",
-      "unit": "%",
-      "method": "탐지 모드 2주 실측 후 목표를 숫자로 고정. 사전에 5% 같은 숫자를 약속하지 않는다.",
-      "ownerRole": "정보보호 운영",
-      "cadence": "주간"
-    },
-    {
-      "name": "완화 통제 적용·제거 기록",
-      "baseline": "수작업, 기간 미측정",
-      "target": "파일럿 CVE의 적용과 제거 시각이 남음",
-      "unit": "건",
-      "method": "Hypershield의 공개 설계 목표는 수 분 단위 배치다. 파일럿은 시간을 측정만 하고 고객 성과로 단정하지 않는다.",
-      "ownerRole": "데이터센터 네트워크 아키텍트",
-      "cadence": "CVE 건별"
-    },
-    {
-      "name": "예외 처리 기한",
-      "baseline": "없음",
-      "target": "3 영업일 이내 승인 또는 거절",
-      "unit": "일",
-      "method": "계획 목표. 운영 모델 합의 항목이다.",
-      "ownerRole": "고객 PM",
-      "cadence": "주간"
+      "name": "Unlabeled design goals",
+      "baseline": "Unset",
+      "target": "Zero unlabeled uses of minutes-to-mitigate",
+      "unit": "count",
+      "method": "Report review",
+      "ownerRole": "Customer PM",
+      "cadence": "Each draft"
     }
   ],
   "costs": [
     {
       "category": "software",
-      "name": "AI Defense 구독(1차년도)",
+      "name": "AI Defense and Hypershield pilot",
       "costType": "opex",
-      "lowUsd": 180000,
-      "highUsd": 450000,
-      "notes": "계획 밴드. 사용자 수와 클라우드 계정 수에 따라 움직인다."
-    },
-    {
-      "category": "security",
-      "name": "Hypershield 데이터센터 집행",
-      "costType": "capex",
       "lowUsd": 400000,
-      "highUsd": 1200000,
-      "notes": "계획 밴드. 스위치·DPU·소프트웨어 구성은 설계 후에 갈린다."
+      "highUsd": 1500000,
+      "notes": "Planning band. Do not add a second order that duplicates CSCO-AID-ENT-001 without a portfolio check."
     },
     {
       "category": "services",
-      "name": "파트너 설계·검증",
+      "name": "Observation and rollback design",
       "costType": "opex",
       "lowUsd": 150000,
-      "highUsd": 400000,
-      "notes": "내부 인력으로 대체하면 낮아진다."
+      "highUsd": 500000,
+      "notes": "Planning band."
     },
     {
-      "category": "training",
-      "name": "운영·현업 교육",
+      "category": "software",
+      "name": "Splunk investigation store",
       "costType": "opex",
-      "lowUsd": 20000,
-      "highUsd": 40000,
-      "notes": "런북과 예외 절차 교육."
+      "lowUsd": 0,
+      "highUsd": 300000,
+      "notes": "Only if Splunk is not already entitled."
     }
   ],
   "qualityGates": [
     {
       "phase": "plan",
-      "name": "설계 게이트",
-      "criteria": "거래 경로가 강제 범위 밖에 있고 금지 데이터 목록이 버전 1이다.",
-      "ownerRole": "CISO(스폰서)"
+      "name": "Inventory gate",
+      "criteria": "The business owner has confirmed the legitimate applications.",
+      "owner": "BIZ",
+      "ownerRole": "Business owner"
     },
     {
       "phase": "execute",
-      "name": "탐지 게이트",
-      "criteria": "2주 탐지 로그와 오탐 분류가 있다.",
-      "ownerRole": "정보보호 운영"
-    },
-    {
-      "phase": "execute",
-      "name": "강제 게이트",
-      "criteria": "롤백 리허설과 스폰서 승인이 있다.",
-      "ownerRole": "CISO(스폰서)"
+      "name": "Shadow gate",
+      "criteria": "The window recorded would-block events and no enforce action.",
+      "owner": "SEC",
+      "ownerRole": "Security architect"
     },
     {
       "phase": "close",
-      "name": "수용 게이트",
-      "criteria": "성공 기준 각각에 증빙이 붙고 미달은 이슈로 남는다.",
-      "ownerRole": "고객 PM"
+      "name": "Enforce gate",
+      "criteria": "The CISO has written enforce or hold.",
+      "owner": "CISO",
+      "ownerRole": "CISO (sponsor)"
     }
   ],
   "communications": [
     {
+      "audience": "Business line",
+      "message": "Shadow mode does not block you. Enforce is a later decision.",
+      "channel": "Kickoff",
+      "cadence": "Once",
+      "owner": "BIZ",
+      "ownerRole": "Business owner"
+    },
+    {
       "audience": "CISO",
-      "message": "인벤토리 공백, 오탐, 강제 전환 여부",
-      "channel": "월간 보고",
-      "cadence": "월간",
-      "ownerRole": "고객 PM"
+      "message": "Inventory, would-block list, and a hold-by-default decision",
+      "channel": "Report",
+      "cadence": "End of observation",
+      "owner": "PM",
+      "ownerRole": "Customer PM"
     },
     {
-      "audience": "파일럿 현업",
-      "message": "승인 도구, 금지 데이터, 예외 신청 방법",
-      "channel": "공지와 오피스아워",
-      "cadence": "차단 2주 전, 이후 격주",
-      "ownerRole": "고객 PM"
-    },
-    {
-      "audience": "헬프데스크",
-      "message": "우회와 오탐 티켓 분류",
-      "channel": "스크립트",
-      "cadence": "강제 모드 전",
-      "ownerRole": "정보보호 운영"
-    },
-    {
-      "audience": "네트워크 변경 위원회",
-      "message": "Hypershield 정책 변경",
-      "channel": "변경 창",
-      "cadence": "강제 때마다",
-      "ownerRole": "데이터센터 네트워크 아키텍트"
+      "audience": "Operations",
+      "message": "Rollback steps in the change window",
+      "channel": "Rehearsal",
+      "cadence": "Before observation ends",
+      "owner": "OPS",
+      "ownerRole": "Data-center operations"
     }
   ],
   "procurement": [
     {
-      "item": "AI Defense 구독",
-      "vendorType": "Cisco 및 총판",
-      "strategy": "1년 구독, 파일럿 계정 상한",
-      "leadWeeks": 6,
-      "notes": "계정 수 상한을 계약에 적는다."
+      "item": "Hypershield and AI Defense pilot",
+      "vendorType": "Cisco",
+      "strategy": "One business line",
+      "leadWeeks": 8,
+      "notes": "Shadow mode is a contract condition of the pilot, not a later favor"
     },
     {
-      "item": "Hypershield 집행 구성",
-      "vendorType": "Cisco 및 인프라 파트너",
-      "strategy": "설계 확정 후 하드웨어와 소프트웨어 분리 발주",
-      "leadWeeks": 12,
-      "notes": "납기가 길면 가시성 트랙을 먼저 수용한다."
-    },
-    {
-      "item": "검증 서비스",
-      "vendorType": "보안 파트너",
-      "strategy": "고정 범위 작업기술서",
-      "leadWeeks": 4,
-      "notes": "시나리오 목록을 작업기술서에 첨부한다."
+      "item": "Change-window support",
+      "vendorType": "Internal operations",
+      "strategy": "Existing change board",
+      "leadWeeks": 2,
+      "notes": "No new vendor for the rehearsal"
     }
   ],
   "decisions": [
     {
       "decisionCode": "D1",
-      "title": "파일럿 강제 범위",
-      "choice": "거래 원장 경로는 제외하고 인접 업무와 개발 샌드박스만 강제한다.",
-      "rationale": "동-서 통제의 오작용이 고객 거래로 번지지 않게 한다.",
-      "date": null,
-      "ownerRole": "CISO(스폰서)"
+      "title": "Mode",
+      "choice": "Shadow until the CISO writes otherwise.",
+      "rationale": "The public design allows observation on a second data plane. The scenario uses that, and does not invent a zero-downtime result.",
+      "owner": "CISO",
+      "ownerRole": "CISO (sponsor)",
+      "date": null
     },
     {
       "decisionCode": "D2",
-      "title": "차단 순서",
-      "choice": "가시성, 탐지 모드, 사람 승인, 제한 강제 순서로 간다.",
-      "rationale": "AI Defense와 Hypershield 모두 자동 조치를 바로 켜지 않는다.",
-      "date": null,
-      "ownerRole": "정보보호 운영"
-    },
-    {
-      "decisionCode": "D3",
-      "title": "SIEM 연계",
-      "choice": "Splunk가 있으면 경보 연계를 포함하고, 없으면 성공 기준에서 뺀다.",
-      "rationale": "Cisco는 Splunk 고객의 AI Defense 경보 보강을 공개했다. 전제 조건이 없는 고객에게 필수로 두지 않는다.",
-      "date": null,
-      "ownerRole": "고객 PM"
+      "title": "Customer names",
+      "choice": "No bank is named unless the person requesting the draft named it.",
+      "rationale": "This record is a composite, not a reference customer.",
+      "owner": "PM",
+      "ownerRole": "Customer PM",
+      "date": null
     }
   ],
   "lessons": [
     {
-      "theme": "순서",
-      "statement": "AI 접근 통제는 대안 경로와 예외 SLA가 공지된 뒤에 차단해야 우회가 줄어든다.",
-      "applicability": "현업이 이미 공개 챗봇을 쓰는 규제 산업"
+      "theme": "Composite",
+      "statement": "Public product material plus a sector constraint is a planning scenario. It is not a case study with a logo.",
+      "applicability": "Financial services drafts"
     },
     {
-      "theme": "데이터센터",
-      "statement": "분산 익스플로잇 보호의 첫 적용 대상은 고가치이면서 거래 원장이 아닌 자산으로 고른다.",
-      "applicability": "Hypershield 관측 모드 도입"
-    },
-    {
-      "theme": "증거",
-      "statement": "수 분 단위 완화는 제품의 공개 설계 목표로 말하고, 파일럿에서 잰 시간만 고객 결과로 말한다.",
-      "applicability": "제안서와 경영진 보고"
+      "theme": "Design goals",
+      "statement": "Minutes-to-mitigate stays in the product column. The pilot column is the observation report.",
+      "applicability": "Steering decks"
     }
   ],
   "benefits": [
     {
-      "name": "AI 사용 가시성",
-      "measure": "소유자가 붙은 앱·모형 목록",
-      "beneficiary": "정보보호와 AI 플랫폼",
-      "timing": "실행 중반"
+      "name": "An inventory the business owner recognizes",
+      "measure": "Approved versus unapproved",
+      "beneficiary": "CISO and the business line",
+      "timing": "Plan"
     },
     {
-      "name": "기밀 유출 경로 축소",
-      "measure": "강제 모드에서 막힌 금지 시나리오",
-      "beneficiary": "준법, CISO",
-      "timing": "제한 강제 이후"
-    },
-    {
-      "name": "패치 공백 축소",
-      "measure": "완화 통제가 적용된 파일럿 CVE 수",
-      "beneficiary": "데이터센터 운영",
-      "timing": "관측 이후"
+      "name": "A reversible policy",
+      "measure": "Rollback rehearsal",
+      "beneficiary": "Operations",
+      "timing": "Before any enforce decision"
     }
   ],
   "narrative": [
     {
       "section": "architecture",
-      "heading": "아키텍처",
-      "body": "Cisco가 2025년 1월 15일 공개한 AI Defense는 개발과 사용을 한 세트로 다룬다. 사용 측면은 임직원이 쓰는 서드파티 AI를 보여주고 비인가 도구 접근을 제한하며 기밀 유출과 위협을 계속 막는다. 개발 측면은 퍼블릭 클라우드와 프라이빗 클라우드의 섀도·승인 AI를 발견하고, 모형이 수백 가지 안전·보안 문제에 노출되는지 알고리즘 레드팀으로 검사하며, 프롬프트 인젝션·서비스 거부·민감정보 유출을 런타임에 검증한다.\n\n같은 해 설명된 구성 요소는 AI Access, AI Cloud Visibility, 모형·애플리케이션 검증, 런타임 보호다. 클라우드 가시성은 AWS, Google Cloud, Azure의 워크로드와 모형, 연결된 데이터 소스, RAG와 에이전트 문맥을 목록화한다고 공개되어 있다. 집행은 개별 모형 안의 가드레일에만 의존하지 않고 네트워크 계층에서 일관된 통제를 건다. Cisco는 에이전트나 라이브러리 없이 네트워크에서 AI 보안을 적용한다고 설명한다. 탐지는 Talos 위협 정보를 쓰는 자체 기계학습으로 갱신되고, Security Cloud 안에 있다. Splunk를 쓰는 고객은 보강된 경보를 받는다고 발표되었다.\n\nHypershield는 2024년 4월에 공개된 AI 규모 데이터센터용 분산 보안이다. 박스형 방화벽 대신 서버, 가상머신, 컨테이너, 네트워크의 많은 집행점에 통제를 둔다. 분산 익스플로잇 보호는 취약점이 메모리에 있는지, 실제로 악용되는지, 고가치 자산인지를 보고 패치 전에 외과적 완화 통제를 두며 패치 후 제거한다. 자율 세그멘테이션은 흐름과 프로세스 행동을 보고 횡적 이동을 줄이는 규칙을 갱신한다. 자기 검증 업그레이드는 듀얼 데이터 플레인에서 고객 트래픽으로 시험한 뒤 무중단으로 넘긴다. 금융 시나리오에서는 이 세 가지를 거래 원장 밖에 먼저 둔다."
+      "heading": "Public material, financial constraints",
+      "body": "On 18 April 2024 Cisco described Hypershield as distributed security for the AI-scale data center, with enforcement close to workloads and upgrades that can be qualified on a dual data plane before they carry traffic. On 15 January 2025 Cisco described AI Defense as discovery, model validation, runtime protection, and access control for enterprise AI.\n\nThis scenario places those two public designs in one financial-services pilot. The regulation set is the Korean electronic-financial supervision rule, the Personal Information Protection Act, and the Credit Information Act, plus NIST AI RMF and the OWASP LLM Top 10 as the control references. Nothing in the public posts is a bank's measured result, so this record does not add one.\n\nThe sequence is inventory, shadow mode, observation report, then a CISO decision. Splunk is the investigation store only when it is already there. Talos is the threat intelligence the product posts name."
     },
     {
       "section": "delivery",
-      "heading": "PM이 바로 쓰는 운영 원칙",
-      "body": "프로그램은 가시성 트랙과 데이터센터 트랙으로 나눈다. 가시성 트랙은 구독과 계정 연동만으로 시작하고, 데이터센터 트랙은 설계와 납기를 별도 마일스톤으로 둔다. 둘 다 탐지 또는 관측 없이 강제로 들어가지 않는다.\n\nRACI에서 강제 모드 전환의 Accountable은 CISO 한 명이다. 정보보호가 실행을 맡고, 네트워크 아키텍트와 현업, 준법은 협의한다. 조달은 정보를 받는다. 예외 요청의 기한은 운영 모델 합의 때 숫자로 고정한다.\n\n제안서에는 이 사례를 고객 성공 사례라고 쓰지 않는다. 쓸 수 있는 문장은 공개된 제품 능력과, 그 능력을 금융 규제 제약에 맞춰 순서대로 검증하는 계획이다."
+      "heading": "What the draft is allowed to say",
+      "body": "Say which business line, what was observed, and whether the CISO held or enforced. Do not say a bank name that was not in the request. Do not say an MTTR percentage. If the product phrase about minutes appears, label it as Cisco's design goal and cite the April 2024 post."
     }
   ]
 }
