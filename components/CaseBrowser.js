@@ -23,21 +23,21 @@ export function CaseBrowser({ cases }) {
   return (
     <div>
       <div className="toolbar">
-        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="제목, 제품, 사례 코드" aria-label="사례 검색" />
-        <select value={industry} onChange={(event) => setIndustry(event.target.value)} aria-label="산업">
-          <option value="">모든 산업</option>
+        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Title, product, case code" aria-label="Search cases" />
+        <select value={industry} onChange={(event) => setIndustry(event.target.value)} aria-label="Industry">
+          <option value="">All industries</option>
           {industries.map(([code, label]) => (
             <option key={code} value={code}>{label}</option>
           ))}
         </select>
-        <select value={solution} onChange={(event) => setSolution(event.target.value)} aria-label="솔루션">
-          <option value="">모든 솔루션</option>
+        <select value={solution} onChange={(event) => setSolution(event.target.value)} aria-label="Solution">
+          <option value="">All solutions</option>
           {solutions.map((item) => (
             <option key={item} value={item}>{item}</option>
           ))}
         </select>
       </div>
-      <p className="meta">{visible.length}건</p>
+      <p className="meta">{visible.length} cases</p>
       <div className="cards">
         {visible.map((item) => (
           <Link key={item.slug} href={`/cases/${item.slug}`} className="card">
@@ -49,7 +49,7 @@ export function CaseBrowser({ cases }) {
             <h2>{item.title}</h2>
             <p>{item.executiveSummary}</p>
             <p className="meta">
-              {item.ciscoSolutions.join(" · ")} · 수행 {item.durationLabel} · 리드 {item.leadLabel} · 계획 밴드 {item.dealLabel}
+              {item.ciscoSolutions.join(" · ")} · Duration {item.durationLabel} · Lead {item.leadLabel} · Planning band {item.dealLabel}
             </p>
           </Link>
         ))}

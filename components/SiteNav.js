@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  ["/", "라이브러리"],
-  ["/ask", "질의"],
+  ["/", "Library"],
+  ["/ask", "Ask"],
   ["/onepager", "One-pager"],
-  ["/compare", "비교"],
-  ["/guide", "구축 가이드"],
+  ["/compare", "Compare"],
+  ["/guide", "Build guide"],
 ];
 
 export function SiteNav() {
@@ -17,7 +17,7 @@ export function SiteNav() {
     <aside className="nav">
       <Link href="/" className="brand">
         <small>AI & Tech</small>
-        <strong>케이스 뱅크</strong>
+        <strong>Case bank</strong>
       </Link>
       <nav>
         {LINKS.map(([href, label]) => {
@@ -29,7 +29,7 @@ export function SiteNav() {
           );
         })}
       </nav>
-      <footer>공개 자료와 계획 시나리오. 고객 실적은 없습니다.</footer>
+      <footer>Public material and planning scenarios. No customer results.</footer>
     </aside>
   );
 }

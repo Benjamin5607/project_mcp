@@ -38,10 +38,10 @@ export function CompareStudio({ cases }) {
             <h2 style={{ fontSize: 28 }}>{item.title}</h2>
             <p className="meta">{item.caseCode} · {item.industryLabel} · {item.customerSegmentLabel}</p>
             <p>{item.architecturePattern}</p>
-            <p>수행 {item.durationLabel} · 리드 {item.leadLabel} · {item.dealLabel}</p>
-            <h3>성공 기준</h3>
+            <p>Duration {item.durationLabel} · Lead {item.leadLabel} · {item.dealLabel}</p>
+            <h3>Success criteria</h3>
             <ul className="clean">{item.successCriteria.map((line) => <li key={line}>{line}</li>)}</ul>
-            <h3>상위 리스크</h3>
+            <h3>Top risks</h3>
             <ul className="clean">
               {item.risks
                 .slice()
@@ -52,7 +52,7 @@ export function CompareStudio({ cases }) {
                 ))}
             </ul>
             <p className="note">{item.fidelityNote}</p>
-            <p><a href={`/cases/${item.slug}`}>사례 열기</a></p>
+            <p><a href={`/cases/${item.slug}`}>Open case</a></p>
           </article>
         ))}
       </div>

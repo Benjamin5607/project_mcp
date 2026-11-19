@@ -4,10 +4,10 @@ import { useState } from "react";
 import { ArtifactView } from "./ArtifactView";
 
 const PROMPTS = [
-  ["금융 RACI", "금융권 고객의 AI 애플리케이션 보안 가시성 확보를 위한 Hypershield 도입 사례와 RACI 매트릭스 초안을 작성해 줘"],
-  ["팩토리 WBS", "NVIDIA AI 팩토리 첫 포드의 WBS와 마일스톤을 정리해 줘"],
-  ["XDR 위험", "Cisco XDR 보안 운영의 위험 관리 계획 초안을 작성해 줘"],
-  ["Webex 브리프", "Webex 노이즈 제거와 보안 LLM 거버넌스를 경영진 브리프로 써 줘"],
+  ["Finance RACI", "Draft a RACI for Hypershield and AI visibility in financial services"],
+  ["Factory WBS", "Draft the WBS and milestones for the first NVIDIA AI Factory pod"],
+  ["XDR risk", "Draft a risk plan for Cisco XDR security operations"],
+  ["Webex brief", "Write an executive brief on Webex noise removal and security LLM governance"],
 ];
 
 export function AskStudio({ defaultQuery, industries }) {
@@ -33,12 +33,12 @@ export function AskStudio({ defaultQuery, industries }) {
       const payload = await response.json();
       if (!response.ok) {
         setResult(null);
-        setError(payload.error || "검색에 실패했습니다.");
+        setError(payload.error || "Search failed.");
       } else {
         setResult(payload);
       }
     } catch {
-      setError("검색 요청이 전달되지 않았습니다.");
+      setError("The search request did not go through.");
     } finally {
       setPending(false);
     }
@@ -54,25 +54,25 @@ export function AskStudio({ defaultQuery, industries }) {
     <div className="ask-layout">
       <form onSubmit={onSubmit} className="panel">
         <label className="field">
-          질문
+          Question
           <textarea value={query} onChange={(event) => setQuery(event.target.value)} maxLength={2000} />
         </label>
         <div className="toolbar">
-          <select value={artifact} onChange={(event) => setArtifact(event.target.value)} aria-label="산출물">
-            <option value="auto">산출물 자동</option>
+          <select value={artifact} onChange={(event) => setArtifact(event.target.value)} aria-label="Artifact">
+            <option value="auto">Choose artifact</option>
             <option value="raci">RACI</option>
             <option value="wbs">WBS</option>
-            <option value="risk_plan">위험 관리 계획</option>
-            <option value="proposal_email">제안 이메일</option>
-            <option value="executive_brief">경영진 브리프</option>
+            <option value="risk_plan">Risk plan</option>
+            <option value="proposal_email">Proposal email</option>
+            <option value="executive_brief">Executive brief</option>
           </select>
-          <select value={industry} onChange={(event) => setIndustry(event.target.value)} aria-label="산업 필터">
-            <option value="">산업 제한 없음</option>
+          <select value={industry} onChange={(event) => setIndustry(event.target.value)} aria-label="Industry filter">
+            <option value="">Any industry</option>
             {industries.map(([code, label]) => (
               <option key={code} value={code}>{label}</option>
             ))}
           </select>
-          <button className="primary" type="submit" disabled={pending}>{pending ? "검색 중" : "초안 만들기"}</button>
+          <button className="primary" type="submit" disabled={pending}>{pending ? "Searching" : "Draft"}</button>
         </div>
         <div className="row">
           {PROMPTS.map(([label, prompt]) => (
@@ -88,16 +88,16 @@ export function AskStudio({ defaultQuery, industries }) {
           <div className="panel">
             <div className="row no-print">
               <span className="badge teal">{result.artifact.primaryCaseCode}</span>
-              <span className="badge">가까운 사례 {result.matches.length}건</span>
-              <button type="button" className="ghost" onClick={copyMarkdown}>{copied ? "복사됨" : "마크다운 복사"}</button>
+              <span className="badge">{result.matches.length} nearest cases</span>
+              <button type="button" className="ghost" onClick={copyMarkdown}>{copied ? "Copied" : "Copy markdown"}</button>
             </div>
             <ArtifactView artifact={result.artifact} />
-            <h3>근거 발췌</h3>
+            <h3>Evidence</h3>
             <div className="evidence">
               {result.matches.map((match) => (
                 <article key={match.id}>
                   <a href={`/cases/${match.slug}`}>{match.caseCode} · {match.heading}</a>
-                  <p className="meta">점수 {match.score}</p>
+                  <p className="meta">Score {match.score}</p>
                   <p>{match.excerpt}</p>
                 </article>
               ))}
@@ -105,7 +105,7 @@ export function AskStudio({ defaultQuery, industries }) {
           </div>
         ) : (
           <div className="panel">
-            <p>질문을 보내면 벡터 검색으로 상위 5개 청크를 고르고, 가장 가까운 사례의 RACI·WBS·리스크로 초안을 합성합니다. 고객 페인포인트와 제약으로 원페이저를 만들려면 원페이저 화면을 엽니다.</p>
+            <p>A question retrieves the top five chunks and drafts from the nearest case's RACI, WBS, and risks. For a pain point and constraints, open the one-pager.</p>
           </div>
         )}
       </div>
