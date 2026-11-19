@@ -564,6 +564,22 @@ test("a copied model summary is sent back once and then replaced", async () => {
                       { activity: "Accept the retrieval baseline", accountable: "Customer PM" },
                       { activity: "Confirm the cloud call stays in scope", accountable: "Security reviewer" },
                     ],
+                    risks: [
+                      { title: "The baseline is skipped", mitigation: "The sponsor accepts the frozen query set first.", owner: "Data owner" },
+                      { title: "A case result is quoted as this team's result", mitigation: "The case stays a pattern.", owner: "Customer PM" },
+                    ],
+                    decisions: [
+                      { title: "When a generator is discussed", choice: "Only after the baseline is accepted.", owner: "Customer PM" },
+                      { title: "Cloud boundary", choice: "The call stays inside this brief.", owner: "Security reviewer" },
+                    ],
+                    goals: [
+                      { statement: "Accept a measured baseline on the frozen query set.", owner: "Data owner" },
+                      { statement: "Keep the cloud call inside this brief.", owner: "Security reviewer" },
+                    ],
+                    resources: [
+                      { kind: "role", name: "Data owner", amount: "Planning band", notes: "Freezes the query set." },
+                      { kind: "role", name: "Customer PM", amount: "Planning band", notes: "Accepts the baseline." },
+                    ],
                   }),
                 },
               }],
@@ -651,6 +667,9 @@ test("a missing RACI is written in a second call about this pain", async () => {
     assert.equal(doc.raci.some((row) => row.activity === "Pilot charter"), false);
     assert.match(doc.wbs[0].name, /hairline crack/);
     assert.equal(doc.resources[0].name, "Paint-line inspector");
+    assert.equal(doc.risks.some((row) => /punishment policy/.test(row.title)), false);
+    assert.equal(JSON.stringify(doc.decisions).includes("Hypershield"), false);
+    assert.match(doc.goals.map((row) => row.statement).join(" "), /hairline cracks|line stop/);
     assert.match(doc.specialist.reason, /RACI/);
     assert.equal(JSON.stringify(doc).includes("present"), false);
   } finally {
