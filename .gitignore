@@ -2,6 +2,8 @@ node_modules
 .next
 data/index.json
 data/onepagers/
+out/
+.pages-park/
 __pycache__
 *.pyc
 .DS_Store

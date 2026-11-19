@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { cases } from "../data/authoring/index.mjs";
+import { answerQuestion, buildIndex } from "../lib/pipeline.mjs";
 import { ArtifactView } from "./ArtifactView";
+
+let indexCache;
 
 const PROMPTS = [
   ["Finance RACI", "Draft a RACI for Hypershield and AI visibility in financial services"],
@@ -19,26 +24,22 @@ export function AskStudio({ defaultQuery, industries }) {
   const [pending, setPending] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) setQuery(q);
+  }, []);
+
   async function onSubmit(event) {
     event.preventDefault();
     setPending(true);
     setError("");
     setCopied(false);
     try {
-      const response = await fetch("/api/ask", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ query, artifact, industry }),
-      });
-      const payload = await response.json();
-      if (!response.ok) {
-        setResult(null);
-        setError(payload.error || "Search failed.");
-      } else {
-        setResult(payload);
-      }
-    } catch {
-      setError("The search request did not go through.");
+      if (!indexCache) indexCache = buildIndex(cases, "browser");
+      setResult(answerQuestion(cases, indexCache, query, { artifact, industry, limit: 5 }));
+    } catch (err) {
+      setResult(null);
+      setError(err instanceof Error ? err.message : "Search failed.");
     } finally {
       setPending(false);
     }
@@ -96,7 +97,7 @@ export function AskStudio({ defaultQuery, industries }) {
             <div className="evidence">
               {result.matches.map((match) => (
                 <article key={match.id}>
-                  <a href={`/cases/${match.slug}`}>{match.caseCode} · {match.heading}</a>
+                  <Link href={`/cases/${match.slug}`}>{match.caseCode} · {match.heading}</Link>
                   <p className="meta">Score {match.score}</p>
                   <p>{match.excerpt}</p>
                 </article>

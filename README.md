@@ -12,7 +12,7 @@ npm test
 npm run dev
 ```
 
-브라우저에서 라이브러리, `/ask`, `/onepager`, `/compare`, `/guide`를 엽니다.
+브라우저에서 라이브러리, `/ask`, `/onepager`, `/compare`, `/guide`를 엽니다. GitHub Pages 배포는 `npm run build:pages` 결과이며, 공개 주소는 https://benjamin5607.github.io/project_mcp/ 입니다. 그 페이지의 질의와 원페이저는 브라우저 안에서 동작하고, 원페이저 초안은 그 브라우저에만 저장됩니다.
 
 ```bash
 npm run ask -- "금융권 고객의 AI 애플리케이션 보안 가시성 확보를 위한 Hypershield 도입 사례와 RACI 매트릭스 초안을 작성해 줘"

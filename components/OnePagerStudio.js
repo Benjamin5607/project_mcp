@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { renderExport } from "../lib/onepager/export-html.mjs";
+import { listLocalOnePagers, readLocalOnePager, saveLocalOnePager } from "../lib/onepager/local-docs.mjs";
+import { reviewDocument } from "../lib/onepager/review-core.mjs";
+import { draftOnePager } from "../lib/onepager/session.mjs";
 
 const EXAMPLES = {
   en: {
@@ -23,7 +27,7 @@ function copy(language) {
   if (language === "ko") {
     return {
       title: "페인포인트에서 프로젝트 원페이저로",
-      lede: "케이스 뱅크에서 참고 사례를 고르고, 제약에 맞는 기술 솔루션과 이해관계자·RACI·자원을 채웁니다. PM이 승인하기 전에는 보고서와 슬라이드를 내려받지 않습니다.",
+      lede: "케이스 뱅크에서 참고 사례를 고르고, 제약에 맞는 기술 솔루션과 이해관계자·RACI·자원을 채웁니다. 초안은 이 브라우저에만 저장되고, 페인포인트는 외부 API로 나가지 않습니다. PM이 승인하기 전에는 보고서와 슬라이드를 내려받지 않습니다.",
       language: "언어",
       customer: "고객 표시 이름",
       pain: "페인포인트",
@@ -85,7 +89,7 @@ function copy(language) {
   }
   return {
     title: "From a pain point to a project one-pager",
-    lede: "The case bank supplies the reference pattern. The draft names the stakeholders, the RACI, and the resources a sponsor has to approve. HTML stays locked until a PM approves.",
+    lede: "The case bank supplies the reference pattern. The draft names the stakeholders, the RACI, and the resources a sponsor has to approve. This page keeps the draft in this browser and does not send the pain text to an external API. HTML stays locked until a PM approves.",
     language: "Language",
     customer: "Customer label",
     pain: "Pain point",
@@ -178,13 +182,24 @@ function toForm(doc) {
   };
 }
 
+function downloadHtml(doc, kind) {
+  const html = renderExport(doc, kind);
+  const blob = new Blob([html], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = kind === "slides" ? `${doc.id}-slides.html` : `${doc.id}-report.html`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 function Recent({ items, text }) {
   if (!items.length) return <p className="meta">{text.empty}</p>;
   return (
     <ul className="clean">
       {items.map((item) => (
         <li key={item.id}>
-          <Link href={`/onepager/${item.id}`}>{item.headline || item.customerLabel}</Link>
+          <Link href={`/onepager?id=${item.id}`}>{item.headline || item.customerLabel}</Link>
           <span className="meta"> · {text.status[item.status] || item.status}</span>
         </li>
       ))}
@@ -195,11 +210,31 @@ function Recent({ items, text }) {
 export function OnePagerStudio({ initial, recent }) {
   const router = useRouter();
   const [doc, setDoc] = useState(initial);
+  const [stored, setStored] = useState(recent || []);
   const [form, setForm] = useState(initial ? toForm(initial) : EXAMPLES.en);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [comment, setComment] = useState("");
   const [reviewer, setReviewer] = useState("");
+
+  useEffect(() => {
+    const items = listLocalOnePagers();
+    setStored(items);
+    const id = new URLSearchParams(window.location.search).get("id");
+    if (!id) return;
+    const found = readLocalOnePager(id);
+    if (!found) return;
+    setDoc(found);
+    setForm(toForm(found));
+  }, []);
+
+  function remember(next) {
+    saveLocalOnePager(next);
+    setDoc(next);
+    setForm(toForm(next));
+    setStored(listLocalOnePagers());
+    router.replace(`/onepager?id=${next.id}`);
+  }
   const text = copy(doc?.language || form.language || "en");
   const steps = useMemo(() => {
     const labels = copy(doc?.language || "en");
@@ -212,25 +247,15 @@ export function OnePagerStudio({ initial, recent }) {
     setPending(true);
     setError("");
     try {
-      const response = await fetch("/api/onepager", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          customerLabel: form.customerLabel,
-          pain: form.pain,
-          requirements: form.requirements,
-          language: form.language === "ko" ? "ko" : "en",
-        }),
+      const payload = await draftOnePager({
+        customerLabel: form.customerLabel,
+        pain: form.pain,
+        requirements: form.requirements,
+        language: form.language === "ko" ? "ko" : "en",
       });
-      const payload = await response.json();
-      if (!response.ok) {
-        setError(payload.error || (form.language === "ko" ? "초안을 만들지 못했습니다." : "The draft could not be created."));
-        return;
-      }
-      router.push(`/onepager/${payload.id}`);
-      router.refresh();
-    } catch {
-      setError(form.language === "ko" ? "요청이 전달되지 않았습니다." : "The request did not go through.");
+      remember(payload);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : (form.language === "ko" ? "초안을 만들지 못했습니다." : "The draft could not be created."));
     } finally {
       setPending(false);
     }
@@ -240,21 +265,11 @@ export function OnePagerStudio({ initial, recent }) {
     setPending(true);
     setError("");
     try {
-      const response = await fetch(`/api/onepager/${doc.id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ action, ...extra }),
-      });
-      const payload = await response.json();
-      if (!response.ok) {
-        setError(payload.error || (doc.language === "ko" ? "검토를 저장하지 못했습니다." : "The review could not be saved."));
-        return;
-      }
-      setDoc(payload);
-      setForm(toForm(payload));
+      const payload = reviewDocument(structuredClone(doc), { action, ...extra });
+      remember(payload);
       if (action === "comment" || action === "request_changes") setComment("");
-    } catch {
-      setError(form.language === "ko" ? "요청이 전달되지 않았습니다." : "The request did not go through.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : (doc.language === "ko" ? "검토를 저장하지 못했습니다." : "The review could not be saved."));
     } finally {
       setPending(false);
     }
@@ -310,7 +325,7 @@ export function OnePagerStudio({ initial, recent }) {
         </form>
         <aside className="panel">
           <h2>{text.recent}</h2>
-          <Recent items={recent} text={text} />
+          <Recent items={stored} text={text} />
         </aside>
       </div>
     );
@@ -475,8 +490,8 @@ export function OnePagerStudio({ initial, recent }) {
             <div className="row">
               {approved ? (
                 <>
-                  <a className="primary" data-testid="onepager-download-report" href={`/api/onepager/${doc.id}/export?kind=report`}>{text.report}</a>
-                  <a className="primary" data-testid="onepager-download-slides" href={`/api/onepager/${doc.id}/export?kind=slides`}>{text.slides}</a>
+                  <button type="button" className="primary" data-testid="onepager-download-report" onClick={() => downloadHtml(doc, "report")}>{text.report}</button>
+                  <button type="button" className="primary" data-testid="onepager-download-slides" onClick={() => downloadHtml(doc, "slides")}>{text.slides}</button>
                 </>
               ) : (
                 <p className="note">{text.locked}</p>
@@ -517,7 +532,7 @@ export function OnePagerStudio({ initial, recent }) {
           </section>
           <section className="panel">
             <h2>{text.recent}</h2>
-            <Recent items={recent} text={text} />
+            <Recent items={stored} text={text} />
           </section>
         </aside>
       </div>
