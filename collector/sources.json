@@ -1,0 +1,27 @@
+{
+  "userAgent": "cisco-ai-case-bank/1.0 (public research collector)",
+  "maxNewPerRun": 15,
+  "timeoutSeconds": 20,
+  "feeds": [
+    {"name": "Cisco Blog", "url": "https://blogs.cisco.com/feed"},
+    {"name": "Cisco Newsroom", "url": "https://newsroom.cisco.com/rss"}
+  ],
+  "keywords": [
+    "hypershield",
+    "ai defense",
+    "secure ai factory",
+    "silicon one",
+    "hyperfabric",
+    "cisco xdr",
+    "xdr",
+    "spectrum-x",
+    "nvidia",
+    "webex",
+    "generative ai",
+    "artificial intelligence",
+    "machine learning",
+    "large language model",
+    " llm",
+    " talos"
+  ]
+}

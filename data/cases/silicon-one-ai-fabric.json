@@ -1,0 +1,740 @@
+{
+  "caseCode": "CSCO-SIO-DC-001",
+  "slug": "silicon-one-ai-fabric",
+  "title": "AI-Ready 데이터센터와 Silicon One — 내부 IT의 무중단 패브릭 전환",
+  "titleEn": "Internal IT plan for an AI-ready Silicon One Ethernet fabric",
+  "recordType": "reference_scenario",
+  "fidelity": "public_composite",
+  "fidelityNote": "Silicon One, Hyperfabric AI, 400G BiDi, Unified Nexus Dashboard, Intelligent Packet Flow, Hypershield 자기 검증 업그레이드에 대한 공개 설명을 내부 IT 프로그램으로 재구성했다. 몇 주 만에 데이터센터 전체를 끝낸 고객 사례로 확인된 기록은 없다. 수 주 창은 하드웨어 도착 이후 파일럿 포드에만 쓴다.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "내부 네트워크·IT 팀이 기존 이더넷 데이터센터를 AI 작업이 올라갈 수 있는 패브릭으로 바꾸는 계획 시나리오입니다. 초고성능 실리콘(Silicon One), 프론트·백 네트워크를 한 운영 모델로 보는 Spectrum-X 연계, 기존 광케이블을 유지하는 400G BiDi, 통합 대시보드, 혼잡 인지 트래픽 조정이 재료입니다. 무중단은 Hypershield의 듀얼 데이터 플레인 업그레이드와, 기존 이중 멀티모드 광을 걷어내지 않는 옵틱 이행을 가리킵니다. 전체 프로그램은 16–32주, 하드웨어 도착 후 첫 파일럿 포드는 6–10주로 계획합니다.",
+  "problemStatement": "AI 작업을 실험실 스위치에 올려 두면 프론트엔드 서비스 네트워크와 백엔드 GPU 네트워크의 도구, 소유자, 변경 창이 달라진다. 400G로 올리기 위해 광케이블을 교체하면 서비스 중단과 비용이 커진다. 보안 정책 변경도 유지보수 창에 몰려 패치가 늦어진다.",
+  "opportunity": "Cisco는 기존 이중 멀티모드 광을 유지한 채 400G로 가는 BiDi 옵틱을 2025년 하반기 가용으로 발표했다. 통합 Nexus Dashboard는 LAN, SAN, IPFM, AI/ML 패브릭을 한 운영 화면으로 모은다고 2025년 7월 릴리스를 목표로 발표했다. Intelligent Packet Flow는 실시간 텔레메트리로 혼잡을 보고 트래픽을 조정하며 GPU와 분산 작업까지 가시성을 확장한다고 공개되었다. Hypershield의 자기 검증 업그레이드는 섀도 경로에서 시험한 뒤 무중단으로 전환한다.",
+  "strategicAlignment": "내부 IT의 운영 표준을 AI 팀의 예외 인프라가 아니라 같은 패브릭 변경 절차로 가져온다.",
+  "businessValue": "첫 AI 포드가 기존 운영 조직의 런북으로 돌아간다. 광케이블 전면 교체를 피하고, 보안 정책 변경의 시험 방법을 문서화한다. 완료 기간을 고객 사례처럼 인용하지 않는다.",
+  "industry": "technology",
+  "industryLabel": "기술·인프라",
+  "customerSegment": "internal_it",
+  "customerSegmentLabel": "내부 IT",
+  "region": "APAC",
+  "regulatoryContext": [
+    "변경관리",
+    "내부 정보 보호"
+  ],
+  "companySizeBand": "enterprise IT",
+  "deploymentModel": "on_prem",
+  "deploymentModelLabel": "기존 데이터센터 이행",
+  "architecturePattern": "Silicon One 이더넷 패브릭, 선택적 Spectrum-X 연계, NX-OS 또는 SONiC, 400G BiDi, Unified Nexus Dashboard, Intelligent Packet Flow, 보안 정책은 Hypershield 듀얼 데이터 플레인.",
+  "complexity": "high",
+  "planningBandNote": "금액은 포드와 옵틱 범위에 따른 계획 밴드다. 전체 데이터센터를 몇 주 만에 교체하는 비용이 아니다.",
+  "dealSizeLowUsd": 1500000,
+  "dealSizeHighUsd": 8000000,
+  "dealSizeBand": "L",
+  "leadTimeWeeksLow": 8,
+  "leadTimeWeeksHigh": 16,
+  "durationWeeksLow": 16,
+  "durationWeeksHigh": 32,
+  "ciscoSolutions": [
+    "Cisco Silicon One",
+    "Nexus Hyperfabric AI",
+    "Nexus Dashboard",
+    "Cisco Hypershield"
+  ],
+  "partnerTechnologies": [
+    "NVIDIA Spectrum-X"
+  ],
+  "aiCapabilities": [
+    "AI 작업 인지 텔레메트리",
+    "파일럿 포드"
+  ],
+  "securityCapabilities": [
+    "무중단 정책 시험",
+    "패브릭 세그멘테이션"
+  ],
+  "aliases": [
+    "Silicon One",
+    "실리콘원",
+    "데이터센터",
+    "무중단",
+    "패브릭",
+    "400G",
+    "Hyperfabric",
+    "내부 IT",
+    "몇 주"
+  ],
+  "scopeIn": [
+    "파일럿 홀 또는 포드 1곳의 패브릭 설계",
+    "400G 이행이 필요한 구간과 광케이블 재사용 구간 구분",
+    "운영 대시보드 통합 범위",
+    "보안 정책 변경의 듀얼 플레인 리허설",
+    "하드웨어 도착 후 6–10주 파일럿 가동 계획"
+  ],
+  "scopeOut": [
+    "캠퍼스 전체와 해외 사이트",
+    "전체 데이터센터의 수 주 완료를 성공 기준으로 고정",
+    "GPU 클러스터 자체의 모형 학습(AI 팩토리 사례)"
+  ],
+  "assumptions": [
+    {
+      "statement": "파일럿 구간의 광케이블 종류를 실사할 수 있다.",
+      "ownerRole": "네트워크 운영",
+      "status": "open"
+    },
+    {
+      "statement": "AI 팀의 첫 작업은 패브릭 인수 기준을 통과한 뒤에만 올라온다.",
+      "ownerRole": "내부 IT PM",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "technical",
+      "statement": "서비스 중인 프론트엔드 네트워크의 변경은 기존 변경 창을 따른다."
+    },
+    {
+      "type": "organizational",
+      "statement": "AI 플랫폼 팀은 패브릭의 숨은 소유자가 되지 않는다."
+    }
+  ],
+  "successCriteria": [
+    "광 실사와 이행 방식이 구간별로 적혀 있다",
+    "파일럿 포드가 기존 런북의 변경 창으로 운영된다",
+    "정책 변경 리허설이 무중단 절차로 남아 있다"
+  ],
+  "outcomeType": "expected_planning",
+  "outcomes": [
+    "기대 결과: 첫 포드가 내부 표준 변경 절차에 편입",
+    "공개 설계: 400G BiDi는 기존 이중 멀티모드 광을 유지",
+    "공개 설계: Hypershield 업그레이드는 듀얼 데이터 플레인으로 중단 없이 전환"
+  ],
+  "sourceUrls": [
+    {
+      "title": "AI-ready data centers from hyperscale to enterprise",
+      "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2025/m06/cisco-powers-ai-ready-data-centers-from-hyperscale-to-enterprise.html",
+      "publisher": "Cisco Newsroom",
+      "publishedOn": "2025-06-01"
+    },
+    {
+      "title": "NVIDIA partnership expansion",
+      "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2025/m02/cisco-expands-partnership-with-nvidia-to-accelerate-ai-adoption-in-the-enterprise.html",
+      "publisher": "Cisco Newsroom",
+      "publishedOn": "2025-02-01"
+    },
+    {
+      "title": "Hypershield self-qualifying upgrades",
+      "url": "https://blogs.cisco.com/news/cisco-hypershield-security-reimagined-hyper-distributed-security-for-the-ai-scale-data-center",
+      "publisher": "Cisco Blog",
+      "publishedOn": "2024-04-18"
+    },
+    {
+      "title": "Cisco and NVIDIA networking milestones",
+      "url": "https://blogs.cisco.com/news/cisco-drives-ai-networking-innovation-with-nvidia",
+      "publisher": "Cisco Blog",
+      "publishedOn": "2025-10-01"
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2025-06-01",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "IT 인프라 임원",
+      "organization": "고객",
+      "interest": "AI 수요가 예외 네트워크를 만들지 않을 것",
+      "influence": "high",
+      "engagement": "표준 채택",
+      "cadence": "월간"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "내부 IT PM",
+      "organization": "고객",
+      "interest": "변경 창과 파일럿 범위",
+      "influence": "high",
+      "engagement": "통합 일정",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "NETOPS",
+      "roleName": "네트워크 운영",
+      "organization": "고객",
+      "interest": "기존 런북으로 인수",
+      "influence": "high",
+      "engagement": "실사와 변경",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "AI",
+      "roleName": "AI 플랫폼 연락 담당",
+      "organization": "고객",
+      "interest": "포드가 언제 열리는지",
+      "influence": "medium",
+      "engagement": "작업 수용 기준만",
+      "cadence": "격주"
+    },
+    {
+      "roleCode": "SEC",
+      "roleName": "데이터센터 보안",
+      "organization": "고객",
+      "interest": "정책 변경의 시험",
+      "influence": "medium",
+      "engagement": "듀얼 플레인 리허설",
+      "cadence": "마일스톤"
+    },
+    {
+      "roleCode": "CHANGE",
+      "roleName": "변경 자문 위원회",
+      "organization": "고객",
+      "interest": "서비스 중단",
+      "influence": "high",
+      "engagement": "변경 승인",
+      "cadence": "변경마다"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "scope",
+      "priority": "must",
+      "statement": "파일럿 구간과 광케이블 재사용 가능 여부를 실사한다.",
+      "acceptance": "구간 도면",
+      "source": "400G BiDi 발표"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "resource",
+      "priority": "must",
+      "statement": "운영 인수가 네트워크 운영 런북으로 이루어진다.",
+      "acceptance": "인수 서명",
+      "source": "내부 표준"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "quality",
+      "priority": "must",
+      "statement": "보안 정책 변경을 듀얼 플레인 또는 동등한 사전 시험 없이 적용하지 않는다.",
+      "acceptance": "리허설 기록",
+      "source": "Hypershield 공개 설계"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "파일럿 구간 선정",
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "내부 IT PM"
+      ],
+      "accountable": "IT 인프라 임원",
+      "consulted": [
+        "네트워크 운영",
+        "AI 플랫폼 연락 담당"
+      ],
+      "informed": [
+        "변경 자문 위원회"
+      ]
+    },
+    {
+      "activity": "광 실사",
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "네트워크 운영"
+      ],
+      "accountable": "네트워크 운영",
+      "consulted": [
+        "내부 IT PM"
+      ],
+      "informed": [
+        "IT 인프라 임원"
+      ]
+    },
+    {
+      "activity": "패브릭 표준 선택",
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "네트워크 운영"
+      ],
+      "accountable": "IT 인프라 임원",
+      "consulted": [
+        "데이터센터 보안"
+      ],
+      "informed": [
+        "AI 플랫폼 연락 담당"
+      ]
+    },
+    {
+      "activity": "변경 창 설계",
+      "phase": "plan",
+      "knowledgeArea": "schedule",
+      "responsible": [
+        "내부 IT PM"
+      ],
+      "accountable": "변경 자문 위원회",
+      "consulted": [
+        "네트워크 운영"
+      ],
+      "informed": [
+        "AI 플랫폼 연락 담당"
+      ]
+    },
+    {
+      "activity": "구축과 텔레메트리",
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "네트워크 운영"
+      ],
+      "accountable": "네트워크 운영",
+      "consulted": [
+        "내부 IT PM"
+      ],
+      "informed": [
+        "IT 인프라 임원"
+      ]
+    },
+    {
+      "activity": "무중단 정책 리허설",
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "responsible": [
+        "데이터센터 보안"
+      ],
+      "accountable": "데이터센터 보안",
+      "consulted": [
+        "네트워크 운영"
+      ],
+      "informed": [
+        "변경 자문 위원회"
+      ]
+    },
+    {
+      "activity": "운영 인수",
+      "phase": "close",
+      "knowledgeArea": "resource",
+      "responsible": [
+        "네트워크 운영"
+      ],
+      "accountable": "IT 인프라 임원",
+      "consulted": [
+        "내부 IT PM",
+        "AI 플랫폼 연락 담당"
+      ],
+      "informed": [
+        "변경 자문 위원회"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "name": "구간 선정",
+      "description": "AI 포드가 붙을 홀과 영향받는 프론트엔드 서비스를 적는다.",
+      "deliverable": "구간 차터",
+      "ownerRole": "내부 IT PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [],
+      "acceptance": "범위 밖 사이트가 적힘",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "name": "광 실사",
+      "description": "이중 멀티모드 재사용 구간과 교체 구간을 나눈다.",
+      "deliverable": "실사표",
+      "ownerRole": "네트워크 운영",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "구간별 이행 방식",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "name": "표준 설계",
+      "description": "Silicon One 패브릭, NOS, 대시보드, 텔레메트리 범위를 고정한다.",
+      "deliverable": "표준안",
+      "ownerRole": "네트워크 운영",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 20,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "운영 소유자가 적힘",
+      "milestone": false,
+      "sort": 21
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "procurement",
+      "name": "옵틱·스위치 발주",
+      "description": "실사 결과에 해당하는 장비만 발주한다.",
+      "deliverable": "발주",
+      "ownerRole": "내부 IT PM",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 20,
+      "predecessors": [
+        "2.1",
+        "2.2"
+      ],
+      "acceptance": "납기",
+      "milestone": false,
+      "sort": 22
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "schedule",
+      "name": "파일럿 가동",
+      "description": "하드웨어 도착 후 6–10주 안에 파일럿 포드를 기존 변경 창으로 연다.",
+      "deliverable": "가동 체크리스트",
+      "ownerRole": "네트워크 운영",
+      "durationDaysLow": 30,
+      "durationDaysHigh": 50,
+      "predecessors": [
+        "2.3"
+      ],
+      "acceptance": "관리 평면과 텔레메트리",
+      "milestone": true,
+      "sort": 30
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "name": "정책 리허설",
+      "description": "듀얼 데이터 플레인 또는 동등 절차로 정책 변경을 시험한다.",
+      "deliverable": "리허설 기록",
+      "ownerRole": "데이터센터 보안",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "롤백 단계가 있음",
+      "milestone": false,
+      "sort": 31
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "monitor",
+      "knowledgeArea": "quality",
+      "name": "혼잡·작업 가시성 확인",
+      "description": "Intelligent Packet Flow 범위가 설계와 같은지 첫 AI 작업에서 본다.",
+      "deliverable": "관찰 메모",
+      "ownerRole": "네트워크 운영",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "보이는 것과 안 보이는 것이 구분됨",
+      "milestone": false,
+      "sort": 40
+    },
+    {
+      "wbsCode": "5",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "resource",
+      "name": "런북 인수",
+      "description": "AI 팀이 아니라 네트워크 운영이 소유한다.",
+      "deliverable": "런북",
+      "ownerRole": "네트워크 운영",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "3.2",
+        "4"
+      ],
+      "acceptance": "온콜 명시",
+      "milestone": true,
+      "sort": 50
+    }
+  ],
+  "milestones": [
+    {
+      "name": "구간 차터",
+      "phase": "initiate",
+      "weekOffsetLow": 2,
+      "weekOffsetHigh": 3,
+      "criteria": "파일럿 홀 확정"
+    },
+    {
+      "name": "실사 완료",
+      "phase": "plan",
+      "weekOffsetLow": 5,
+      "weekOffsetHigh": 8,
+      "criteria": "광 이행 방식"
+    },
+    {
+      "name": "파일럿 가동",
+      "phase": "execute",
+      "weekOffsetLow": 14,
+      "weekOffsetHigh": 26,
+      "criteria": "도착 후 6–10주 창을 일정에 표시"
+    },
+    {
+      "name": "인수",
+      "phase": "close",
+      "weekOffsetLow": 16,
+      "weekOffsetHigh": 32,
+      "criteria": "네트워크 운영 서명"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "광 실사와 다른 케이블",
+      "description": "BiDi로 계획한 구간에 해당 광이 없다.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "발주는 실사 뒤로 둔다.",
+      "contingency": "그 구간은 이번 파일럿에서 제외한다.",
+      "ownerRole": "네트워크 운영",
+      "trigger": "표본 포트 불일치"
+    },
+    {
+      "riskCode": "R2",
+      "title": "몇 주 완료라는 기대",
+      "description": "경영진이 전체 데이터센터 일정을 파일럿 창으로 오해한다.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 3,
+      "response": "mitigate",
+      "mitigation": "차터 첫 줄에 전체 기간과 도착 후 파일럿 창을 같이 적는다.",
+      "contingency": "기대가 바뀌면 차터를 다시 승인한다.",
+      "ownerRole": "내부 IT PM",
+      "trigger": "스폰서 자료에 전체 완료가 수 주로 표기"
+    },
+    {
+      "riskCode": "R3",
+      "title": "변경 창 부족",
+      "description": "프론트엔드 서비스가 파일럿 일정을 막을 수 있다.",
+      "category": "schedule",
+      "probability": 3,
+      "impact": 3,
+      "response": "mitigate",
+      "mitigation": "변경 자문 위원회를 계획 단계 Accountable로 둔다.",
+      "contingency": "가동 마일스톤만 이동하고 범위는 유지한다.",
+      "ownerRole": "변경 자문 위원회",
+      "trigger": "창 거절 2회"
+    },
+    {
+      "riskCode": "R4",
+      "title": "AI 팀의 우회 네트워크",
+      "description": "인수 전에 실험 스위치로 작업을 올린다.",
+      "category": "resource",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "첫 작업의 선행 조건을 인수로 둔다.",
+      "contingency": "우회 장비는 예외 목록에 올리고 기한을 준다.",
+      "ownerRole": "IT 인프라 임원",
+      "trigger": "비표준 스위치 발견"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Unified Dashboard 릴리스와 파일럿 시점의 차이",
+      "status": "open",
+      "ownerRole": "네트워크 운영",
+      "nextAction": "7월 2025 발표 릴리스의 실제 가용일을 확인하고 없으면 기존 운영 도구로 인수 기준을 다시 적기"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "비표준 AI 네트워크 수",
+      "baseline": "실사 전 미상",
+      "target": "파일럿 홀에서 0, 예외는 기한이 있음",
+      "unit": "대",
+      "method": "계획 목표",
+      "ownerRole": "네트워크 운영",
+      "cadence": "인수 시"
+    },
+    {
+      "name": "변경 실패로 인한 서비스 중단",
+      "baseline": "기존 변경 통계",
+      "target": "파일럿 변경의 비상 롤백이 절차대로 기록",
+      "unit": "건",
+      "method": "중단 제로를 약속하지 않고 절차 준수를 측정",
+      "ownerRole": "변경 자문 위원회",
+      "cadence": "변경마다"
+    },
+    {
+      "name": "실사 대비 발주 정확도",
+      "baseline": "없음",
+      "target": "발주 품목이 실사표를 참조",
+      "unit": "%",
+      "method": "계획 규율",
+      "ownerRole": "내부 IT PM",
+      "cadence": "발주 시"
+    }
+  ],
+  "costs": [
+    {
+      "category": "hardware",
+      "name": "파일럿 스위치와 400G 옵틱",
+      "costType": "capex",
+      "lowUsd": 800000,
+      "highUsd": 4000000,
+      "notes": "구간 크기에 따른 계획 밴드"
+    },
+    {
+      "category": "software",
+      "name": "대시보드·텔레메트리·보안 시험",
+      "costType": "opex",
+      "lowUsd": 150000,
+      "highUsd": 700000,
+      "notes": "기존 라이선스와 겹치면 하한을 낮춘다"
+    },
+    {
+      "category": "services",
+      "name": "실사와 이행 지원",
+      "costType": "opex",
+      "lowUsd": 80000,
+      "highUsd": 250000,
+      "notes": "내부 인력 가능"
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "실사 게이트",
+      "criteria": "발주 목록이 실사표를 가리킨다.",
+      "ownerRole": "네트워크 운영"
+    },
+    {
+      "phase": "execute",
+      "name": "변경 게이트",
+      "criteria": "변경 자문 위원회 승인과 롤백이 있다.",
+      "ownerRole": "변경 자문 위원회"
+    },
+    {
+      "phase": "close",
+      "name": "인수 게이트",
+      "criteria": "네트워크 운영이 온콜 소유자다.",
+      "ownerRole": "IT 인프라 임원"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "IT 임원",
+      "message": "전체 기간과 파일럿 창을 항상 같이",
+      "channel": "월간 한 장",
+      "cadence": "월간",
+      "ownerRole": "내부 IT PM"
+    },
+    {
+      "audience": "AI 플랫폼",
+      "message": "작업 투입 조건",
+      "channel": "격주",
+      "cadence": "격주",
+      "ownerRole": "내부 IT PM"
+    },
+    {
+      "audience": "서비스 소유자",
+      "message": "변경 창 영향",
+      "channel": "변경 공지",
+      "cadence": "변경 전",
+      "ownerRole": "네트워크 운영"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "스위치·옵틱",
+      "vendorType": "Cisco",
+      "strategy": "실사 후 발주",
+      "leadWeeks": 12,
+      "notes": "BiDi 가용 시점을 확인"
+    },
+    {
+      "item": "운영 소프트웨어",
+      "vendorType": "Cisco",
+      "strategy": "기존 엔터프라이즈 계약 편입",
+      "leadWeeks": 6,
+      "notes": "대시보드 릴리스 의존성을 이슈로 추적"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "기간을 말하는 방식",
+      "choice": "전체 16–32주, 하드웨어 도착 후 파일럿 6–10주. 전체 완료를 몇 주라고 쓰지 않는다.",
+      "rationale": "공개된 이행 기술과 확인되지 않은 고객 일정을 구분한다.",
+      "date": null,
+      "ownerRole": "내부 IT PM"
+    },
+    {
+      "decisionCode": "D2",
+      "title": "소유권",
+      "choice": "인수 후 소유자는 네트워크 운영이다.",
+      "rationale": "AI 플랫폼의 예외 인프라를 만들지 않으려고 이 프로그램을 연다.",
+      "date": null,
+      "ownerRole": "IT 인프라 임원"
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "언어",
+      "statement": "무중단은 마케팅 문장이 아니라 어떤 변경이 듀얼 플레인 또는 광 재사용인지를 가리킬 때만 쓴다.",
+      "applicability": "임원 보고"
+    },
+    {
+      "theme": "순서",
+      "statement": "실사 전 옵틱 발주는 R1을 확정 사건으로 만든다.",
+      "applicability": "400G 이행"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "운영 편입",
+      "measure": "비표준 포드 0이라는 인수 기준",
+      "beneficiary": "내부 IT",
+      "timing": "종료"
+    },
+    {
+      "name": "광 투자 회피 가능성",
+      "measure": "재사용 구간 수",
+      "beneficiary": "재무",
+      "timing": "실사 후. 실사 전에는 금액을 약속하지 않음"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "무엇을 무중단이라고 부를 것인가",
+      "body": "이 시나리오의 기술 재료는 2025년 6월 AI 데이터센터 발표와 2024년 Hypershield 아키텍처다. Silicon One은 고성능 이더넷 실리콘으로, NVIDIA Spectrum-X와 프론트·백 네트워크를 한 운영 모델로 두겠다는 2025년 2월 발표의 축이다. Nexus Hyperfabric AI는 그 운영을 단순화하는 제품 축으로 이후 블로그에서 발주 시점이 소개되었다. Intelligent Packet Flow는 실시간 텔레메트리와 혼잡 인지로 AI 작업 트래픽을 조정하고, 네트워크·GPU·분산 작업의 가시성을 말한다고 공개되었다.\n\n400G BiDi는 기존 이중 멀티모드 광을 유지한 채 400G로 올리기 위한 옵틱으로 2025년 하반기 가용이 발표되었다. 따라서 무중단의 첫 번째 뜻은 케이블 플랜트를 걷어내지 않는 이행이다. 두 번째 뜻은 Hypershield가 설명하는 자기 검증 업그레이드다. 섀도 또는 듀얼 데이터 플레인에서 고객 트래픽 조합으로 시험한 뒤 흐름을 새 버전으로 넘긴다. 패브릭 전체의 무중단을 보장하는 문장이 아니다.\n\nUnified Nexus Dashboard는 LAN, SAN, IPFM, AI/ML을 한 화면으로 모으는 7월 2025 릴리스로 발표되었다. 파일럿 시점에 그 릴리스가 아니면 인수 기준을 기존 도구로 다시 적는다. 이 이슈를 숨기지 않는다."
+    },
+    {
+      "section": "delivery",
+      "heading": "몇 주라는 말의 위치",
+      "body": "하드웨어가 도착한 뒤 파일럿 포드를 기존 변경 창으로 여는 실행 묶음은 6–10주로 계획한다. 실사, 표준 합의, 발주 리드타임을 포함한 프로그램은 16–32주다. 임원 자료의 첫 문장은 항상 이 둘을 같이 쓴다. 확인되지 않은 ‘IT 팀이 몇 주 만에 데이터센터를 완성했다’는 문장은 이 뱅크에서 쓰지 않는다."
+    }
+  ]
+}

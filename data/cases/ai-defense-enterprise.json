@@ -1,0 +1,721 @@
+{
+  "caseCode": "CSCO-AID-ENT-001",
+  "slug": "ai-defense-enterprise",
+  "title": "Cisco AI Defense — 엔터프라이즈 AI 개발과 사용을 함께 보호",
+  "titleEn": "Cisco AI Defense for building and using enterprise AI",
+  "recordType": "public_announcement",
+  "fidelity": "primary_source",
+  "fidelityNote": "2025년 1월 15일 Cisco 뉴스룸 발표와 제품 설명을 요약한 기록입니다. 특정 고객의 도입 성과는 포함하지 않았습니다.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "Cisco AI Defense는 기업이 AI 애플리케이션을 만들고, 배포하고, 쓰는 과정을 한 세트의 안전·보안 통제로 다루겠다고 2025년 1월에 공개한 솔루션입니다. 섀도 AI 발견, 모형 검증, 런타임 보호, 임직원 접근 통제, 기밀 유출 방지가 핵심입니다. 이 기록은 발표된 능력을 PM 계획 틀에 옮겨 둔 것이고, 가격과 기간은 계획 밴드입니다.",
+  "problemStatement": "Cisco가 인용한 2024 AI Readiness Index에서 응답 조직의 29%만 비인가 AI 변조를 탐지·예방할 준비가 되었다고 답했다. AI 앱은 다중 모형·다중 클라우드이고, 취약점은 모형과 앱에 나뉘며 소유자는 개발자, 사용자, 벤더로 갈린다. 공개 데이터가 아니라 기업 데이터로 학습하기 시작하면 위험이 커진다. 모형마다 다른 가드레일로는 통제가 일관되지 않는다.",
+  "opportunity": "네트워크 가시성을 공통 통제 계층으로 쓰면 개발 파이프라인과 임직원 사용을 따로 구매한 포인트 제품에 맡기지 않을 수 있다. 발표문은 2025년 3월부터 기업이 사용할 수 있다고 적었다.",
+  "strategicAlignment": "보안 클라우드 위의 AI 안전 계층으로, 기존 Talos 정보와 Splunk 경보 흐름을 재사용한다.",
+  "businessValue": "보안팀이 AI 자산과 사용자 도구를 한 목록으로 보고, 개발자는 공통 가드레일 위에서 여러 모형을 배포한다. 측정 가능한 고객 절감액은 이 발표에 없다.",
+  "industry": "cross_industry",
+  "industryLabel": "전 산업",
+  "customerSegment": "enterprise",
+  "customerSegmentLabel": "대기업",
+  "region": "Global",
+  "regulatoryContext": [
+    "NIST AI RMF",
+    "OWASP LLM Top 10",
+    "MITRE"
+  ],
+  "companySizeBand": "enterprise",
+  "deploymentModel": "hybrid",
+  "deploymentModelLabel": "하이브리드",
+  "architecturePattern": "Security Cloud 안의 AI Defense. 발견, 검증, 런타임, 접근 통제를 네트워크 집행점과 Talos 정보에 연결한다.",
+  "complexity": "medium",
+  "planningBandNote": "금액과 기간은 엔터프라이즈 구독 파일럿을 위한 계획 밴드이며 고시 가격이 아닙니다.",
+  "dealSizeLowUsd": 250000,
+  "dealSizeHighUsd": 1200000,
+  "dealSizeBand": "M",
+  "leadTimeWeeksLow": 4,
+  "leadTimeWeeksHigh": 8,
+  "durationWeeksLow": 8,
+  "durationWeeksHigh": 16,
+  "ciscoSolutions": [
+    "Cisco AI Defense",
+    "Cisco Security Cloud",
+    "Cisco Talos",
+    "Splunk"
+  ],
+  "partnerTechnologies": [
+    "Splunk"
+  ],
+  "aiCapabilities": [
+    "섀도 AI 발견",
+    "알고리즘 레드팀",
+    "런타임 검증",
+    "다중 모형 공통 가드레일"
+  ],
+  "securityCapabilities": [
+    "접근 통제",
+    "데이터 유출 방지",
+    "프롬프트 인젝션 대응",
+    "서비스 거부 대응"
+  ],
+  "aliases": [
+    "AI Defense",
+    "AI 디펜스",
+    "섀도 AI",
+    "shadow AI",
+    "가드레일",
+    "레드팀",
+    "기밀"
+  ],
+  "scopeIn": [
+    "공개된 4가지 능력의 파일럿 범위 정의",
+    "사용자 AI와 개발 AI를 구분한 소유자 모델",
+    "Splunk 보유 시 경보 연계 여부 결정",
+    "가드레일 시험 시나리오"
+  ],
+  "scopeOut": [
+    "데이터센터 분산 익스플로잇 패브릭 전체(Hypershield 사례로 분리)",
+    "기초 모형 재학습",
+    "미공개 고객 성과 수치의 인용"
+  ],
+  "assumptions": [
+    {
+      "statement": "파일럿은 한 사업부와 한 개발 조직으로 한정한다.",
+      "ownerRole": "고객 PM",
+      "status": "open"
+    },
+    {
+      "statement": "Security Cloud 테넌트 또는 동등한 관리 평면을 열 수 있다.",
+      "ownerRole": "정보보호 운영",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "contractual",
+      "statement": "발표된 일반 가용 시점은 2025년 3월이다. 그 이전 계획에는 프리뷰 조건을 확인한다."
+    },
+    {
+      "type": "organizational",
+      "statement": "개발 가드레일과 임직원 접근 통제의 승인자를 한 사람으로 합치지 않는다."
+    }
+  ],
+  "successCriteria": [
+    "사용자 AI와 개발 AI 목록이 분리되어 있다",
+    "시험 시나리오의 탐지 결과가 남는다",
+    "확대 여부가 별도 결정으로 남는다"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "공개 사실: 섀도·승인 AI 발견, 모형 검증, 런타임 보호, 접근 통제, 기밀 보호를 하나의 솔루션으로 발표",
+    "공개 사실: MITRE, OWASP, NIST 관련 표준 활동에 Cisco가 참여한다고 밝힘",
+    "공개 사실: Splunk 고객은 보강 경보를 받는다"
+  ],
+  "sourceUrls": [
+    {
+      "title": "Cisco unveils AI Defense",
+      "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2025/m01/cisco-unveils-ai-defense-to-secure-the-ai-transformation-of-enterprises.html",
+      "publisher": "Cisco Newsroom",
+      "publishedOn": "2025-01-15"
+    },
+    {
+      "title": "AI Defense blog",
+      "url": "https://blogs.cisco.com/ai/cisco-ai-defense-comprehensive-security-for-enterprise-ai-adoption",
+      "publisher": "Cisco Blog",
+      "publishedOn": "2025-01-15"
+    },
+    {
+      "title": "AI Defense product",
+      "url": "https://www.cisco.com/site/us/en/products/security/ai-defense/index.html",
+      "publisher": "Cisco",
+      "publishedOn": null
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2025-01-15",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "CISO(스폰서)",
+      "organization": "고객",
+      "interest": "AI 사용의 미가시 위험",
+      "influence": "high",
+      "engagement": "파일럿 차터",
+      "cadence": "월간"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "고객 PM",
+      "organization": "고객",
+      "interest": "범위가 발표 능력을 넘어 부풀지 않게",
+      "influence": "high",
+      "engagement": "일정과 결정 로그",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "SECOPS",
+      "roleName": "정보보호 운영",
+      "organization": "고객",
+      "interest": "발견과 접근 정책",
+      "influence": "high",
+      "engagement": "운영 인수",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "AIPLAT",
+      "roleName": "개발 플랫폼 오너",
+      "organization": "고객",
+      "interest": "공통 가드레일이 배포를 막지 않을 것",
+      "influence": "medium",
+      "engagement": "모형 검증 시험",
+      "cadence": "주간"
+    },
+    {
+      "roleCode": "LEGAL",
+      "roleName": "법무·개인정보",
+      "organization": "고객",
+      "interest": "학습 데이터와 프롬프트 데이터",
+      "influence": "medium",
+      "engagement": "데이터 등급 검토",
+      "cadence": "격주"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "security",
+      "priority": "must",
+      "statement": "임직원 서드파티 AI와 개발 조직의 모형을 구분해 발견한다.",
+      "acceptance": "두 목록이 존재",
+      "source": "발표문 Discovering AI / Visibility"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "ai_governance",
+      "priority": "must",
+      "statement": "모형 검증에서 나온 가드레일 권고를 사람이 채택한다.",
+      "acceptance": "채택·보류 기록",
+      "source": "Model validation"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "security",
+      "priority": "must",
+      "statement": "런타임에서 프롬프트 인젝션, 서비스 거부, 민감정보 유출 시험을 수행한다.",
+      "acceptance": "시험 기록",
+      "source": "Runtime security"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "파일럿 차터",
+      "phase": "initiate",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "고객 PM"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "정보보호 운영",
+        "개발 플랫폼 오너"
+      ],
+      "informed": [
+        "법무·개인정보"
+      ]
+    },
+    {
+      "activity": "데이터 등급 정의",
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "법무·개인정보"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "개발 플랫폼 오너"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "발견 범위 설계",
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "정보보호 운영"
+      ],
+      "accountable": "고객 PM",
+      "consulted": [
+        "개발 플랫폼 오너"
+      ],
+      "informed": [
+        "CISO(스폰서)"
+      ]
+    },
+    {
+      "activity": "사용자 접근 정책",
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "responsible": [
+        "정보보호 운영"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "법무·개인정보"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "모형 검증 시험",
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "개발 플랫폼 오너"
+      ],
+      "accountable": "개발 플랫폼 오너",
+      "consulted": [
+        "정보보호 운영"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "런타임 시나리오",
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "responsible": [
+        "정보보호 운영",
+        "개발 플랫폼 오너"
+      ],
+      "accountable": "정보보호 운영",
+      "consulted": [
+        "법무·개인정보"
+      ],
+      "informed": [
+        "고객 PM"
+      ]
+    },
+    {
+      "activity": "확대 결정",
+      "phase": "close",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "고객 PM"
+      ],
+      "accountable": "CISO(스폰서)",
+      "consulted": [
+        "정보보호 운영",
+        "개발 플랫폼 오너"
+      ],
+      "informed": [
+        "법무·개인정보"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "integration",
+      "name": "차터",
+      "description": "사용자 AI와 개발 AI 중 무엇을 먼저 볼지 정한다.",
+      "deliverable": "차터",
+      "ownerRole": "고객 PM",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [],
+      "acceptance": "우선순위가 하나",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "scope",
+      "name": "발견 범위",
+      "description": "계정, 사업부, 클라우드 계정을 적는다.",
+      "deliverable": "범위서",
+      "ownerRole": "정보보호 운영",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "모집단 정의",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "procurement",
+      "name": "구독 확인",
+      "description": "2025년 3월 가용 조건과 파일럿 SKU를 확인한다.",
+      "deliverable": "조달 메모",
+      "ownerRole": "고객 PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "시작 가능일이 적힘",
+      "milestone": false,
+      "sort": 21
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "name": "1차 발견",
+      "description": "섀도 AI와 승인 AI를 목록화한다.",
+      "deliverable": "인벤토리",
+      "ownerRole": "정보보호 운영",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "2.1",
+        "2.2"
+      ],
+      "acceptance": "소유자 공란 식별",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "ai_governance",
+      "name": "모형 검증 샘플",
+      "description": "파일럿 모형 1개 이상에 알고리즘 검사를 돌리고 권고를 검토한다.",
+      "deliverable": "검증 메모",
+      "ownerRole": "개발 플랫폼 오너",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "채택·보류",
+      "milestone": false,
+      "sort": 31
+    },
+    {
+      "wbsCode": "3.3",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "name": "런타임 시험",
+      "description": "인젝션, 유출, 서비스 거부 시나리오를 비운영에서 수행한다.",
+      "deliverable": "시험 기록",
+      "ownerRole": "정보보호 운영",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "3.2"
+      ],
+      "acceptance": "결과 로그",
+      "milestone": false,
+      "sort": 32
+    },
+    {
+      "wbsCode": "3.4",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "security",
+      "name": "접근 정책 초안",
+      "description": "비인가 도구 제한과 예외 절차를 문서로 둔다. 전사 강제 전에 멈춘다.",
+      "deliverable": "정책 초안",
+      "ownerRole": "정보보호 운영",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "예외 필드가 있다",
+      "milestone": true,
+      "sort": 33
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "integration",
+      "name": "확대 결정",
+      "description": "Hypershield 결합 여부는 금융·데이터센터 시나리오를 참조해 별도 결정한다.",
+      "deliverable": "결정 기록",
+      "ownerRole": "고객 PM",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [
+        "3.3",
+        "3.4"
+      ],
+      "acceptance": "다음 차터 또는 종료",
+      "milestone": true,
+      "sort": 40
+    }
+  ],
+  "milestones": [
+    {
+      "name": "차터",
+      "phase": "initiate",
+      "weekOffsetLow": 1,
+      "weekOffsetHigh": 2,
+      "criteria": "사용자 AI와 개발 AI의 우선순위"
+    },
+    {
+      "name": "인벤토리",
+      "phase": "execute",
+      "weekOffsetLow": 6,
+      "weekOffsetHigh": 10,
+      "criteria": "1차 목록"
+    },
+    {
+      "name": "확대 결정",
+      "phase": "close",
+      "weekOffsetLow": 8,
+      "weekOffsetHigh": 16,
+      "criteria": "계속, 결합, 종료 중 하나"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "발견 결과를 곧바로 처벌 정책으로 쓴다",
+      "description": "목록이 불완전한 상태에서 차단하면 신뢰가 무너진다.",
+      "category": "change",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "1차 발견은 비공개 공유와 소유자 확인까지만 한다.",
+      "contingency": "차단은 후속 차터로 옮긴다.",
+      "ownerRole": "CISO(스폰서)",
+      "trigger": "인벤토리 공유 전에 차단 요청"
+    },
+    {
+      "riskCode": "R2",
+      "title": "발표 능력을 이미 구매한 통제로 오해한다",
+      "description": "가용 시점과 SKU가 조직마다 다르다.",
+      "category": "procurement",
+      "probability": 3,
+      "impact": 3,
+      "response": "mitigate",
+      "mitigation": "조달 메모에 확인된 SKU만 적는다.",
+      "contingency": "미확인 능력은 범위 밖으로 뺀다.",
+      "ownerRole": "고객 PM",
+      "trigger": "견적에 없는 기능이 성공 기준에 있음"
+    },
+    {
+      "riskCode": "R3",
+      "title": "가드레일 권고를 자동 적용한다",
+      "description": "모형 검증 권고는 사람이 채택해야 한다.",
+      "category": "ai_governance",
+      "probability": 2,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "채택 기록 없는 가드레일은 운영에 올리지 않는다.",
+      "contingency": "해당 모형을 파일럿에서 제외한다.",
+      "ownerRole": "개발 플랫폼 오너",
+      "trigger": "자동 적용 파이프라인 제안"
+    },
+    {
+      "riskCode": "R4",
+      "title": "Splunk 연계를 필수로 가정한다",
+      "description": "보강 경보는 Splunk 고객에게 해당한다.",
+      "category": "scope",
+      "probability": 2,
+      "impact": 2,
+      "response": "accept",
+      "mitigation": "연계는 선택 요구사항으로 적는다.",
+      "contingency": "없으면 성공 기준에서 삭제한다.",
+      "ownerRole": "정보보호 운영",
+      "trigger": "SIEM이 다름"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "파일럿 사업부 미정",
+      "status": "open",
+      "ownerRole": "고객 PM",
+      "nextAction": "차터 워크숍에서 지정"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "목록 분리",
+      "baseline": "없음",
+      "target": "사용자 AI와 개발 AI 목록",
+      "unit": "목록",
+      "method": "공개 능력의 적용 여부. 건수 목표는 발견 후에 정한다.",
+      "ownerRole": "정보보호 운영",
+      "cadence": "파일럿 종료"
+    },
+    {
+      "name": "검증 채택 기록",
+      "baseline": "없음",
+      "target": "샘플 모형마다 채택 또는 보류",
+      "unit": "건",
+      "method": "계획 목표",
+      "ownerRole": "개발 플랫폼 오너",
+      "cadence": "모형별"
+    },
+    {
+      "name": "런타임 시험 완료",
+      "baseline": "없음",
+      "target": "세 종류 시나리오 기록",
+      "unit": "종류",
+      "method": "인젝션, 유출, 서비스 거부",
+      "ownerRole": "정보보호 운영",
+      "cadence": "1회"
+    }
+  ],
+  "costs": [
+    {
+      "category": "software",
+      "name": "AI Defense 파일럿 구독",
+      "costType": "opex",
+      "lowUsd": 180000,
+      "highUsd": 600000,
+      "notes": "계획 밴드"
+    },
+    {
+      "category": "services",
+      "name": "발견·시험 지원",
+      "costType": "opex",
+      "lowUsd": 40000,
+      "highUsd": 150000,
+      "notes": "내부로 대체 가능"
+    },
+    {
+      "category": "training",
+      "name": "운영 인수 교육",
+      "costType": "opex",
+      "lowUsd": 10000,
+      "highUsd": 30000,
+      "notes": "런북 포함"
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "범위 게이트",
+      "criteria": "성공 기준이 발표된 능력 안에 있다.",
+      "ownerRole": "고객 PM"
+    },
+    {
+      "phase": "execute",
+      "name": "시험 게이트",
+      "criteria": "런타임 시나리오 기록이 있다.",
+      "ownerRole": "정보보호 운영"
+    },
+    {
+      "phase": "close",
+      "name": "결정 게이트",
+      "criteria": "확대, 결합, 종료 중 하나가 적혀 있다.",
+      "ownerRole": "CISO(스폰서)"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "개발 조직",
+      "message": "검증은 배포 금지 목록이 아니라 채택 검토다",
+      "channel": "킥오프",
+      "cadence": "착수",
+      "ownerRole": "개발 플랫폼 오너"
+    },
+    {
+      "audience": "현업 표본",
+      "message": "발견 단계는 차단이 아니다",
+      "channel": "메일",
+      "cadence": "발견 시작 전",
+      "ownerRole": "고객 PM"
+    },
+    {
+      "audience": "스폰서",
+      "message": "목록 공백과 다음 결정",
+      "channel": "월간",
+      "cadence": "월간",
+      "ownerRole": "고객 PM"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "AI Defense",
+      "vendorType": "Cisco",
+      "strategy": "파일럿 상한이 있는 구독",
+      "leadWeeks": 6,
+      "notes": "가용 월을 계약 시작 조건으로"
+    },
+    {
+      "item": "시험 지원",
+      "vendorType": "파트너 또는 내부",
+      "strategy": "고정 시나리오",
+      "leadWeeks": 3,
+      "notes": "시나리오를 첨부"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "첫 파일럿 면",
+      "choice": "사용자 가시성과 개발 검증 중 스폰서가 하나를 우선한다.",
+      "rationale": "8–16주 안에 둘을 전사로 켜지 않는다.",
+      "date": "2025-01-15",
+      "ownerRole": "CISO(스폰서)"
+    },
+    {
+      "decisionCode": "D2",
+      "title": "Hypershield와의 관계",
+      "choice": "이 기록은 AI Defense 발표만 다룬다. 데이터센터 결합은 CSCO-HYP-FIN-001을 연다.",
+      "rationale": "제품을 한 사례에 섞으면 일정 밴드가 무너진다.",
+      "date": null,
+      "ownerRole": "고객 PM"
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "출처",
+      "statement": "준비도 29%는 Cisco가 인용한 설문 수치이지, 이 파일럿의 베이스라인이 아니다.",
+      "applicability": "제안서 각주"
+    },
+    {
+      "theme": "범위",
+      "statement": "접근 통제의 전사 강제는 발견 파일럿의 성공 기준에 넣지 않는다.",
+      "applicability": "차터"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "공통 언어",
+      "measure": "사용자 AI와 개발 AI를 구분하는 용어",
+      "beneficiary": "보안과 개발",
+      "timing": "차터"
+    },
+    {
+      "name": "시험 가능한 가드레일",
+      "measure": "시나리오 기록",
+      "beneficiary": "정보보호",
+      "timing": "실행"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "발표된 구조",
+      "body": "2025년 1월 15일 새너제이 발표에서 Cisco는 AI Defense를 기업의 AI 전환을 보호하는 솔루션으로 공개했다. 개발·배포 보호는 세 가지다. 누가 어떤 학습 소스로 앱을 만드는지 보는 발견, 튜닝이 만든 유해·예기치 않은 행동을 수백 가지 항목으로 보는 모형 검증, 프롬프트 인젝션·서비스 거부·민감정보 유출을 상시 보는 런타임 보안.\n\n사용 보호도 세 가지다. 섀도 AI와 승인 AI의 가시성, 비인가 도구 접근 제한, 위협과 기밀 유출에 대한 지속 보호. 개별 모형 안 가드레일과 달리 다중 모형에 같은 통제를 적용한다고 설명했다. 기계학습 탐지는 Talos 정보를 쓰고, Security Cloud에 들어가며, 네트워크의 집행점을 사용한다. Splunk 고객에게는 보강 경보가 간다.\n\nWorld Wide Technology의 Kent Noyes는 공개 코멘트에서 전통 보안이 다루지 못하는 AI 위험과, AI 자산 가시성·위협 보호를 언급했다. 이 코멘트는 파트너 논평이며 측정된 도입 사례가 아니다. 제품 페이지는 AI Cloud Visibility와 AI Access를 구분해, 전자는 환경 안 모형과 데이터 소스, 후자는 서드파티 앱 접근이다."
+    },
+    {
+      "section": "delivery",
+      "heading": "PM 사용법",
+      "body": "이 사례는 용어와 능력 경계를 고정할 때 쓴다. 산업 규제와 데이터센터 세그멘테이션이 필요하면 금융 시나리오를 본안으로 올리고, 이 기록을 출처 카드로 첨부한다. 제안서에 29%를 쓸 때는 설문 인용이라고 밝힌다."
+    }
+  ]
+}

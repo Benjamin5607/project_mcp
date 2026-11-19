@@ -1,0 +1,57 @@
+name: One-pager specialist
+
+on:
+  workflow_dispatch:
+    inputs:
+      pain:
+        description: Customer pain point
+        required: true
+        default: AI is too slow when it retrieves information from the database
+      requirements:
+        description: Special requirements
+        required: true
+        default: Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.
+      customer:
+        description: Customer label
+        required: false
+        default: Internal knowledge search
+      language:
+        description: Charter language. en is the default.
+        required: false
+        default: en
+      use_nvidia:
+        description: NVIDIA_API_KEY로 클라우드 모델을 호출합니다. 폐쇄망 요구가 있으면 코드가 호출을 막습니다.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Select a model and draft a one-pager
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          ONEPAGER_ALLOW_NVIDIA: ${{ inputs.use_nvidia && 'true' || 'false' }}
+          ONEPAGER_DIR: ${{ github.workspace }}/artifacts/onepager-data
+          ONEPAGER_PAIN: ${{ inputs.pain }}
+          ONEPAGER_REQUIREMENTS: ${{ inputs.requirements }}
+          ONEPAGER_CUSTOMER: ${{ inputs.customer }}
+          ONEPAGER_LANGUAGE: ${{ inputs.language }}
+        run: node scripts/onepager.mjs --out artifacts/onepager
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: onepager-draft
+          path: artifacts/onepager
