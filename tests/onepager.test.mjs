@@ -191,7 +191,9 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.equal(doc.headline, "금융 가시성 파일럿");
   assert.equal(doc.references[0].caseCode, "CSCO-HYP-FIN-001");
   assert.equal(doc.language, "en");
-  assert.equal(doc.stakeholders[0].roleName, "CISO (sponsor)");
+  assert.equal(doc.stakeholders[0].roleName, "Pain owner");
+  assert.match(doc.stakeholders[0].interest, /금융권 고객의 AI 애플리케이션 보안 가시성/);
+  assert.equal(doc.resources[0].name, "Pain owner");
   assert.equal(doc.rollout.some((item) => /Shadow/.test(item.phase)), false);
   assert.equal(/does not promise an MTTR/.test(doc.governance.note), false);
   assert.match(doc.goals.map((item) => item.statement).join(" "), /금융권 고객의 AI 애플리케이션 보안 가시성/);
@@ -218,7 +220,8 @@ test("a factory request with GPUs allowed keeps the AI factory case", async () =
     assert.equal(doc.solution.kind, "case_led");
     assert.equal(doc.solution.primaryCaseCode, "CSCO-AIF-NVD-001");
     assert.equal(doc.language, "en");
-    assert.equal(doc.stakeholders[0].roleName, "Infrastructure sponsor");
+    assert.equal(doc.stakeholders[0].roleName, "Pain owner");
+    assert.match(doc.stakeholders[0].interest, /AI 팩토리|첫 포드/);
     assert.equal(doc.specialist.connection, "local-persona");
     assert.equal(doc.specialist.called, false);
   } finally {
