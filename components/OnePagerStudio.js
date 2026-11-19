@@ -8,18 +8,20 @@ import { listLocalOnePagers, readLocalOnePager, saveLocalOnePager } from "../lib
 import { reviewDocument } from "../lib/onepager/review-core.mjs";
 import { requestDraft } from "../lib/onepager/remote-draft.mjs";
 
-const EXAMPLES = {
+const BLANK = { language: "en", customerLabel: "", pain: "", requirements: "" };
+
+const SAMPLES = {
   en: {
     language: "en",
     customerLabel: "Internal knowledge search",
     pain: "AI is too slow when it retrieves information from the database",
-    requirements: "A public cloud connection is allowed. Use the specialist model to draft the retrieval pilot.",
+    requirements: "Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.",
   },
   ko: {
     language: "ko",
     customerLabel: "내부 지식검색",
     pain: "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림",
-    requirements: "퍼블릭 클라우드 연결은 허용한다. 스페셜리스트 모델로 검색 파일럿 초안을 작성한다.",
+    requirements: "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화",
   },
 };
 
@@ -34,7 +36,7 @@ function copy(language) {
       requirements: "특별 요구사항",
       drafting: "작성 중",
       draft: "초안 만들기",
-      fill: "예시 채우기",
+      fill: "입력 예시",
       recent: "최근 초안",
       empty: "아직 초안이 없습니다.",
       steps: ["입력", "모델", "사례", "솔루션", "PM 검토", "HTML"],
@@ -96,7 +98,7 @@ function copy(language) {
     requirements: "Special requirements",
     drafting: "Drafting",
     draft: "Draft one-pager",
-    fill: "Use the example",
+    fill: "Show a sample input",
     recent: "Recent drafts",
     empty: "No drafts yet.",
     steps: ["Intake", "Model", "Cases", "Solution", "PM review", "HTML"],
@@ -211,7 +213,7 @@ export function OnePagerStudio({ initial, recent }) {
   const router = useRouter();
   const [doc, setDoc] = useState(initial);
   const [stored, setStored] = useState(recent || []);
-  const [form, setForm] = useState(initial ? toForm(initial) : EXAMPLES.en);
+  const [form, setForm] = useState(initial ? toForm(initial) : BLANK);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [comment, setComment] = useState("");
@@ -296,9 +298,10 @@ export function OnePagerStudio({ initial, recent }) {
               value={form.language === "ko" ? "ko" : "en"}
               onChange={(event) => {
                 const next = event.target.value === "ko" ? "ko" : "en";
-                const previous = form.language === "ko" ? EXAMPLES.ko : EXAMPLES.en;
-                const untouched = form.pain === previous.pain && form.requirements === previous.requirements && form.customerLabel === previous.customerLabel;
-                setForm(untouched ? EXAMPLES[next] : { ...form, language: next });
+                const previous = form.language === "ko" ? SAMPLES.ko : SAMPLES.en;
+                const blank = !form.pain && !form.requirements && !form.customerLabel;
+                const sample = form.pain === previous.pain && form.requirements === previous.requirements && form.customerLabel === previous.customerLabel;
+                setForm(blank ? { ...BLANK, language: next } : sample ? SAMPLES[next] : { ...form, language: next });
               }}
             >
               <option value="en">English</option>
@@ -307,19 +310,19 @@ export function OnePagerStudio({ initial, recent }) {
           </label>
           <label className="field">
             {text.customer}
-            <input value={form.customerLabel} onChange={(event) => setForm({ ...form, customerLabel: event.target.value })} maxLength={80} />
+            <input value={form.customerLabel} onChange={(event) => setForm({ ...form, customerLabel: event.target.value })} maxLength={80} placeholder={form.language === "ko" ? "예: 내부 지식검색" : "Example: Internal knowledge search"} />
           </label>
           <label className="field">
             {text.pain}
-            <textarea data-testid="onepager-pain" value={form.pain} onChange={(event) => setForm({ ...form, pain: event.target.value })} maxLength={2000} />
+            <textarea data-testid="onepager-pain" value={form.pain} onChange={(event) => setForm({ ...form, pain: event.target.value })} maxLength={2000} placeholder={form.language === "ko" ? "예: AI가 데이터베이스에서 정보를 찾아오는데 너무 느림" : "Example: AI is too slow when it retrieves information from the database"} />
           </label>
           <label className="field">
             {text.requirements}
-            <textarea data-testid="onepager-requirements" value={form.requirements} onChange={(event) => setForm({ ...form, requirements: event.target.value })} maxLength={2000} />
+            <textarea data-testid="onepager-requirements" value={form.requirements} onChange={(event) => setForm({ ...form, requirements: event.target.value })} maxLength={2000} placeholder={form.language === "ko" ? "예: 클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화" : "Example: Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum."} />
           </label>
           <div className="row">
             <button className="primary" type="submit" disabled={pending} data-testid="onepager-submit">{pending ? text.drafting : text.draft}</button>
-            <button className="ghost" type="button" onClick={() => setForm(EXAMPLES[form.language === "ko" ? "ko" : "en"])}>{text.fill}</button>
+            <button className="ghost" type="button" onClick={() => setForm(SAMPLES[form.language === "ko" ? "ko" : "en"])}>{text.fill}</button>
           </div>
           {error ? <p className="warn">{error}</p> : null}
         </form>
