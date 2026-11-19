@@ -181,6 +181,8 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.equal(chat.model, "nvidia/llama-3.3-nemotron-super-49b-v1.5");
   assert.equal(chat.temperature, 0);
   assert.match(chat.messages[0].content, /^\/no_think/);
+  assert.match(chat.messages[1].content, /stakeholders/);
+  assert.match(chat.messages[1].content, /CSCO-HYP-FIN-001/);
   assert.equal(doc.specialist.called, true);
   assert.equal(doc.specialist.narrativeSource, "nvidia");
   assert.equal(doc.headline, "금융 가시성 파일럿");
@@ -440,6 +442,86 @@ test("a reasoning trace around the JSON still replaces the summary", async () =>
   }
 });
 
+test("the model rewrites stakeholders and RACI for the pain instead of pasting the case", async () => {
+  const dir = tempDir();
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "Noise cancellation in Webex meetings is still poor.",
+        requirements: "A public cloud connection is allowed.",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/nemotron-3.5-bolt-e4b" }] }) };
+          }
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: JSON.stringify({
+                    headline: "Quieter Webex meetings",
+                    executiveSummary: "The sponsor wants the meeting noise problem measured on one Webex workflow before any broader rollout.",
+                    solutionName: "Webex noise pilot",
+                    solutionSummary: "Use the Webex specialized-model pattern only to test noise cancellation on a named meeting workflow.",
+                    recommendationRationale: "The reference case is a governance pattern, not a purchased result.",
+                    constraintNotes: ["Cloud use is limited to this brief."],
+                    components: [
+                      { name: "Named meeting workflow", detail: "One recurring meeting, with the noise complaint written down." },
+                      { name: "Person on the change", detail: "A meeting owner accepts or rejects the setting. No automatic rollout." },
+                    ],
+                    stakeholders: [
+                      { roleName: "Meeting owner", organization: "Customer", interest: "The named meeting is quieter without a surprise setting change.", influence: "high", engagement: "Accepts the pilot workflow.", cadence: "Weekly" },
+                      { roleName: "Collaboration lead", organization: "Customer", interest: "Webex settings stay supportable.", influence: "high", engagement: "Owns the change window.", cadence: "Weekly" },
+                      { roleName: "Security reviewer", organization: "Customer", interest: "No new data leaves the tenant.", influence: "medium", engagement: "Checks the cloud boundary.", cadence: "At the gate" },
+                    ],
+                    raci: [
+                      { activity: "Name the noisy Webex meeting and the expected change", phase: "Plan", accountable: "Meeting owner", responsible: ["Meeting owner"], consulted: ["Collaboration lead"], informed: ["Security reviewer"] },
+                      { activity: "Check the Webex setting stays inside the tenant", phase: "Plan", accountable: "Security reviewer", responsible: ["Security reviewer"], consulted: ["Collaboration lead"], informed: ["Meeting owner"] },
+                      { activity: "Accept or reject the noise change", phase: "Close", accountable: "Collaboration lead", responsible: ["Collaboration lead"], consulted: ["Meeting owner"], informed: ["Security reviewer"] },
+                    ],
+                    resources: [
+                      { kind: "role", name: "Meeting owner", amount: "2 weeks", notes: "Names the workflow." },
+                      { kind: "role", name: "Collaboration lead", amount: "2 weeks", notes: "Owns the setting change." },
+                    ],
+                    risks: [
+                      { title: "The setting rolls out past the named meeting", mitigation: "The change is limited to one workflow until the owner accepts it.", owner: "Collaboration lead" },
+                      { title: "The case study is treated as this customer's result", mitigation: "The charter cites the case as a pattern only.", owner: "Meeting owner" },
+                    ],
+                    decisions: [
+                      { title: "Scope of the noise change", choice: "One named meeting only.", rationale: "A wider rollout is a later charter.", owner: "Meeting owner" },
+                      { title: "Cloud boundary", choice: "Use the allowed cloud connection only for this brief.", owner: "Security reviewer" },
+                    ],
+                    goals: [
+                      { statement: "Decide whether the named meeting is quieter.", owner: "Meeting owner" },
+                      { statement: "Keep every other Webex workflow unchanged.", owner: "Collaboration lead" },
+                    ],
+                  }),
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(doc.headline, "Quieter Webex meetings");
+    assert.equal(doc.solution.name, "Webex noise pilot");
+    assert.match(doc.executiveSummary, /meeting noise/);
+    assert.equal(doc.stakeholders[0].roleName, "Meeting owner");
+    assert.match(doc.raci[0].activity, /noisy Webex meeting/);
+    assert.equal(doc.resources[0].name, "Meeting owner");
+    assert.equal(doc.goals[0].statement.includes("named meeting"), true);
+    assert.match(doc.specialist.reason, /wrote: headline, summary, rationale, solution/);
+    assert.match(doc.specialist.reason, /RACI/);
+    assert.equal(JSON.stringify(doc).includes("present"), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("a copied model summary is sent back once and then replaced", async () => {
   const dir = tempDir();
   let drafts = 0;
@@ -459,7 +541,7 @@ test("a copied model summary is sent back once and then replaced", async () => {
           const user = JSON.parse(JSON.parse(init.body).messages[1].content);
           drafts += 1;
           const executiveSummary = drafts === 1
-            ? user.summary
+            ? user.draftSummary
             : "The sponsor gets a measured baseline on the frozen query set before anyone discusses a generator.";
           return {
             ok: true,
