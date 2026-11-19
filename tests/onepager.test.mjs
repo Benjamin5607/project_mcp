@@ -438,3 +438,52 @@ test("a reasoning trace around the JSON still replaces the summary", async () =>
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a copied model summary is sent back once and then replaced", async () => {
+  const dir = tempDir();
+  let drafts = 0;
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "The retrieval pilot is too slow for analysts.",
+        requirements: "A public cloud connection is allowed.",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url, init) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/nemotron-3.5-bolt-e4b" }] }) };
+          }
+          const user = JSON.parse(JSON.parse(init.body).messages[1].content);
+          drafts += 1;
+          const executiveSummary = drafts === 1
+            ? user.summary
+            : "The sponsor gets a measured baseline on the frozen query set before anyone discusses a generator.";
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: JSON.stringify({
+                    headline: drafts === 1 ? "Copied" : "Baseline before a generator",
+                    executiveSummary,
+                    recommendationRationale: "The reference case stays a pattern.",
+                    constraintNotes: ["Cloud calls are allowed on this brief."],
+                  }),
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(drafts, 2);
+    assert.equal(doc.headline, "Baseline before a generator");
+    assert.match(doc.executiveSummary, /measured baseline/);
+    assert.match(doc.specialist.reason, /Large profiles missing from the live catalog/);
+    assert.equal(doc.specialist.narrativeSource, "nvidia");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
