@@ -8,6 +8,7 @@ import { GET as exportGet } from "../app/api/onepager/[id]/export/route.js";
 import { renderExport } from "../lib/onepager/export-html.mjs";
 import { applyReview } from "../lib/onepager/review.mjs";
 import { createOnePager } from "../lib/onepager/run.mjs";
+import { requestDraft } from "../lib/onepager/remote-draft.mjs";
 import { allocateId, onepagerDir, readOnePager, saveOnePager } from "../lib/onepager/store.mjs";
 
 const SLOW = "AI is too slow when it retrieves information from the database";
@@ -317,4 +318,46 @@ test("Vercel keeps a one-pager on the writable temp directory", () => {
     if (previousDir === undefined) delete process.env.ONEPAGER_DIR;
     else process.env.ONEPAGER_DIR = previousDir;
   }
+});
+
+test("the one-pager page asks the server to use NVIDIA_API_KEY", async () => {
+  const calls = [];
+  const doc = await requestDraft(
+    {
+      customerLabel: "Northwind",
+      pain: "The retrieval pilot is too slow for analysts.",
+      requirements: "A public cloud connection is allowed.",
+      language: "en",
+    },
+    async (url, init) => {
+      calls.push({ url, body: JSON.parse(init.body) });
+      return {
+        status: 201,
+        ok: true,
+        json: async () => ({
+          id: "op-server",
+          specialist: { connection: "nvidia-api", called: true, narrativeSource: "nvidia" },
+        }),
+      };
+    },
+  );
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "/api/onepager");
+  assert.equal(calls[0].body.requirements, "A public cloud connection is allowed.");
+  assert.equal(doc.specialist.connection, "nvidia-api");
+  assert.equal(doc.specialist.called, true);
+});
+
+test("a host without the one-pager API drafts locally", async () => {
+  const doc = await requestDraft(
+    {
+      pain: "The retrieval pilot is too slow for analysts.",
+      requirements: "A public cloud connection is allowed.",
+      language: "en",
+    },
+    async () => ({ status: 404, ok: false, json: async () => ({}) }),
+  );
+  assert.equal(doc.language, "en");
+  assert.equal(doc.specialist.connection, "local-persona");
+  assert.equal(doc.specialist.called, false);
 });

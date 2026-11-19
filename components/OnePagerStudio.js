@@ -6,20 +6,20 @@ import { useEffect, useMemo, useState } from "react";
 import { renderExport } from "../lib/onepager/export-html.mjs";
 import { listLocalOnePagers, readLocalOnePager, saveLocalOnePager } from "../lib/onepager/local-docs.mjs";
 import { reviewDocument } from "../lib/onepager/review-core.mjs";
-import { draftOnePager } from "../lib/onepager/session.mjs";
+import { requestDraft } from "../lib/onepager/remote-draft.mjs";
 
 const EXAMPLES = {
   en: {
     language: "en",
     customerLabel: "Internal knowledge search",
     pain: "AI is too slow when it retrieves information from the database",
-    requirements: "Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.",
+    requirements: "A public cloud connection is allowed. Use the specialist model to draft the retrieval pilot.",
   },
   ko: {
     language: "ko",
     customerLabel: "내부 지식검색",
     pain: "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림",
-    requirements: "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화",
+    requirements: "퍼블릭 클라우드 연결은 허용한다. 스페셜리스트 모델로 검색 파일럿 초안을 작성한다.",
   },
 };
 
@@ -27,7 +27,7 @@ function copy(language) {
   if (language === "ko") {
     return {
       title: "페인포인트에서 프로젝트 원페이저로",
-      lede: "케이스 뱅크에서 참고 사례를 고르고, 제약에 맞는 기술 솔루션과 이해관계자·RACI·자원을 채웁니다. 초안은 이 브라우저에만 저장되고, 페인포인트는 외부 API로 나가지 않습니다. PM이 승인하기 전에는 보고서와 슬라이드를 내려받지 않습니다.",
+      lede: "케이스 뱅크에서 참고 사례를 고르고, 서버가 NVIDIA_API_KEY로 스페셜리스트 모델을 호출해 요약을 다시 씁니다. 인트라넷·폐쇄망·클라우드 금지라고 적으면 원문은 이 브라우저에 남고 모델로 보내지 않습니다. PM이 승인하기 전에는 보고서와 슬라이드를 내려받지 않습니다.",
       language: "언어",
       customer: "고객 표시 이름",
       pain: "페인포인트",
@@ -89,7 +89,7 @@ function copy(language) {
   }
   return {
     title: "From a pain point to a project one-pager",
-    lede: "The case bank supplies the reference pattern. The draft names the stakeholders, the RACI, and the resources a sponsor has to approve. This page keeps the draft in this browser and does not send the pain text to an external API. HTML stays locked until a PM approves.",
+    lede: "The case bank supplies the reference pattern. This page asks the server to call the specialist model with NVIDIA_API_KEY and rewrite the summary. Intranet, air-gap, or no-cloud wording stays in this browser and is not sent. HTML stays locked until a PM approves.",
     language: "Language",
     customer: "Customer label",
     pain: "Pain point",
@@ -247,7 +247,7 @@ export function OnePagerStudio({ initial, recent }) {
     setPending(true);
     setError("");
     try {
-      const payload = await draftOnePager({
+      const payload = await requestDraft({
         customerLabel: form.customerLabel,
         pain: form.pain,
         requirements: form.requirements,

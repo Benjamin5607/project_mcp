@@ -2,6 +2,7 @@ import { createOnePager } from "../../../lib/onepager/run.mjs";
 import { listOnePagers } from "../../../lib/onepager/store.mjs";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 function fail(error) {
   const status = Number(error.status) || 500;
