@@ -177,7 +177,10 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   );
   assert.equal(calls.length, 2);
   assert.equal(calls[0].authorization, `Bearer ${key}`);
-  assert.equal(JSON.parse(calls[1].body).model, "nvidia/llama-3.3-nemotron-super-49b-v1.5");
+  const chat = JSON.parse(calls[1].body);
+  assert.equal(chat.model, "nvidia/llama-3.3-nemotron-super-49b-v1.5");
+  assert.equal(chat.temperature, 0);
+  assert.match(chat.messages[0].content, /^\/no_think/);
   assert.equal(doc.specialist.called, true);
   assert.equal(doc.specialist.narrativeSource, "nvidia");
   assert.equal(doc.headline, "금융 가시성 파일럿");
@@ -360,4 +363,78 @@ test("a host without the one-pager API drafts locally", async () => {
   assert.equal(doc.language, "en");
   assert.equal(doc.specialist.connection, "local-persona");
   assert.equal(doc.specialist.called, false);
+  assert.equal(doc.solution.name, "Retrieval pilot");
+});
+
+test("the server reads NVIDIA_API_KEY at request time", async () => {
+  const dir = tempDir();
+  const previous = process.env.NVIDIA_API_KEY;
+  process.env.NVIDIA_API_KEY = "env-key-value";
+  const calls = [];
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "The retrieval pilot is too slow for analysts.",
+        requirements: "A public cloud connection is allowed.",
+      },
+      {
+        dir,
+        fetchImpl: async (url, init) => {
+          calls.push(init.headers.authorization);
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/llama-3.3-nemotron-super-49b-v1.5" }] }) };
+          }
+          return { ok: false, status: 401, json: async () => ({ detail: "env-key-value" }) };
+        },
+      },
+    );
+    assert.equal(calls[0], "Bearer env-key-value");
+    assert.equal(doc.specialist.called, true);
+    assert.match(doc.specialist.error, /\(401\)/);
+    assert.equal(JSON.stringify(doc).includes("env-key-value"), false);
+    assert.match(doc.executiveSummary, /Pain:/);
+  } finally {
+    if (previous === undefined) delete process.env.NVIDIA_API_KEY;
+    else process.env.NVIDIA_API_KEY = previous;
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a reasoning trace around the JSON still replaces the summary", async () => {
+  const dir = tempDir();
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "The retrieval pilot is too slow for analysts.",
+        requirements: "A public cloud connection is allowed.",
+        language: "en",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/llama-3.3-nemotron-super-49b-v1.5" }] }) };
+          }
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: "<think>{\"headline\":\"discard this\"}</think>\n```json\n{\"headline\":\"Retrieval baseline first\",\"executiveSummary\":\"Measure the frozen query set before adding a generator.\",\"recommendationRationale\":\"The reference case is a pattern.\",\"constraintNotes\":[\"Cloud calls stay on the allowed brief.\"]}\n```",
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(doc.headline, "Retrieval baseline first");
+    assert.match(doc.executiveSummary, /frozen query set/);
+    assert.equal(doc.specialist.narrativeSource, "nvidia");
+    assert.equal(doc.solution.name, "Retrieval pilot");
+    assert.equal(JSON.stringify(doc).includes("discard this"), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
