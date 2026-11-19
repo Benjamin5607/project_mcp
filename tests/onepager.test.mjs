@@ -553,6 +553,16 @@ test("a copied model summary is sent back once and then replaced", async () => {
                     executiveSummary,
                     recommendationRationale: "The reference case stays a pattern.",
                     constraintNotes: ["Cloud calls are allowed on this brief."],
+                    stakeholders: [
+                      { roleName: "Data owner", interest: "The slow analyst queries have an expected document." },
+                      { roleName: "Customer PM", interest: "The baseline is accepted in writing." },
+                      { roleName: "Security reviewer", interest: "The cloud call stays inside this brief." },
+                    ],
+                    raci: [
+                      { activity: "Freeze the slow analyst queries", accountable: "Data owner" },
+                      { activity: "Accept the retrieval baseline", accountable: "Customer PM" },
+                      { activity: "Confirm the cloud call stays in scope", accountable: "Security reviewer" },
+                    ],
                   }),
                 },
               }],
