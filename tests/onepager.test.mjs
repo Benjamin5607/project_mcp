@@ -175,7 +175,7 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
       },
     },
   );
-  assert.equal(calls.length, 2);
+  assert.equal(calls.length, 3);
   assert.equal(calls[0].authorization, `Bearer ${key}`);
   const chat = JSON.parse(calls[1].body);
   assert.equal(chat.model, "nvidia/llama-3.3-nemotron-super-49b-v1.5");
@@ -192,7 +192,8 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.match(doc.rollout.map((item) => item.phase).join(" "), /Shadow/);
   assert.match(doc.governance.note, /does not promise an MTTR/);
   assert.equal(JSON.stringify(doc).includes("85%"), false);
-  assert.equal(doc.raci.some((item) => /[가-힣]/.test(item.activity)), false);
+  assert.equal(doc.raci.some((item) => item.activity === "Pilot charter"), false);
+  assert.match(doc.raci[0].activity, /금융권 고객의 AI 애플리케이션 보안 가시성/);
   assert.equal(JSON.stringify(doc).includes(key), false);
   rmSync(dir, { recursive: true, force: true });
 });
@@ -576,6 +577,148 @@ test("a copied model summary is sent back once and then replaced", async () => {
     assert.match(doc.executiveSummary, /measured baseline/);
     assert.match(doc.specialist.reason, /Large profiles missing from the live catalog/);
     assert.equal(doc.specialist.narrativeSource, "nvidia");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a missing RACI is written in a second call about this pain", async () => {
+  const dir = tempDir();
+  let chats = 0;
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "Inspectors miss hairline cracks on the paint line because the camera alert arrives after the car has moved on.",
+        requirements: "A public cloud connection is allowed. Keep a person on any line stop.",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url, init) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/nemotron-3.5-bolt-e4b" }] }) };
+          }
+          const user = JSON.parse(JSON.parse(init.body).messages[1].content);
+          chats += 1;
+          if (user.bannedActivities) {
+            assert.equal("excerpt" in user, false);
+            return {
+              ok: true,
+              json: async () => ({
+                choices: [{
+                  message: {
+                    content: JSON.stringify({
+                      raci: [
+                        { activity: "Hold the car when the camera flags a hairline crack", phase: "Execute", accountable: user.seats[0], responsible: [user.seats[0]], consulted: [user.seats[1]], informed: [user.seats[2]] },
+                        { activity: "Measure how late the paint-line camera alert is", phase: "Plan", accountable: user.seats[1], responsible: [user.seats[1]], consulted: [user.seats[0]], informed: [user.seats[2]] },
+                        { activity: "Keep a person on any paint-line stop", phase: "Execute", accountable: user.seats[2], responsible: [user.seats[2]], consulted: [user.seats[0]], informed: [user.seats[1]] },
+                        { activity: "Accept the crack-alert pilot or stop it", phase: "Close", accountable: user.seats[0], responsible: [user.seats[0]], consulted: [user.seats[1]], informed: [user.seats[2]] },
+                      ],
+                      resources: [
+                        { kind: "role", name: "Paint-line inspector", amount: "Planning band", notes: "Stays on the line stop." },
+                        { kind: "tool", name: "Camera alert log", amount: "Planning band", notes: "Shows whether the alert arrives after the car has moved." },
+                      ],
+                    }),
+                  },
+                }],
+              }),
+            };
+          }
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: JSON.stringify({
+                    headline: "Real-time crack alerts on the paint line",
+                    executiveSummary: "Inspectors need the camera alert before the car leaves the paint station, with a person still on any line stop.",
+                    recommendationRationale: "The retrieved cases are patterns for governance, not a paint-line result.",
+                    stakeholders: [
+                      { roleName: "Paint inspector", interest: "The hairline crack is caught before the car moves on." },
+                      { roleName: "Line supervisor", interest: "A person stays on any line stop." },
+                      { roleName: "Customer PM", interest: "The pilot stays on one paint station." },
+                    ],
+                  }),
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(chats, 2);
+    assert.match(doc.raci.map((row) => row.activity).join(" "), /hairline crack/);
+    assert.equal(doc.raci.some((row) => row.activity === "Pilot charter"), false);
+    assert.match(doc.wbs[0].name, /hairline crack/);
+    assert.equal(doc.resources[0].name, "Paint-line inspector");
+    assert.match(doc.specialist.reason, /RACI/);
+    assert.equal(JSON.stringify(doc).includes("present"), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a copied case RACI is replaced from the pain", async () => {
+  const dir = tempDir();
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "Inspectors miss hairline cracks on the paint line because the camera alert arrives after the car has moved on.",
+        requirements: "A public cloud connection is allowed. Keep a person on any line stop.",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url, init) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/nemotron-3.5-bolt-e4b" }] }) };
+          }
+          const user = JSON.parse(JSON.parse(init.body).messages[1].content);
+          if (user.bannedActivities) {
+            return {
+              ok: true,
+              json: async () => ({
+                choices: [{
+                  message: {
+                    content: JSON.stringify({
+                      raci: user.bannedActivities.slice(0, 4).map((activity) => ({
+                        activity,
+                        phase: "Plan",
+                        accountable: user.seats[0],
+                      })),
+                    }),
+                  },
+                }],
+              }),
+            };
+          }
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: JSON.stringify({
+                    headline: "Real-time crack alerts on the paint line",
+                    executiveSummary: "Inspectors need the camera alert before the car leaves the paint station, with a person still on any line stop.",
+                    recommendationRationale: "The retrieved cases are patterns for governance, not a paint-line result.",
+                    stakeholders: [
+                      { roleName: "Paint inspector", interest: "The hairline crack is caught before the car moves on." },
+                      { roleName: "Line supervisor", interest: "A person stays on any line stop." },
+                      { roleName: "Customer PM", interest: "The pilot stays on one paint station." },
+                    ],
+                  }),
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(doc.raci.some((row) => row.activity === "Pilot charter"), false);
+    assert.match(doc.raci[0].activity, /hairline cracks on the paint line/);
+    assert.equal(doc.raci[0].accountable, "Paint inspector");
+    assert.match(doc.specialist.reason, /not about this pain/);
+    assert.match(doc.wbs[0].name, /hairline cracks/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
