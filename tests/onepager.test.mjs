@@ -56,6 +56,9 @@ test("intranet and minimal GPU stay local and pick a light retrieval plan", asyn
   assert.ok(doc.expectedOutcomes.length >= 3);
   assert.ok(doc.rollout.length >= 4);
   assert.ok(doc.postmortem.questions.length >= 4);
+  assert.match(doc.goals.map((item) => item.statement).join(" "), /retrieves information from the database|too slow/i);
+  assert.equal(doc.goals.some((item) => /Select three incident types/.test(item.statement)), false);
+  assert.equal(doc.successMeasures.some((item) => item.name === "Incident-type boundary"), false);
   assert.match(doc.governance.note, /Accountable/);
   assert.match(doc.header.classification, /pilot|charter|pattern|visibility|fabric|factory|defense|Webex|SOC/i);
   assert.equal(JSON.stringify(doc).includes("85%"), false);
@@ -189,8 +192,10 @@ test("an allowed cloud brief calls NVIDIA and keeps the key out of the draft", a
   assert.equal(doc.references[0].caseCode, "CSCO-HYP-FIN-001");
   assert.equal(doc.language, "en");
   assert.equal(doc.stakeholders[0].roleName, "CISO (sponsor)");
-  assert.match(doc.rollout.map((item) => item.phase).join(" "), /Shadow/);
-  assert.match(doc.governance.note, /does not promise an MTTR/);
+  assert.equal(doc.rollout.some((item) => /Shadow/.test(item.phase)), false);
+  assert.equal(/does not promise an MTTR/.test(doc.governance.note), false);
+  assert.match(doc.goals.map((item) => item.statement).join(" "), /금융권 고객의 AI 애플리케이션 보안 가시성/);
+  assert.match(doc.successMeasures.map((item) => item.target).join(" "), /금융권 고객의 AI 애플리케이션 보안 가시성|퍼블릭 클라우드/);
   assert.equal(JSON.stringify(doc).includes("85%"), false);
   assert.equal(doc.raci.some((item) => item.activity === "Pilot charter"), false);
   assert.match(doc.raci[0].activity, /금융권 고객의 AI 애플리케이션 보안 가시성/);
@@ -580,6 +585,25 @@ test("a copied model summary is sent back once and then replaced", async () => {
                       { kind: "role", name: "Data owner", amount: "Planning band", notes: "Freezes the query set." },
                       { kind: "role", name: "Customer PM", amount: "Planning band", notes: "Accepts the baseline." },
                     ],
+                    successMeasures: [
+                      { name: "Frozen query set", baseline: "Not frozen", target: "The slow analyst queries are listed.", method: "Decision log.", owner: "Data owner" },
+                      { name: "Baseline accepted", baseline: "Not accepted", target: "The PM accepts the measured baseline.", method: "Written decision.", owner: "Customer PM" },
+                    ],
+                    rollout: [
+                      { phase: "1. Freeze", protocol: "List the slow queries.", success: "The list is signed.", fallback: "Stop if the list is empty." },
+                      { phase: "2. Measure", protocol: "Run the baseline.", success: "The baseline is written down.", fallback: "Do not discuss a generator." },
+                      { phase: "3. Gate", protocol: "Keep the cloud call in this brief.", success: "Security signs the boundary.", fallback: "Reopen the charter." },
+                    ],
+                    expectedOutcomes: [
+                      { outcome: "A measured baseline on the frozen query set.", evidence: "Decision log." },
+                      { outcome: "No generator discussion before the baseline.", evidence: "Meeting notes." },
+                    ],
+                    governanceNote: "The Customer PM is Accountable for the baseline. The retrieved case stays a pattern.",
+                    postmortemQuestions: [
+                      "Did the baseline stay on the frozen query set?",
+                      "Was a generator discussed too early?",
+                      "Did the cloud call leave this brief?",
+                    ],
                   }),
                 },
               }],
@@ -672,6 +696,56 @@ test("a missing RACI is written in a second call about this pain", async () => {
     assert.match(doc.goals.map((row) => row.statement).join(" "), /hairline cracks|line stop/);
     assert.match(doc.specialist.reason, /RACI/);
     assert.equal(JSON.stringify(doc).includes("present"), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("goals, measures, rollout, and governance are rewritten for the pain", async () => {
+  const dir = tempDir();
+  try {
+    const doc = await createOnePager(
+      {
+        pain: "Inspectors miss hairline cracks on the paint line because the camera alert arrives after the car has moved on.",
+        requirements: "A public cloud connection is allowed. Keep a person on any line stop.",
+      },
+      {
+        dir,
+        apiKey: "present",
+        fetchImpl: async (url) => {
+          if (String(url).endsWith("/models")) {
+            return { ok: true, json: async () => ({ data: [{ id: "nvidia/nemotron-3.5-bolt-e4b" }] }) };
+          }
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [{
+                message: {
+                  content: JSON.stringify({
+                    headline: "Real-time crack alerts on the paint line",
+                    executiveSummary: "Inspectors need the camera alert before the car leaves the paint station.",
+                    recommendationRationale: "The retrieved cases are patterns only.",
+                    stakeholders: [
+                      { roleName: "Paint inspector", interest: "Catch the hairline crack before the car moves." },
+                      { roleName: "Line supervisor", interest: "A person stays on any line stop." },
+                      { roleName: "Customer PM", interest: "The pilot stays on one paint station." },
+                    ],
+                  }),
+                },
+              }],
+            }),
+          };
+        },
+      },
+    );
+    assert.equal(doc.goals.some((item) => /Select three incident types/.test(item.statement)), false);
+    assert.equal(doc.successMeasures.some((item) => item.name === "Incident-type boundary"), false);
+    assert.equal(doc.rollout.some((item) => /Low-risk playbook|Connect and draft/.test(item.phase)), false);
+    assert.equal(/public XDR pattern|does not claim an MTTR change/.test(doc.governance.note), false);
+    assert.equal(doc.postmortem.questions.some((item) => /three incident types/.test(item)), false);
+    assert.match(doc.goals.map((item) => item.statement).join(" "), /hairline cracks on the paint line/);
+    assert.match(doc.successMeasures.map((item) => item.target).join(" "), /hairline cracks|line stop|public cloud/i);
+    assert.match(doc.expectedOutcomes.map((item) => item.outcome).join(" "), /hairline cracks|paint line/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
