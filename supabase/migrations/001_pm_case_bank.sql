@@ -6,7 +6,17 @@ create extension if not exists pgcrypto;
 create extension if not exists vector;
 create extension if not exists pg_trgm;
 
--- PMI process groups. Codes are stable; labels are Korean for the PM UI.
+-- The product language is locked to English. Codes stay stable. The UI reads name_en.
+create table app_settings (
+  id boolean primary key default true check (id),
+  default_language text not null default 'en' check (default_language = 'en')
+);
+
+insert into app_settings (default_language) values ('en');
+
+comment on table app_settings is 'Singleton. default_language cannot leave en.';
+
+-- PMI process groups. Codes are stable. name_en is the label the interface shows.
 create table process_groups (
   code text primary key,
   name_ko text not null,
@@ -30,18 +40,18 @@ create table knowledge_areas (
 );
 
 insert into knowledge_areas (code, name_ko, name_en, description) values
-  ('integration', '통합', 'Integration', '차터, 변경, 단계 게이트, 교훈을 한 계획으로 묶는다.'),
-  ('scope', '범위', 'Scope', '포함·제외·수용 기준. 파일럿과 전사 확대를 섞지 않는다.'),
-  ('schedule', '일정', 'Schedule', '리드타임, 기간 밴드, 마일스톤, 선행 관계.'),
-  ('cost', '원가', 'Cost', 'CapEx·OpEx 계획 밴드. 고시 가격이나 고객 실적이 아니다.'),
-  ('quality', '품질', 'Quality', '단계 게이트와 수용 기준.'),
-  ('resource', '자원', 'Resource', '역할과 인수. RACI의 Responsible와 연결한다.'),
-  ('communications', '의사소통', 'Communications', '스폰서 보고, 현업 공지, 예외 채널.'),
-  ('risk', '리스크', 'Risk', '확률×영향, 대응, 유발 요인, 비상 계획.'),
-  ('procurement', '조달', 'Procurement', '라이선스, 하드웨어 리드타임, 계약 방식.'),
-  ('stakeholder', '이해관계자', 'Stakeholder', '영향, 참여 전략, 의사결정자.'),
-  ('security', '보안', 'Security', '가시성, 통제 배치, 런북, 탐지와 대응.'),
-  ('ai_governance', 'AI 거버넌스', 'AI governance', '학습 데이터 권리, 평가, 인간 승인, 사용 한계.');
+  ('integration', '통합', 'Integration', 'Charter, change control, stage gates, and lessons in one plan.'),
+  ('scope', '범위', 'Scope', 'In scope, out of scope, and acceptance. Do not mix a pilot with an enterprise rollout.'),
+  ('schedule', '일정', 'Schedule', 'Lead time, duration band, milestones, and predecessors.'),
+  ('cost', '원가', 'Cost', 'CapEx and OpEx planning bands. Not a list price and not a customer result.'),
+  ('quality', '품질', 'Quality', 'Stage gates and acceptance criteria.'),
+  ('resource', '자원', 'Resource', 'Roles and staffing. Tied to RACI Responsible.'),
+  ('communications', '의사소통', 'Communications', 'Sponsor reports, user notices, and the exception channel.'),
+  ('risk', '리스크', 'Risk', 'Probability times impact, response, trigger, and contingency.'),
+  ('procurement', '조달', 'Procurement', 'Licenses, hardware lead time, and contracting.'),
+  ('stakeholder', '이해관계자', 'Stakeholder', 'Influence, engagement, and the decision maker.'),
+  ('security', '보안', 'Security', 'Visibility, control placement, the runbook, and detection and response.'),
+  ('ai_governance', 'AI 거버넌스', 'AI governance', 'Training-data rights, evaluation, human approval, and model limits.');
 
 create table solution_cases (
   id uuid primary key default gen_random_uuid(),
@@ -49,6 +59,7 @@ create table solution_cases (
   slug text not null unique,
   title text not null,
   title_en text,
+  language text not null default 'en' check (language = 'en'),
   record_type text not null check (record_type in ('public_announcement', 'validated_design', 'reference_scenario', 'video_demo', 'partner_guide')),
   fidelity text not null check (fidelity in ('primary_source', 'public_composite')),
   fidelity_note text not null,
@@ -98,7 +109,8 @@ create table solution_cases (
   check (duration_weeks_low is null or duration_weeks_high is null or duration_weeks_low <= duration_weeks_high)
 );
 
-comment on table solution_cases is '한 행이 PM이 여는 솔루션 사례다. public_composite는 고객 실적이 아니라 공개 자료로 짠 계획 시나리오다.';
+comment on table solution_cases is 'One row is a solution case a PM opens. public_composite is a planning scenario from public material, not a customer result.';
+comment on column solution_cases.language is 'Locked to en. The interface does not switch the stored language.';
 comment on column solution_cases.planning_band_note is '금액·기간을 읽을 때 항상 같이 보여주는 고지.';
 comment on column solution_cases.deal_size_low_usd is '1차년도 외부 지출 계획 밴드의 하한. 고시 가격이 아니다.';
 comment on column solution_cases.fidelity is 'primary_source는 공개 발표 요약. public_composite는 그 발표를 산업 제약에 얹은 계획.';

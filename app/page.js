@@ -9,21 +9,21 @@ export default function HomePage() {
   return (
     <>
       <p className="kicker">Cisco public architecture · PM portfolio</p>
-      <h1>솔루션 사례를 일정, 역할, 리스크로 엽니다.</h1>
+      <h1>Open solution cases as schedule, roles, and risk.</h1>
       <p className="lede">
-        Hypershield, AI Defense, NVIDIA AI 팩토리, Webex 특화 모델, Silicon One, XDR을
-        프로젝트 차터에 바로 붙일 수 있는 필드로 정리했습니다. 검색은 로컬 벡터 인덱스이고,
-        금액과 기간은 계획 밴드입니다.
+        Hypershield, AI Defense, the NVIDIA AI Factory, Webex specialized models, Silicon One, and XDR
+        are stored as fields a project charter can use. Search is a local vector index.
+        Amounts and durations are planning bands.
       </p>
       <p className="row">
         <Link className="badge teal" href="/onepager">One-pager</Link>
-        <Link className="badge" href="/ask">질의로 초안</Link>
+        <Link className="badge" href="/ask">Draft from a question</Link>
       </p>
       <section className="stats">
-        <div className="stat"><b>{cases.length}</b><span>공개 사례</span></div>
-        <div className="stat"><b>{industries}</b><span>산업 필터</span></div>
-        <div className="stat"><b>5</b><span>질의 때 고르는 사례</span></div>
-        <div className="stat"><b>384</b><span>로컬 임베딩 차원</span></div>
+        <div className="stat"><b>{cases.length}</b><span>Published cases</span></div>
+        <div className="stat"><b>{industries}</b><span>Industry filters</span></div>
+        <div className="stat"><b>5</b><span>Cases kept per question</span></div>
+        <div className="stat"><b>384</b><span>Local embedding dimensions</span></div>
       </section>
       <CaseBrowser cases={cases} />
     </>

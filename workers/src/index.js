@@ -12,16 +12,16 @@ export function createGateway({ answer }) {
         return Response.json({ ok: true, service: "case-bank-gateway" });
       }
       if (request.method !== "POST" || url.pathname !== "/ask") {
-        return Response.json({ error: "POST /ask 만 받습니다." }, { status: 404 });
+        return Response.json({ error: "Only POST /ask is accepted." }, { status: 404 });
       }
       let body;
       try {
         body = await request.json();
       } catch {
-        return Response.json({ error: "JSON 본문이 필요합니다." }, { status: 400 });
+        return Response.json({ error: "A JSON body is required." }, { status: 400 });
       }
       if (!body || typeof body !== "object" || Array.isArray(body)) {
-        return Response.json({ error: "JSON 객체가 필요합니다." }, { status: 400 });
+        return Response.json({ error: "A JSON object is required." }, { status: 400 });
       }
       try {
         const result = await answer({
@@ -34,7 +34,7 @@ export function createGateway({ answer }) {
         return Response.json(result);
       } catch (error) {
         const status = Number(error.status) || 500;
-        return Response.json({ error: status === 500 ? "검색을 처리하지 못했습니다." : error.message }, { status });
+        return Response.json({ error: status === 500 ? "Search could not be completed." : error.message }, { status });
       }
     },
   };

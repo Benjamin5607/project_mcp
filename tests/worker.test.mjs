@@ -6,7 +6,7 @@ function gateway() {
   return createGateway({
     answer: async (body) => {
       if (!body.query.trim()) {
-        const error = new Error("질의가 비어 있습니다.");
+        const error = new Error("The question is empty.");
         error.status = 400;
         throw error;
       }

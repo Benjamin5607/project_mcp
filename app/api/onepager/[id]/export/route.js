@@ -8,7 +8,7 @@ export async function GET(request, context) {
   try {
     const { id } = await context.params;
     const doc = readOnePager(id);
-    if (!doc) return Response.json({ error: "원페이저를 찾지 못했습니다." }, { status: 404 });
+    if (!doc) return Response.json({ error: "That one-pager was not found." }, { status: 404 });
     assertExportable(doc);
     const kind = new URL(request.url).searchParams.get("kind") || "report";
     const html = renderExport(doc, kind);
@@ -22,6 +22,6 @@ export async function GET(request, context) {
     });
   } catch (error) {
     const status = Number(error.status) || 500;
-    return Response.json({ error: status === 500 ? "문서를 만들지 못했습니다." : error.message }, { status });
+    return Response.json({ error: status === 500 ? "The document could not be created." : error.message }, { status });
   }
 }

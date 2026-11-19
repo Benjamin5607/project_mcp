@@ -9,7 +9,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const item = loadCases().find((entry) => entry.slug === slug);
-  return { title: item ? `${item.caseCode} ${item.title}` : "사례" };
+  return { title: item ? `${item.caseCode} ${item.titleEn || item.title}` : "Case" };
 }
 
 export default async function CasePage({ params }) {

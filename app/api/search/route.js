@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export async function GET(request) {
   const url = new URL(request.url);
   const query = url.searchParams.get("q") || "";
-  if (!query.trim()) return Response.json({ error: "q가 필요합니다." }, { status: 400 });
+  if (!query.trim()) return Response.json({ error: "q is required." }, { status: 400 });
   try {
     const result = answerQuestion(loadCases(), loadIndex(), query, {
       industry: url.searchParams.get("industry") || "",
@@ -17,6 +17,6 @@ export async function GET(request) {
     return Response.json({ query: result.query, matches: result.matches });
   } catch (error) {
     const status = Number(error.status) || 500;
-    return Response.json({ error: status === 500 ? "검색을 처리하지 못했습니다." : error.message }, { status });
+    return Response.json({ error: status === 500 ? "Search could not be completed." : error.message }, { status });
   }
 }

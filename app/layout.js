@@ -14,13 +14,13 @@ const serif = Fraunces({
 });
 
 export const metadata = {
-  title: "AI & Tech 솔루션 케이스 뱅크",
-  description: "시스코 공개 AI·보안 아키텍처를 PM 프레임워크로 검색하고 초안을 만드는 RAG 케이스 뱅크",
+  title: "AI and tech solution case bank",
+  description: "Search Cisco public AI and security architectures and draft PM artifacts from a local RAG case bank.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
+    <html lang="en">
       <body className={`${sans.variable} ${serif.variable}`}>
         <div className="shell">
           <SiteNav />

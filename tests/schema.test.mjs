@@ -33,4 +33,7 @@ test("migration covers the PM framework and hnsw cosine search", () => {
   assert.match(sql, /using hnsw \(embedding vector_cosine_ops\)/);
   assert.match(sql, /function match_case_chunks/);
   assert.match(sql, /confidentiality = 'public'/);
+  assert.match(sql, /create table app_settings/);
+  assert.match(sql, /default_language text not null default 'en' check \(default_language = 'en'\)/);
+  assert.match(sql, /language text not null default 'en' check \(language = 'en'\)/);
 });

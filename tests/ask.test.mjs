@@ -14,7 +14,7 @@ test("the sample PM question grounds RACI on the financial scenario", () => {
   assert.equal(result.matches.length, 5);
   assert.equal(new Set(result.matches.map((match) => match.caseCode)).size, 5);
   assert.match(result.artifact.markdown, /CISO\(스폰서\)/);
-  assert.match(result.artifact.markdown, /계획 밴드/);
+  assert.match(result.artifact.markdown, /planning band/i);
   const packed = JSON.stringify(result);
   assert.equal(packed.includes("국민은행"), false);
   assert.equal(packed.includes("신한은행"), false);
@@ -29,6 +29,6 @@ test("XDR and AI factory queries hit their own cases first", () => {
 });
 
 test("empty and oversized queries are rejected", () => {
-  assert.throws(() => answerQuestion(cases, index, "   "), /비어/);
+  assert.throws(() => answerQuestion(cases, index, "   "), /empty/);
   assert.throws(() => answerQuestion(cases, index, "가".repeat(2001)), /2000/);
 });

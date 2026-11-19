@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 
 function fail(error) {
   const status = Number(error.status) || 500;
-  return Response.json({ error: status === 500 ? "원페이저를 만들지 못했습니다." : error.message }, { status });
+  return Response.json({ error: status === 500 ? "The one-pager could not be created." : error.message }, { status });
 }
 
 export async function GET() {
@@ -17,7 +17,7 @@ export async function POST(request) {
   try {
     body = await request.json();
   } catch {
-    return Response.json({ error: "JSON 본문이 필요합니다." }, { status: 400 });
+    return Response.json({ error: "A JSON body is required." }, { status: 400 });
   }
   try {
     const doc = await createOnePager(body);

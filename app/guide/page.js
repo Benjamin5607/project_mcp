@@ -1,62 +1,63 @@
-export const metadata = { title: "구축 가이드 · 케이스 뱅크" };
+export const metadata = { title: "Build guide · Case bank" };
 
 const STEPS = [
   {
-    title: "1. 수집과 청킹",
-    body: "공개 뉴스룸, 블로그, Cisco Live, 제품 페이지를 data/authoring에 사례로 옮긴다. lib/chunk.mjs가 비즈니스 케이스, 아키텍처, 범위, 요구사항, RACI, WBS, 리스크, KPI를 의미 단위로 자른다. 산업, 솔루션, 출처 등급은 청크 헤더에 같이 들어간다. 주간 수집은 GitHub Actions가 data/inbox 초안만 만든다.",
+    title: "1. Collect and chunk",
+    body: "Public newsroom, blog, Cisco Live, and product pages are written as cases in data/authoring. lib/chunk.mjs splits each case into business context, architecture, scope, requirements, RACI, WBS, risk, and KPIs. Industry, solution, and source grade stay on the chunk header. The weekly collector only writes drafts under data/inbox.",
   },
   {
-    title: "2. 임베딩",
-    body: "기본 모델은 lib/embed.mjs의 feature-hash-v1, 384차원이다. 질의와 문서가 같은 함수를 쓰므로 망 밖으로 나가지 않는다. Ollama의 nomic-embed-text로 바꿀 때는 컬럼을 vector(768)로 바꾸고 인덱스를 다시 만든다. 두 모델을 한 인덱스에 섞지 않는다.",
+    title: "2. Embed",
+    body: "The default model is feature-hash-v1 in lib/embed.mjs, 384 dimensions. The query and the document use the same function, so nothing leaves the network. Switching to Ollama nomic-embed-text means altering the column to vector(768) and rebuilding the index. Do not mix the two models in one index.",
   },
   {
-    title: "3. Supabase 적재와 HNSW",
-    body: "supabase/migrations/001_pm_case_bank.sql이 pgvector, 코사인 HNSW, match_case_chunks를 만든다. npm run seed가 supabase/seed.sql에 사례와 벡터를 쓴다. 공개·게시 행만 anon이 읽는다. 앱은 data/index.json 또는 메모리 인덱스로 같은 검색을 한다.",
+    title: "3. Load into Supabase and HNSW",
+    body: "supabase/migrations/001_pm_case_bank.sql creates pgvector, a cosine HNSW index, and match_case_chunks. npm run seed writes cases and vectors to supabase/seed.sql. Anonymous reads are limited to public, published rows. The app searches the same way with data/index.json or an in-memory index. The database default language is locked to English.",
   },
   {
-    title: "4. PM 파이프라인",
-    body: "질의 화면이 /api/ask로 사례별 최고 청크 중 상위 5개를 받고, 1위 사례의 RACI·WBS·리스크·이메일 초안을 합성한다. workers/src/index.js는 같은 계약을 가진 게이트웨이다. 고영향 보안 조치와 금액은 항상 사람 검토 문장과 함께 나온다.",
+    title: "4. PM pipeline",
+    body: "The ask screen posts to /api/ask, keeps the best chunk per case, and takes the top five. It drafts RACI, WBS, risk, and email from the top case. workers/src/index.js is a gateway with the same contract. High-impact security actions and amounts always ship with a human-review line.",
   },
 ];
 
 export default function GuidePage() {
   return (
-    <article className="guide">
-      <p className="kicker">Architecture</p>
-      <h1>네 단계로 돌아가는 케이스 뱅크</h1>
+    <article>
+      <p className="kicker">Build guide</p>
+      <h1>A case bank in four steps</h1>
       <p className="lede">
-        프론트는 이 Next.js 앱, API는 Node 라우트와 Workers 핸들러, 벡터 저장은 Supabase pgvector,
-        기본 추론은 로컬 임베딩입니다. Ollama와 Hugging Face는 인덱스를 다시 만들 때의 교체 옵션입니다.
+        The front end is this Next.js app, the API is the Node routes and the Workers handler,
+        vectors sit in Supabase pgvector, and the default embedding is local.
+        Ollama and Hugging Face are replacements that require a rebuilt index.
+        English is the locked default for the database setting and for this interface.
       </p>
-      <ol>
-        {STEPS.map((step) => (
-          <li key={step.title}>
-            <h2>{step.title}</h2>
-            <p>{step.body}</p>
-          </li>
-        ))}
-      </ol>
+      {STEPS.map((step) => (
+        <section className="section" key={step.title}>
+          <h2>{step.title}</h2>
+          <p>{step.body}</p>
+        </section>
+      ))}
       <section className="section">
-        <h2>PM 테이블</h2>
+        <h2>PM tables</h2>
         <p>
-          solution_cases 아래에 이해관계자, 요구사항, RACI, WBS, 마일스톤, 리스크, 이슈, KPI, 원가,
-          품질 게이트, 의사소통, 조달, 의사결정, 교훈, 편익, 청크, 출처, 수집 이력이 있습니다.
-          지식 영역은 PMI 10개에 보안과 AI 거버넌스를 더했습니다.
+          Under solution_cases: stakeholders, requirements, RACI, WBS, milestones, risks, issues, KPIs, cost,
+          quality gates, communications, procurement, decisions, lessons, benefits, chunks, sources, and collection runs.
+          Knowledge areas are the ten PMI areas plus security and AI governance.
+          app_settings.default_language is constrained to en.
         </p>
       </section>
       <section className="section">
-        <h2>실행</h2>
-        <p>npm test 로 검증하고, npm run dev 로 라이브러리를 엽니다. npm run ask -- "질문" 은 터미널 초안입니다. npm run onepager 는 페인포인트로 원페이저 초안을 만듭니다.</p>
+        <h2>Run</h2>
+        <p>npm test checks the bank. npm run dev opens the library. npm run ask -- "question" drafts in the terminal. npm run onepager drafts a one-pager from a pain point.</p>
       </section>
       <section className="section">
-        <h2>원페이저 생성기</h2>
+        <h2>One-pager</h2>
         <p>
-          /onepager 에 페인포인트와 특별 요구를 넣으면 케이스 뱅크에서 참고 사례를 고르고, 제약에 맞는 기술 솔루션과 이해관계자, RACI, 자원, 리스크를 채웁니다.
-          기본 언어는 영어입니다. 한국어 원페이저가 필요하면 언어를 한국어로 바꿉니다.
-          모델은 NVIDIA API 카탈로그 프로파일에서 고릅니다. 비밀 이름은 NVIDIA_API_KEY 입니다.
-          요구가 인트라넷만을 말하면 페인포인트 원문은 API로 나가지 않고, 선정 모델의 페르소나만 로컬 케이스 뱅크에 연결됩니다.
-          PM이 고치고 승인하기 전에는 보고서 HTML과 슬라이드 HTML을 내려받지 않습니다.
-          GitHub Actions의 One-pager specialist 워크플로는 같은 초안을 아티팩트로 올리고, use_nvidia 를 켠 경우에만 시크릿을 사용합니다.
+          /onepager takes a pain point and special requirements, selects reference cases, and fills a technical solution, stakeholders, RACI, resources, and risks.
+          The language control defaults to English. Korean is an explicit option on that form only.
+          The model is chosen from NVIDIA API catalog profiles. The secret name is NVIDIA_API_KEY.
+          An intranet-only requirement does not send the pain text to the API. Only the selected model's persona is connected to the local case bank.
+          Report HTML and slide HTML stay locked until a PM approves.
+          The One-pager specialist GitHub Actions workflow uploads the same draft and uses the secret only when use_nvidia is on.
         </p>
       </section>
     </article>
