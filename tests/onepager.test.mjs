@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -8,6 +8,7 @@ import { GET as exportGet } from "../app/api/onepager/[id]/export/route.js";
 import { renderExport } from "../lib/onepager/export-html.mjs";
 import { applyReview } from "../lib/onepager/review.mjs";
 import { createOnePager } from "../lib/onepager/run.mjs";
+import { allocateId, onepagerDir, readOnePager, saveOnePager } from "../lib/onepager/store.mjs";
 
 const SLOW = "AI is too slow when it retrieves information from the database";
 const INTRANET = "Must run only on an intranet with no cloud connection, and keep the GPU footprint to a minimum.";
@@ -289,4 +290,31 @@ test("Korean stays available when language is set to ko", async () => {
   assert.ok(doc.rollout.length >= 4);
   assert.match(doc.resources.find((item) => item.name === "그래픽카드").amount, /0/);
   rmSync(dir, { recursive: true, force: true });
+});
+
+test("Vercel keeps a one-pager on the writable temp directory", () => {
+  const previousVercel = process.env.VERCEL;
+  const previousDir = process.env.ONEPAGER_DIR;
+  delete process.env.ONEPAGER_DIR;
+  process.env.VERCEL = "1";
+  const id = allocateId(new Date("2026-11-19T00:00:00Z"));
+  const file = path.join("/tmp", "case-bank-onepagers", `${id}.json`);
+  try {
+    assert.equal(onepagerDir(), path.join("/tmp", "case-bank-onepagers"));
+    saveOnePager({
+      id,
+      customerLabel: "Northwind",
+      headline: "Temp draft",
+      status: "draft",
+      updatedAt: "2026-11-19T00:00:00.000Z",
+    });
+    assert.equal(existsSync(file), true);
+    assert.equal(readOnePager(id).headline, "Temp draft");
+  } finally {
+    rmSync(file, { force: true });
+    if (previousVercel === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = previousVercel;
+    if (previousDir === undefined) delete process.env.ONEPAGER_DIR;
+    else process.env.ONEPAGER_DIR = previousDir;
+  }
 });
