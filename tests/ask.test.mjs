@@ -13,7 +13,7 @@ test("the sample PM question grounds RACI on the financial scenario", () => {
   assert.equal(result.matches[0].caseCode, "CSCO-HYP-FIN-001");
   assert.equal(result.matches.length, 5);
   assert.equal(new Set(result.matches.map((match) => match.caseCode)).size, 5);
-  assert.match(result.artifact.markdown, /CISO\(스폰서\)/);
+  assert.match(result.artifact.markdown, /CISO \(sponsor\)/);
   assert.match(result.artifact.markdown, /planning band/i);
   const packed = JSON.stringify(result);
   assert.equal(packed.includes("국민은행"), false);

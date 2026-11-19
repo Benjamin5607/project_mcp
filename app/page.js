@@ -8,12 +8,12 @@ export default function HomePage() {
   const industries = new Set(cases.map((item) => item.industry)).size;
   return (
     <>
-      <p className="kicker">Cisco public architecture · PM portfolio</p>
+      <p className="kicker">Public programs · PM portfolio</p>
       <h1>Open solution cases as schedule, roles, and risk.</h1>
       <p className="lede">
-        Hypershield, AI Defense, the NVIDIA AI Factory, Webex specialized models, Silicon One, and XDR
-        are stored as fields a project charter can use. Search is a local vector index.
-        Amounts and durations are planning bands.
+        Cisco architectures sit next to published industry programs from Siemens, John Deere, Moderna, and DBS.
+        Every case is stored in English as fields a project charter can use. Search is a local vector index.
+        A figure is either the publisher’s claim, with the page it came from, or a planning band.
       </p>
       <p className="row">
         <Link className="badge teal" href="/onepager">One-pager</Link>

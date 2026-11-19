@@ -63,7 +63,7 @@ psql "$DATABASE_URL" -f supabase/seed.sql
 
 ## 프로젝트 원페이저
 
-라이브러리, 질의, 비교, 구축 가이드, API 오류, 그리고 데이터베이스 `app_settings.default_language`와 `solution_cases.language`는 영어로 고정되어 있습니다. 사례 본문은 작성된 원문 그대로 둡니다.
+라이브러리, 질의, 비교, 구축 가이드, API 오류, 사례 본문, 그리고 데이터베이스 `app_settings.default_language`와 `solution_cases.language`는 영어입니다. 원페이저의 한국어는 그 화면에서 언어를 고를 때만 나옵니다.
 
 `/onepager`는 고객 페인포인트와 특별 요구를 받아 케이스 뱅크에서 참고 사례를 고르고, 솔루션·이해관계자·RACI·자원·리스크가 채워진 초안을 만듭니다. 기본 언어는 영어이고, 한국어는 그 화면의 언어 설정에서만 고릅니다. PM이 고치고 승인한 뒤에만 보고서 HTML과 슬라이드 HTML을 내려받습니다. 슬라이드에는 이해관계자 표, RACI 표, 자원 표가 그대로 들어갑니다.
 
@@ -71,7 +71,7 @@ psql "$DATABASE_URL" -f supabase/seed.sql
 
 특별 요구에 인트라넷, 폐쇄망, 클라우드와 연결되지 않음이 있으면 페인포인트 원문을 API로 보내지 않습니다. 그때는 선정된 컴팩트 모델의 페르소나만 로컬 초안에 연결됩니다. 그래픽카드 최소화가 있으면 대형 모델보다 컴팩트 프로파일을 위에 두고, 검색 경로의 그래픽카드는 0장으로 적습니다.
 
-검토 문서는 `data/onepagers`에만 저장되며 공개 케이스 시드에 들어가지 않습니다. 디렉터리는 git에서 제외합니다.
+검토 문서는 `data/onepagers`에만 저장되며 공개 케이스 시드에 들어가지 않습니다. 디렉터리는 git에서 제외합니다. Vercel처럼 프로젝트 디렉터리가 읽기 전용이면 같은 파일은 `/tmp/case-bank-onepagers`에 저장됩니다.
 
 ```bash
 npm run onepager -- --pain "AI가 데이터베이스에서 정보를 찾아오는데 너무 느림" --requirements "클라우드와 연결되지 않은 인트라넷에서만 작동 요망 그리고 그래픽카드 최소화"
@@ -112,6 +112,10 @@ PMI 프로세스(착수·계획·실행·감시·종료)와 지식 영역 10개�
 | `CSCO-WX-AIM-001` | Webex 특화 모델과 보안 제품 LLM 거버넌스 |
 | `CSCO-SIO-DC-001` | Silicon One AI 패브릭. 수 주 창은 하드웨어 도착 후 파일럿만 |
 | `CSCO-XDR-SOC-001` | XDR AI 보안 운영. [CiscoKorea 데모](https://www.youtube.com/watch?v=pYz-1Qr1AsY) |
+| `IND-SIE-COP-001` | Siemens Industrial Copilot. 2023-10-31 발표의 주 단위 단축은 회사 주장 |
+| `IND-DEERE-SPRAY-001` | John Deere See & Spray. 2024-09-18 발표의 59%와 800만 갤런은 Deere의 시즌 수치 |
+| `IND-MOD-MRNA-001` | Moderna와 AWS. 42일과 25일 문장은 출처가 달라 합치지 않음 |
+| `IND-DBS-AI-001` | DBS. 2024-09-16의 800개 모델과 이후 페이지의 1,500개를 날짜와 함께 보관 |
 
 ## 데모 영상
 

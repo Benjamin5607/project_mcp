@@ -1,0 +1,711 @@
+{
+  "caseCode": "IND-DEERE-SPRAY-001",
+  "slug": "john-deere-see-and-spray",
+  "title": "John Deere See & Spray targeted herbicide application",
+  "titleEn": "John Deere See & Spray targeted herbicide application",
+  "vendor": "John Deere",
+  "recordType": "public_announcement",
+  "fidelity": "primary_source",
+  "fidelityNote": "Figures are John Deere's published claims from the 18 September 2024 release, including the Iowa State University study as Deere cites it. This record does not re-audit acreage, gallons, or the study. The release's footnotes say individual results vary.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "See & Spray uses boom-mounted cameras and onboard processors to spray herbicide only where a weed is recognized. John Deere's 18 September 2024 release says customers saved an estimated 8 million gallons of herbicide mix on more than 1 million acres in the 2024 season, with an average 59 percent herbicide savings on corn, soybean, and cotton in the United States. Cameras scan over 2,100 square feet per second at up to 15 mph. Customers pay for the acres where the technology is used. A PM copying this pattern separates those published figures from a grower's own as-applied maps.",
+  "problemStatement": "Broadcast spraying puts herbicide on crop and on bare ground, not only on weeds. That spends chemical, water, and stops, and it is a poor fit for a stewardship target. A camera system that cannot show where it sprayed leaves the grower with a vendor percentage and no field record.",
+  "opportunity": "See & Spray, introduced in 2021, opens individual ExactApply nozzles when cameras and processors class a plant as a weed. Deere's release says the 2024 season covered corn, soybean, cotton, and fallow, and that an Iowa State University study it cites found 76 percent average product savings and 15.70 US dollars per acre economic savings on the study fields. In 2025 Deere said it would introduce an Application Savings Guarantee so customers pay for the technology when application savings are there.",
+  "strategicAlignment": "Treat the machine as a measurement system as well as a sprayer. The Operations Center map is the evidence. The press percentage is the manufacturer's season claim.",
+  "businessValue": "A grower or custom applicator can compare as-applied maps with a broadcast baseline on the same fields. The 59 percent and the 8 million gallons are Deere's 2024 season figures, not a promise for the next field.",
+  "industry": "agriculture",
+  "industryLabel": "Agriculture",
+  "customerSegment": "grower",
+  "customerSegmentLabel": "Growers and custom applicators",
+  "region": "United States",
+  "regulatoryContext": [
+    "FIFRA label compliance",
+    "State pesticide records",
+    "USDA conservation program rules where relevant"
+  ],
+  "companySizeBand": "Farm or retail applicator",
+  "deploymentModel": "on_prem",
+  "deploymentModelLabel": "On-machine cameras, processors, and nozzles, with Operations Center maps",
+  "architecturePattern": "Boom cameras scan the crop, onboard processors class crop versus weed, ExactApply nozzles spray only the recognized weed, and John Deere Operations Center stores the as-applied map against a broadcast comparison.",
+  "complexity": "medium",
+  "planningBandNote": "Amounts and durations below are planning bands for a similar program. They are not the publisher's result and not a price quote.",
+  "dealSizeLowUsd": 150000,
+  "dealSizeHighUsd": 900000,
+  "dealSizeBand": "M",
+  "leadTimeWeeksLow": 8,
+  "leadTimeWeeksHigh": 20,
+  "durationWeeksLow": 12,
+  "durationWeeksHigh": 30,
+  "ciscoSolutions": [
+    "See & Spray",
+    "ExactApply",
+    "John Deere Operations Center"
+  ],
+  "partnerTechnologies": [],
+  "aiCapabilities": [
+    "Camera-based crop versus weed classification",
+    "Per-nozzle spray decisions",
+    "As-applied mapping"
+  ],
+  "securityCapabilities": [
+    "Machine and account access control",
+    "Retention of application records"
+  ],
+  "aliases": [
+    "See and Spray",
+    "herbicide",
+    "targeted spray",
+    "corn",
+    "soybean",
+    "cotton",
+    "fallow"
+  ],
+  "scopeIn": [
+    "One sprayer platform and the crops the installed software supports",
+    "A season plan that records acres, mix, and the broadcast comparison",
+    "Operator training on when targeted mode is exited",
+    "A readout that cites Deere's 2024 figures separately from this farm's maps"
+  ],
+  "scopeOut": [
+    "Treating 59 percent as this farm's target before a season of maps",
+    "Using the system on a crop the installed release does not support",
+    "Ignoring the release footnotes on weed pressure, speed, and settings"
+  ],
+  "assumptions": [
+    {
+      "statement": "The sprayer can send application data to Operations Center.",
+      "ownerRole": "Equipment lead",
+      "status": "open"
+    },
+    {
+      "statement": "The agronomist will read the as-applied map after each block of fields.",
+      "ownerRole": "Agronomist",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "technical",
+      "statement": "Nozzle control and camera calibration stay inside the Deere release notes for that model year."
+    },
+    {
+      "type": "regulatory",
+      "statement": "The chemical label still governs rate. Targeted spray does not authorize an off-label rate."
+    }
+  ],
+  "successCriteria": [
+    "As-applied maps exist for the season's See & Spray acres",
+    "Broadcast comparison is visible for those acres",
+    "Operators can say when they left targeted mode"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "Publisher claim, John Deere, 18 September 2024: an estimated 8 million gallons of herbicide mix saved on more than 1 million acres in the 2024 season.",
+    "Publisher claim, same release: average herbicide savings of 59 percent on corn, soybean, and cotton fields across the United States. The release says individual results vary.",
+    "Publisher description, same release: cameras scan over 2,100 square feet per second at up to 15 mph, and ExactApply nozzles spray only where a weed is recognized.",
+    "Publisher citation, same release: an Iowa State University study showed 76 percent average product savings and 15.70 US dollars per acre on the study fields. This record does not re-analyze that study."
+  ],
+  "sourceUrls": [
+    {
+      "title": "See & Spray customers see 59 percent average herbicide savings in 2024",
+      "url": "https://www.deere.com/en-us/john-deere-news/see-spray-59-percent-herbicide-savings",
+      "publisher": "John Deere",
+      "publishedOn": "2024-09-18"
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2024-09-18",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "Farm or applicator sponsor",
+      "organization": "Customer",
+      "interest": "Chemical cost and stewardship, without a borrowed percentage",
+      "influence": "high",
+      "engagement": "Season plan and the savings readout",
+      "cadence": "Monthly in season"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "Operations PM",
+      "organization": "Customer",
+      "interest": "One platform, one season, maps on file",
+      "influence": "high",
+      "engagement": "Schedule",
+      "cadence": "Weekly in season"
+    },
+    {
+      "roleCode": "EQ",
+      "roleName": "Equipment lead",
+      "organization": "Customer",
+      "interest": "Calibration, speed, and uptime",
+      "influence": "high",
+      "engagement": "Machine readiness",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "AG",
+      "roleName": "Agronomist",
+      "organization": "Customer",
+      "interest": "Weed pressure and what the map shows",
+      "influence": "high",
+      "engagement": "Map review",
+      "cadence": "After each block"
+    },
+    {
+      "roleCode": "OP",
+      "roleName": "Operator lead",
+      "organization": "Customer",
+      "interest": "When targeted mode is the right mode",
+      "influence": "medium",
+      "engagement": "Training and exceptions",
+      "cadence": "At start and mid-season"
+    },
+    {
+      "roleCode": "REC",
+      "roleName": "Records owner",
+      "organization": "Customer",
+      "interest": "Pesticide records match the map",
+      "influence": "medium",
+      "engagement": "Season file",
+      "cadence": "At close"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "scope",
+      "priority": "must",
+      "statement": "The season plan names the machine, the crops, and the acres in targeted mode.",
+      "acceptance": "Written plan",
+      "source": "Deere 18 September 2024 crop list"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "quality",
+      "priority": "must",
+      "statement": "Each application produces an Operations Center map and a broadcast comparison.",
+      "acceptance": "Map on file",
+      "source": "Deere description of Operations Center"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "communications",
+      "priority": "must",
+      "statement": "External text cites Deere's 59 percent as Deere's 2024 US average, then shows this farm's map.",
+      "acceptance": "Two-column readout",
+      "source": "Release footnotes"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "Season plan",
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "Operations PM"
+      ],
+      "accountable": "Farm or applicator sponsor",
+      "consulted": [
+        "Agronomist",
+        "Equipment lead"
+      ],
+      "informed": [
+        "Operator lead"
+      ]
+    },
+    {
+      "activity": "Machine readiness",
+      "phase": "plan",
+      "knowledgeArea": "resource",
+      "responsible": [
+        "Equipment lead"
+      ],
+      "accountable": "Equipment lead",
+      "consulted": [
+        "Operator lead"
+      ],
+      "informed": [
+        "Operations PM"
+      ]
+    },
+    {
+      "activity": "Operator method",
+      "phase": "plan",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "Operator lead"
+      ],
+      "accountable": "Agronomist",
+      "consulted": [
+        "Equipment lead"
+      ],
+      "informed": [
+        "Operations PM"
+      ]
+    },
+    {
+      "activity": "In-season application",
+      "phase": "execute",
+      "knowledgeArea": "schedule",
+      "responsible": [
+        "Operator lead"
+      ],
+      "accountable": "Equipment lead",
+      "consulted": [
+        "Agronomist"
+      ],
+      "informed": [
+        "Operations PM"
+      ]
+    },
+    {
+      "activity": "Map review",
+      "phase": "monitor",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "Agronomist"
+      ],
+      "accountable": "Farm or applicator sponsor",
+      "consulted": [
+        "Equipment lead"
+      ],
+      "informed": [
+        "Records owner"
+      ]
+    },
+    {
+      "activity": "Season file",
+      "phase": "close",
+      "knowledgeArea": "communications",
+      "responsible": [
+        "Records owner"
+      ],
+      "accountable": "Operations PM",
+      "consulted": [
+        "Agronomist"
+      ],
+      "informed": [
+        "Farm or applicator sponsor"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "name": "Season charter",
+      "description": "Name the machine, crops, and blocks. Copy Deere's crop list and do not add others.",
+      "deliverable": "Season plan",
+      "ownerRole": "Operations PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [],
+      "acceptance": "Sponsor signs",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "resource",
+      "name": "Machine setup",
+      "description": "Confirm cameras, nozzles, and software for that model year.",
+      "deliverable": "Ready check",
+      "ownerRole": "Equipment lead",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Matches the release for the model",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "quality",
+      "name": "Operator card",
+      "description": "When to stay in targeted mode and when weed pressure means a switch.",
+      "deliverable": "Operator card",
+      "ownerRole": "Operator lead",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Agronomist has read it",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "communications",
+      "name": "Claim card",
+      "description": "Write Deere's 59 percent, 8 million gallons, and 1 million acres as Deere's 2024 figures.",
+      "deliverable": "Claim card",
+      "ownerRole": "Operations PM",
+      "durationDaysLow": 1,
+      "durationDaysHigh": 2,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Footnote says results vary",
+      "milestone": false,
+      "sort": 40
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "schedule",
+      "name": "Apply",
+      "description": "Run the season blocks and keep the machine data.",
+      "deliverable": "Application log",
+      "ownerRole": "Operator lead",
+      "durationDaysLow": 20,
+      "durationDaysHigh": 40,
+      "predecessors": [
+        "2.1",
+        "2.2"
+      ],
+      "acceptance": "Acres reconcile",
+      "milestone": false,
+      "sort": 50
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Maps",
+      "description": "Open the broadcast comparison after each block.",
+      "deliverable": "Map pack",
+      "ownerRole": "Agronomist",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "A map per block",
+      "milestone": false,
+      "sort": 60
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "monitor",
+      "knowledgeArea": "communications",
+      "name": "Mid-season readout",
+      "description": "Show this farm's maps beside the claim card. Do not average them into 59.",
+      "deliverable": "Readout",
+      "ownerRole": "Operations PM",
+      "durationDaysLow": 2,
+      "durationDaysHigh": 4,
+      "predecessors": [
+        "3.2"
+      ],
+      "acceptance": "Two sources, two numbers",
+      "milestone": false,
+      "sort": 70
+    },
+    {
+      "wbsCode": "5",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "integration",
+      "name": "Season file",
+      "description": "Store acres, mix, maps, and exceptions for the pesticide record.",
+      "deliverable": "Season file",
+      "ownerRole": "Records owner",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "4"
+      ],
+      "acceptance": "Records owner signs",
+      "milestone": true,
+      "sort": 80
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Season plan",
+      "phase": "initiate",
+      "weekOffsetLow": 2,
+      "weekOffsetHigh": 4,
+      "criteria": "Crops match the installed software"
+    },
+    {
+      "name": "Ready machine",
+      "phase": "plan",
+      "weekOffsetLow": 6,
+      "weekOffsetHigh": 12,
+      "criteria": "Cameras and nozzles checked"
+    },
+    {
+      "name": "Map pack",
+      "phase": "execute",
+      "weekOffsetLow": 10,
+      "weekOffsetHigh": 24,
+      "criteria": "Broadcast comparison on file"
+    },
+    {
+      "name": "Season file",
+      "phase": "close",
+      "weekOffsetLow": 12,
+      "weekOffsetHigh": 30,
+      "criteria": "Pesticide record matches the map"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "The 59 percent figure is used as this farm's target",
+      "description": "Deere's average is a 2024 US season claim. The release says results vary.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 3,
+      "response": "avoid",
+      "mitigation": "The claim card and the farm map stay in different columns.",
+      "contingency": "Pull the percentage out of the farm's external note.",
+      "ownerRole": "Operations PM",
+      "trigger": "A deck says we will save 59 percent"
+    },
+    {
+      "riskCode": "R2",
+      "title": "Weed pressure makes targeted mode the wrong tool and nobody switches",
+      "description": "Heavy pressure can remove the savings and hurt coverage.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "The operator card says when to leave targeted mode.",
+      "contingency": "Finish the block in broadcast and record why.",
+      "ownerRole": "Operator lead",
+      "trigger": "Agronomist flags missed weeds"
+    },
+    {
+      "riskCode": "R3",
+      "title": "Maps never leave the machine",
+      "description": "Without Operations Center the season has no evidence.",
+      "category": "quality",
+      "probability": 3,
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "A block is not closed until the map is in the file.",
+      "contingency": "Pause claims until the transfer works.",
+      "ownerRole": "Equipment lead",
+      "trigger": "A block has acres and no map"
+    },
+    {
+      "riskCode": "R4",
+      "title": "The Iowa State citation is retold as Deere's own trial",
+      "description": "The release cites the study. It is not the same table as the 59 percent season average.",
+      "category": "communications",
+      "probability": 3,
+      "impact": 2,
+      "response": "mitigate",
+      "mitigation": "Name the study when the 76 percent or 15.70 dollars is used.",
+      "contingency": "Delete the mixed sentence.",
+      "ownerRole": "Agronomist",
+      "trigger": "One slide adds 59 and 76"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Which model year and crop license are on the machine",
+      "status": "open",
+      "ownerRole": "Equipment lead",
+      "nextAction": "Match the serial and software to the crop list before the season plan is signed"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Mapped acres",
+      "baseline": "None",
+      "target": "Every targeted-mode acre has a map",
+      "unit": "acres",
+      "method": "Reconcile the machine log to Operations Center",
+      "ownerRole": "Agronomist",
+      "cadence": "Each block"
+    },
+    {
+      "name": "Farm savings versus broadcast",
+      "baseline": "Not measured",
+      "target": "Computed from this farm's maps",
+      "unit": "percent",
+      "method": "Do not enter 59 unless the map says 59",
+      "ownerRole": "Operations PM",
+      "cadence": "Season close"
+    },
+    {
+      "name": "Mode exceptions",
+      "baseline": "None",
+      "target": "Each exit from targeted mode has a reason",
+      "unit": "count",
+      "method": "Operator card",
+      "ownerRole": "Operator lead",
+      "cadence": "Weekly in season"
+    }
+  ],
+  "costs": [
+    {
+      "category": "equipment",
+      "name": "See & Spray equipped sprayer or retrofit",
+      "costType": "capex",
+      "lowUsd": 100000,
+      "highUsd": 700000,
+      "notes": "Planning band. Deere prices by model and Deere says customers pay for acres used."
+    },
+    {
+      "category": "software",
+      "name": "Acre entitlement and Operations Center",
+      "costType": "opex",
+      "lowUsd": 10000,
+      "highUsd": 80000,
+      "notes": "Planning band for one season."
+    },
+    {
+      "category": "services",
+      "name": "Setup and agronomy time",
+      "costType": "opex",
+      "lowUsd": 5000,
+      "highUsd": 40000,
+      "notes": "Internal time, not a Deere invoice."
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "Machine gate",
+      "criteria": "Software crops match the season plan.",
+      "owner": "EQ",
+      "ownerRole": "Equipment lead"
+    },
+    {
+      "phase": "execute",
+      "name": "Map gate",
+      "criteria": "The first block has a broadcast comparison before the next block starts.",
+      "owner": "AG",
+      "ownerRole": "Agronomist"
+    },
+    {
+      "phase": "close",
+      "name": "Record gate",
+      "criteria": "The season file separates Deere's published figures from this farm's maps.",
+      "owner": "REC",
+      "ownerRole": "Records owner"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "Operators",
+      "message": "When to leave targeted mode",
+      "channel": "Card in the cab",
+      "cadence": "Season start",
+      "owner": "OP",
+      "ownerRole": "Operator lead"
+    },
+    {
+      "audience": "Sponsor",
+      "message": "Deere's 2024 average beside this farm's map",
+      "channel": "Readout",
+      "cadence": "Mid-season and close",
+      "owner": "PM",
+      "ownerRole": "Operations PM"
+    },
+    {
+      "audience": "Records",
+      "message": "Acres and mix for the pesticide file",
+      "channel": "Season file",
+      "cadence": "Close",
+      "owner": "REC",
+      "ownerRole": "Records owner"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "See & Spray machine or field kit",
+      "vendorType": "John Deere dealer",
+      "strategy": "One machine for the season",
+      "leadWeeks": 12,
+      "notes": "Confirm crop support in writing"
+    },
+    {
+      "item": "Acre entitlement",
+      "vendorType": "John Deere",
+      "strategy": "Pay for acres used, as the release describes",
+      "leadWeeks": 4,
+      "notes": "Do not pre-buy a savings percentage"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "Which number is ours",
+      "choice": "The Operations Center comparison is the farm's number. 59 percent is Deere's 2024 US average.",
+      "rationale": "The release prints both a season claim and a warning that results vary.",
+      "owner": "SPONSOR",
+      "ownerRole": "Farm or applicator sponsor",
+      "date": null
+    },
+    {
+      "decisionCode": "D2",
+      "title": "Study citation",
+      "choice": "If 76 percent or 15.70 dollars per acre is shown, name the Iowa State study Deere cites.",
+      "rationale": "That table is not the 59 percent season average.",
+      "owner": "AG",
+      "ownerRole": "Agronomist",
+      "date": null
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "Averages",
+      "statement": "A manufacturer's season average is a citation. The as-applied map is the farm's result.",
+      "applicability": "Any precision-ag claim"
+    },
+    {
+      "theme": "Footnotes",
+      "statement": "Deere's savings depend on weed pressure, speed, boom height, and settings. The operator card has to say so.",
+      "applicability": "Training"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "Less herbicide on non-target ground",
+      "measure": "As-applied versus broadcast",
+      "beneficiary": "Sponsor and agronomist",
+      "timing": "Season close"
+    },
+    {
+      "name": "A record of where chemical went",
+      "measure": "Operations Center map",
+      "beneficiary": "Records owner",
+      "timing": "Each block"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "What Deere published on 18 September 2024",
+      "body": "See & Spray, introduced in 2021, uses boom-mounted cameras. Onboard processors decide whether a plant is crop or weed and command individual ExactApply nozzles. The 18 September 2024 release says the system saved an estimated 8 million gallons of herbicide mix on more than 1 million acres in the 2024 season, equal in the company's comparison to 12 Olympic-sized pools over an area larger than Rhode Island. Average savings were 59 percent on corn, soybean, and cotton in the United States. Cameras scan over 2,100 square feet per second at up to 15 mph. The technology is described as available for corn, soybean, cotton, and fallow.\n\nCustomers pay for the acres where it is used. The release says that in 2025 Deere would introduce an Application Savings Guarantee so customers pay for the technology when there is an application saving. Deere also cites an Iowa State University study with 76 percent average product savings and 15.70 US dollars per acre on the study fields. Those are two different published figures. The release says individual results vary with field conditions, weed pressure, and settings."
+    },
+    {
+      "section": "delivery",
+      "heading": "How a farm PM files it",
+      "body": "Write a claim card with Deere's date, acres, gallons, and 59 percent. Run the season. File the maps. The farm's percentage is whatever the maps compute. Do not average the farm into the press release."
+    }
+  ]
+}

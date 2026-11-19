@@ -1,0 +1,722 @@
+{
+  "caseCode": "IND-SIE-COP-001",
+  "slug": "siemens-industrial-copilot",
+  "title": "Siemens Industrial Copilot for automation engineering",
+  "titleEn": "Siemens Industrial Copilot for automation engineering",
+  "vendor": "Siemens",
+  "recordType": "public_announcement",
+  "fidelity": "primary_source",
+  "fidelityNote": "Summary of the Siemens and Microsoft release of 31 October 2023. The weeks-to-minutes statement and the Schaeffler adoption note are the companies' published claims, not an independent audit. No customer downtime percentage is stated in that release.",
+  "status": "published",
+  "confidentiality": "public",
+  "executiveSummary": "Siemens and Microsoft introduced Siemens Industrial Copilot, a generative assistant that drafts, optimizes, and debugs automation code from Siemens Xcelerator data plus Azure OpenAI Service. The release says a task that previously took weeks can be shortened to minutes, that customer data stays under customer control and is not used to train the underlying models, and that Schaeffler is an early adopter. This record is the PM shell for copying that pattern: a bounded engineering pilot, a human accept/reject step on generated code, and a separate decision before any plant downtime claim.",
+  "problemStatement": "Automation engineers write and debug PLC and robot code by hand, and simulation cycles stretch across weeks. Maintenance staff need repair steps and simulation access without waiting on a specialist. A general chatbot does not see the plant's automation project, and sending that project to a model trainer would break the customer's data boundary.",
+  "opportunity": "The published copilot reads automation and simulation information from Siemens Xcelerator and uses Azure OpenAI Service. Natural language is the interface for code generation and for maintenance instructions. The same release says further copilots are planned for manufacturing, infrastructure, transportation, and healthcare, and that the Teamcenter app for Microsoft Teams was to become generally available in December 2023.",
+  "strategicAlignment": "Put generative assistance on the engineering path first, where a wrong line of code can be reviewed before it reaches a robot. Operations use, including any downtime goal, stays a later decision.",
+  "businessValue": "Engineers spend review time instead of blank-page time on pilot cells. The release's weeks-to-minutes claim is the vendor's design claim. A plant should measure its own before-and-after on a frozen set of code tasks and should not reprint the vendor sentence as its result.",
+  "industry": "manufacturing",
+  "industryLabel": "Manufacturing",
+  "customerSegment": "industrial",
+  "customerSegmentLabel": "Discrete manufacturing",
+  "region": "Global",
+  "regulatoryContext": [
+    "IEC 62443",
+    "EU AI Act obligations for high-risk industrial uses",
+    "Customer data-processing terms"
+  ],
+  "companySizeBand": "Plant or multi-plant manufacturer",
+  "deploymentModel": "hybrid",
+  "deploymentModelLabel": "Siemens Xcelerator with Azure OpenAI Service",
+  "architecturePattern": "Automation and simulation context from Siemens Xcelerator, generation through Azure OpenAI Service, customer-controlled data that is not used to train the foundation models, and a human accept or reject step before generated code is committed.",
+  "complexity": "high",
+  "planningBandNote": "Amounts and durations below are planning bands for a similar program. They are not the publisher's result and not a price quote.",
+  "dealSizeLowUsd": 400000,
+  "dealSizeHighUsd": 2000000,
+  "dealSizeBand": "L",
+  "leadTimeWeeksLow": 6,
+  "leadTimeWeeksHigh": 12,
+  "durationWeeksLow": 12,
+  "durationWeeksHigh": 24,
+  "ciscoSolutions": [
+    "Siemens Industrial Copilot",
+    "Siemens Xcelerator",
+    "Teamcenter"
+  ],
+  "partnerTechnologies": [
+    "Microsoft Azure OpenAI Service",
+    "Microsoft Teams"
+  ],
+  "aiCapabilities": [
+    "Natural-language automation code",
+    "Code optimization and debug",
+    "Simulation assistance",
+    "Repair-instruction assistant"
+  ],
+  "securityCapabilities": [
+    "Customer data not used for model training",
+    "Human acceptance of generated code",
+    "Separation of engineering and operations tenants"
+  ],
+  "aliases": [
+    "Siemens Industrial Copilot",
+    "PLC",
+    "Schaeffler",
+    "Xcelerator",
+    "factory automation",
+    "generative code"
+  ],
+  "scopeIn": [
+    "One automation cell and one robot or PLC family",
+    "A frozen set of code tasks with a human baseline",
+    "Accept or reject log on every generated block",
+    "A data-processing check that plant projects are not used to train the foundation model"
+  ],
+  "scopeOut": [
+    "Unattended download of generated code to a production controller",
+    "A published downtime percentage for Schaeffler or any other plant",
+    "Copilots for healthcare or transportation in the same charter"
+  ],
+  "assumptions": [
+    {
+      "statement": "The plant can open a non-production engineering project in Xcelerator.",
+      "ownerRole": "Automation lead",
+      "status": "open"
+    },
+    {
+      "statement": "Legal can confirm the Azure OpenAI data terms for this tenant.",
+      "ownerRole": "Legal",
+      "status": "open"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "technical",
+      "statement": "Generated code does not reach a production controller until an automation engineer accepts it."
+    },
+    {
+      "type": "contractual",
+      "statement": "The pilot contract states that customer project data is not used to train the underlying models."
+    }
+  ],
+  "successCriteria": [
+    "Every generated block in the pilot has an accept or reject record",
+    "The task-time baseline and the pilot measurement use the same frozen task list",
+    "The data-flow memo names what leaves the plant tenant"
+  ],
+  "outcomeType": "published",
+  "outcomes": [
+    "Publisher claim, Siemens and Microsoft, 31 October 2023: the copilot generates, optimizes, and debugs complex automation code and shortens a task that previously took weeks to minutes.",
+    "Publisher claim, same release: customers keep control of their data, and that data is not used to train the underlying models.",
+    "Publisher fact, same release: Schaeffler is an early adopter and uses generative AI so engineers can generate code for industrial automation such as robots. The release says Schaeffler intends to use the copilot to reduce downtime. It does not publish a measured downtime result."
+  ],
+  "sourceUrls": [
+    {
+      "title": "Siemens and Microsoft partner to drive cross-industry AI adoption",
+      "url": "https://press.siemens.com/global/en/pressrelease/siemens-and-microsoft-partner-drive-cross-industry-ai-adoption",
+      "publisher": "Siemens",
+      "publishedOn": "2023-10-31"
+    },
+    {
+      "title": "Siemens and Microsoft partner to drive cross-industry AI adoption",
+      "url": "https://news.microsoft.com/source/2023/10/31/siemens-and-microsoft-partner-to-drive-cross-industry-ai-adoption/",
+      "publisher": "Microsoft",
+      "publishedOn": "2023-10-31"
+    }
+  ],
+  "videoUrl": null,
+  "videoTitle": null,
+  "publishedOn": "2023-10-31",
+  "stakeholders": [
+    {
+      "roleCode": "SPONSOR",
+      "roleName": "Operations sponsor",
+      "organization": "Customer",
+      "interest": "Engineering cycle time without an unreviewed download to the line",
+      "influence": "high",
+      "engagement": "Charter and the production-download decision",
+      "cadence": "Monthly"
+    },
+    {
+      "roleCode": "PM",
+      "roleName": "Customer PM",
+      "organization": "Customer",
+      "interest": "One cell, one task list, one accept log",
+      "influence": "high",
+      "engagement": "Schedule and issues",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "AUTO",
+      "roleName": "Automation lead",
+      "organization": "Customer",
+      "interest": "PLC and robot code quality",
+      "influence": "high",
+      "engagement": "Task list and accept or reject",
+      "cadence": "Weekly"
+    },
+    {
+      "roleCode": "OT",
+      "roleName": "OT security",
+      "organization": "Customer",
+      "interest": "No path from the copilot tenant into the production controller",
+      "influence": "high",
+      "engagement": "Network and identity boundary",
+      "cadence": "At gates"
+    },
+    {
+      "roleCode": "LEGAL",
+      "roleName": "Legal",
+      "organization": "Customer",
+      "interest": "Training-data and retention terms",
+      "influence": "medium",
+      "engagement": "Contract review",
+      "cadence": "At start"
+    },
+    {
+      "roleCode": "MAINT",
+      "roleName": "Maintenance lead",
+      "organization": "Customer",
+      "interest": "Whether repair instructions are in scope after engineering",
+      "influence": "medium",
+      "engagement": "Scope challenge",
+      "cadence": "Milestone"
+    }
+  ],
+  "requirements": [
+    {
+      "reqCode": "REQ-01",
+      "knowledgeArea": "scope",
+      "priority": "must",
+      "statement": "The pilot cell, controller family, and task list are frozen before the first prompt.",
+      "acceptance": "Named cell and task list",
+      "source": "Siemens release, engineering use"
+    },
+    {
+      "reqCode": "REQ-02",
+      "knowledgeArea": "quality",
+      "priority": "must",
+      "statement": "An automation engineer accepts or rejects every generated block.",
+      "acceptance": "Log with a person and a timestamp",
+      "source": "Human-machine collaboration claim"
+    },
+    {
+      "reqCode": "REQ-03",
+      "knowledgeArea": "ai_governance",
+      "priority": "must",
+      "statement": "The data memo states that plant projects are not used to train the foundation model.",
+      "acceptance": "Signed memo matching the contract",
+      "source": "31 October 2023 release"
+    }
+  ],
+  "raci": [
+    {
+      "activity": "Freeze the pilot cell and task list",
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "responsible": [
+        "Automation lead"
+      ],
+      "accountable": "Operations sponsor",
+      "consulted": [
+        "Customer PM",
+        "OT security"
+      ],
+      "informed": [
+        "Maintenance lead"
+      ]
+    },
+    {
+      "activity": "Confirm data terms",
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "Legal"
+      ],
+      "accountable": "Operations sponsor",
+      "consulted": [
+        "OT security"
+      ],
+      "informed": [
+        "Customer PM"
+      ]
+    },
+    {
+      "activity": "Open the engineering tenant",
+      "phase": "plan",
+      "knowledgeArea": "integration",
+      "responsible": [
+        "Automation lead"
+      ],
+      "accountable": "Customer PM",
+      "consulted": [
+        "OT security"
+      ],
+      "informed": [
+        "Operations sponsor"
+      ]
+    },
+    {
+      "activity": "Run the frozen tasks and log accept or reject",
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "responsible": [
+        "Automation lead"
+      ],
+      "accountable": "Automation lead",
+      "consulted": [
+        "Customer PM"
+      ],
+      "informed": [
+        "Operations sponsor"
+      ]
+    },
+    {
+      "activity": "Measure task time on the same list",
+      "phase": "monitor",
+      "knowledgeArea": "schedule",
+      "responsible": [
+        "Customer PM"
+      ],
+      "accountable": "Automation lead",
+      "consulted": [
+        "Operations sponsor"
+      ],
+      "informed": [
+        "Maintenance lead"
+      ]
+    },
+    {
+      "activity": "Decide whether generated code may be downloaded",
+      "phase": "close",
+      "knowledgeArea": "risk",
+      "responsible": [
+        "OT security"
+      ],
+      "accountable": "Operations sponsor",
+      "consulted": [
+        "Automation lead",
+        "Legal"
+      ],
+      "informed": [
+        "Customer PM"
+      ]
+    }
+  ],
+  "wbs": [
+    {
+      "wbsCode": "1",
+      "parentCode": null,
+      "phase": "initiate",
+      "knowledgeArea": "scope",
+      "name": "Cell charter",
+      "description": "Name the cell, the controller family, and the frozen tasks.",
+      "deliverable": "Charter",
+      "ownerRole": "Customer PM",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [],
+      "acceptance": "Sponsor signs the boundary",
+      "milestone": true,
+      "sort": 10
+    },
+    {
+      "wbsCode": "2.1",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "name": "Data memo",
+      "description": "Map what the copilot can read and what is excluded from model training.",
+      "deliverable": "Data memo",
+      "ownerRole": "Legal",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Matches the contract",
+      "milestone": false,
+      "sort": 20
+    },
+    {
+      "wbsCode": "2.2",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "security",
+      "name": "Tenant boundary",
+      "description": "Keep the engineering tenant off the production controller network.",
+      "deliverable": "Boundary sketch",
+      "ownerRole": "OT security",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "No production route",
+      "milestone": false,
+      "sort": 30
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "schedule",
+      "name": "Baseline the tasks",
+      "description": "Time the frozen tasks under the current manual method.",
+      "deliverable": "Baseline sheet",
+      "ownerRole": "Automation lead",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 8,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "Same task IDs as the pilot",
+      "milestone": false,
+      "sort": 40
+    },
+    {
+      "wbsCode": "3.1",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Guided generation",
+      "description": "Generate, optimize, and debug code for the frozen tasks.",
+      "deliverable": "Accept log",
+      "ownerRole": "Automation lead",
+      "durationDaysLow": 15,
+      "durationDaysHigh": 25,
+      "predecessors": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "acceptance": "Every block has a decision",
+      "milestone": false,
+      "sort": 50
+    },
+    {
+      "wbsCode": "3.2",
+      "parentCode": null,
+      "phase": "execute",
+      "knowledgeArea": "quality",
+      "name": "Simulation compare",
+      "description": "Compare simulation effort on the same tasks. Do not copy the vendor's weeks-to-minutes sentence into the result.",
+      "deliverable": "Timing sheet",
+      "ownerRole": "Automation lead",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
+      "predecessors": [
+        "3.1"
+      ],
+      "acceptance": "Times are labeled as this plant's measurement",
+      "milestone": false,
+      "sort": 60
+    },
+    {
+      "wbsCode": "4",
+      "parentCode": null,
+      "phase": "monitor",
+      "knowledgeArea": "communications",
+      "name": "Sponsor readout",
+      "description": "Show the accept rate and the plant's own times beside the vendor claim.",
+      "deliverable": "Readout",
+      "ownerRole": "Customer PM",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [
+        "3.2"
+      ],
+      "acceptance": "Vendor claim and plant measurement are separate",
+      "milestone": false,
+      "sort": 70
+    },
+    {
+      "wbsCode": "5",
+      "parentCode": null,
+      "phase": "close",
+      "knowledgeArea": "risk",
+      "name": "Download decision",
+      "description": "Decide whether any accepted block may move toward a production controller.",
+      "deliverable": "Decision",
+      "ownerRole": "Operations sponsor",
+      "durationDaysLow": 3,
+      "durationDaysHigh": 5,
+      "predecessors": [
+        "4"
+      ],
+      "acceptance": "Default remains no download",
+      "milestone": true,
+      "sort": 80
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Charter",
+      "phase": "initiate",
+      "weekOffsetLow": 2,
+      "weekOffsetHigh": 3,
+      "criteria": "Cell and task list frozen"
+    },
+    {
+      "name": "Baseline",
+      "phase": "plan",
+      "weekOffsetLow": 4,
+      "weekOffsetHigh": 6,
+      "criteria": "Manual times recorded"
+    },
+    {
+      "name": "Accept log",
+      "phase": "execute",
+      "weekOffsetLow": 8,
+      "weekOffsetHigh": 16,
+      "criteria": "Every block decided"
+    },
+    {
+      "name": "Download decision",
+      "phase": "close",
+      "weekOffsetLow": 12,
+      "weekOffsetHigh": 24,
+      "criteria": "Separate from the vendor claim"
+    }
+  ],
+  "risks": [
+    {
+      "riskCode": "R1",
+      "title": "Generated code is downloaded because the demo looked finished",
+      "description": "A simulation is not a production release.",
+      "category": "technical",
+      "probability": 3,
+      "impact": 5,
+      "response": "mitigate",
+      "mitigation": "The production route stays closed until the sponsor's download decision.",
+      "contingency": "Revoke the engineering tenant's path to the controller.",
+      "ownerRole": "OT security",
+      "trigger": "A download is requested before the close gate"
+    },
+    {
+      "riskCode": "R2",
+      "title": "The weeks-to-minutes sentence is pasted into a customer result",
+      "description": "That sentence is the vendors' claim about the class of task.",
+      "category": "communications",
+      "probability": 4,
+      "impact": 3,
+      "response": "avoid",
+      "mitigation": "The readout has two columns: vendor claim and this plant's measurement.",
+      "contingency": "Remove the sentence from the external draft.",
+      "ownerRole": "Customer PM",
+      "trigger": "A draft quotes minutes without the plant's sheet"
+    },
+    {
+      "riskCode": "R3",
+      "title": "Plant projects are retained for model training",
+      "description": "The release says customer data is not used to train the underlying models. The contract has to say the same.",
+      "category": "ai_governance",
+      "probability": 2,
+      "impact": 5,
+      "response": "mitigate",
+      "mitigation": "Legal compares the order form with the 31 October 2023 statement before prompts start.",
+      "contingency": "Stop the pilot if the terms differ.",
+      "ownerRole": "Legal",
+      "trigger": "A term allows training on customer content"
+    },
+    {
+      "riskCode": "R4",
+      "title": "Maintenance instructions are pulled into the engineering pilot",
+      "description": "The release also describes repair help. Mixing it in hides whether code generation worked.",
+      "category": "scope",
+      "probability": 3,
+      "impact": 2,
+      "response": "mitigate",
+      "mitigation": "Maintenance is a follow-on charter.",
+      "contingency": "Park those prompts.",
+      "ownerRole": "Automation lead",
+      "trigger": "A maintenance scenario is added to the task list"
+    }
+  ],
+  "issues": [
+    {
+      "issueCode": "I1",
+      "title": "Which controller family is in the first cell",
+      "status": "open",
+      "ownerRole": "Automation lead",
+      "nextAction": "Pick one PLC or robot family at the charter workshop"
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Accept or reject coverage",
+      "baseline": "No log",
+      "target": "100 percent of generated blocks in the pilot",
+      "unit": "percent",
+      "method": "Count of blocks with a named engineer. Not a quality score.",
+      "ownerRole": "Automation lead",
+      "cadence": "Weekly"
+    },
+    {
+      "name": "Task time",
+      "baseline": "Manual timing on the frozen list",
+      "target": "A measured delta on that same list",
+      "unit": "hours",
+      "method": "Plant measurement. Do not substitute the vendor's weeks-to-minutes claim.",
+      "ownerRole": "Customer PM",
+      "cadence": "End of execute"
+    },
+    {
+      "name": "Production downloads",
+      "baseline": "Not allowed",
+      "target": "Zero before the close decision",
+      "unit": "count",
+      "method": "Change log",
+      "ownerRole": "OT security",
+      "cadence": "Weekly"
+    }
+  ],
+  "costs": [
+    {
+      "category": "software",
+      "name": "Copilot and Xcelerator pilot entitlements",
+      "costType": "opex",
+      "lowUsd": 150000,
+      "highUsd": 700000,
+      "notes": "Planning band. Confirm the SKU."
+    },
+    {
+      "category": "software",
+      "name": "Azure OpenAI consumption",
+      "costType": "opex",
+      "lowUsd": 20000,
+      "highUsd": 150000,
+      "notes": "Planning band for a single cell."
+    },
+    {
+      "category": "services",
+      "name": "Engineering support for the first cell",
+      "costType": "opex",
+      "lowUsd": 80000,
+      "highUsd": 250000,
+      "notes": "Internal automation staff can replace part of this."
+    }
+  ],
+  "qualityGates": [
+    {
+      "phase": "plan",
+      "name": "Data gate",
+      "criteria": "The memo matches the contract on training use.",
+      "owner": "LEGAL",
+      "ownerRole": "Legal"
+    },
+    {
+      "phase": "execute",
+      "name": "Accept gate",
+      "criteria": "The accept log has no blank rows.",
+      "owner": "AUTO",
+      "ownerRole": "Automation lead"
+    },
+    {
+      "phase": "close",
+      "name": "Download gate",
+      "criteria": "The sponsor has written yes or no. Silence is no.",
+      "owner": "SPONSOR",
+      "ownerRole": "Operations sponsor"
+    }
+  ],
+  "communications": [
+    {
+      "audience": "Engineers",
+      "message": "Generated code is a draft until you accept it",
+      "channel": "Stand-up",
+      "cadence": "Weekly",
+      "owner": "AUTO",
+      "ownerRole": "Automation lead"
+    },
+    {
+      "audience": "Sponsor",
+      "message": "Vendor claim and plant times in separate columns",
+      "channel": "Readout",
+      "cadence": "At the execute gate",
+      "owner": "PM",
+      "ownerRole": "Customer PM"
+    },
+    {
+      "audience": "Maintenance",
+      "message": "Repair help is not in this charter",
+      "channel": "Note",
+      "cadence": "At charter",
+      "owner": "PM",
+      "ownerRole": "Customer PM"
+    }
+  ],
+  "procurement": [
+    {
+      "item": "Siemens Industrial Copilot pilot",
+      "vendorType": "Siemens",
+      "strategy": "One cell, named users",
+      "leadWeeks": 8,
+      "notes": "Do not buy a plant-wide entitlement in the pilot order"
+    },
+    {
+      "item": "Azure OpenAI Service",
+      "vendorType": "Microsoft",
+      "strategy": "Existing tenant if the data terms match",
+      "leadWeeks": 4,
+      "notes": "Legal gate before the first prompt"
+    }
+  ],
+  "decisions": [
+    {
+      "decisionCode": "D1",
+      "title": "Production download",
+      "choice": "Not allowed during the pilot.",
+      "rationale": "The release demonstrates engineering assistance, not an unattended controller change.",
+      "owner": "SPONSOR",
+      "ownerRole": "Operations sponsor",
+      "date": null
+    },
+    {
+      "decisionCode": "D2",
+      "title": "How the weeks-to-minutes sentence is used",
+      "choice": "Cite it as Siemens and Microsoft's claim. Report this plant's times separately.",
+      "rationale": "The sentence is not this plant's measurement.",
+      "owner": "PM",
+      "ownerRole": "Customer PM",
+      "date": null
+    }
+  ],
+  "lessons": [
+    {
+      "theme": "Claims",
+      "statement": "A vendor sentence about weeks and minutes is a design claim. The plant's sheet is the result.",
+      "applicability": "Any copilot pilot"
+    },
+    {
+      "theme": "Early adopter",
+      "statement": "Naming Schaeffler as an early adopter is a published fact. Their downtime goal is an intention in the release, not a measured outcome.",
+      "applicability": "Quotes in a steering deck"
+    }
+  ],
+  "benefits": [
+    {
+      "name": "Reviewed drafts",
+      "measure": "Accept log",
+      "beneficiary": "Automation engineers",
+      "timing": "During execute"
+    },
+    {
+      "name": "A plant-specific time comparison",
+      "measure": "Frozen task list",
+      "beneficiary": "Sponsor",
+      "timing": "At close"
+    }
+  ],
+  "narrative": [
+    {
+      "section": "architecture",
+      "heading": "What the October 2023 release actually says",
+      "body": "On 31 October 2023 Siemens and Microsoft introduced Siemens Industrial Copilot. It is a generative assistant for human-machine collaboration in manufacturing. Users generate, optimize, and debug complex automation code. The companies say this shortens a task that previously took weeks to minutes. The copilot ingests automation and process-simulation information from Siemens Xcelerator and uses Azure OpenAI Service. Customers maintain control of their data, and that data is not used to train the underlying models.\n\nMaintenance staff can be assisted with repair instructions, and engineers with simulation tools, using natural language. Further copilots are planned for manufacturing, infrastructure, transportation, and healthcare. Schaeffler is named as an early adopter. The release says Schaeffler's engineers generate code for systems such as robots, and that Schaeffler intends to use the copilot to reduce downtime. It does not publish a downtime percentage.\n\nThe Teamcenter app for Microsoft Teams was scheduled for general availability in December 2023. That app is a related collaboration release, not the code-generation pilot in this record."
+    },
+    {
+      "section": "delivery",
+      "heading": "How a PM uses the release",
+      "body": "Freeze one cell and one task list. Time the manual method. Run the copilot. Require an engineer to accept or reject every block. Keep the production controller unreachable until a separate decision. When someone wants the weeks-to-minutes sentence in a customer story, point at the Siemens release and then show this plant's sheet."
+    }
+  ]
+}

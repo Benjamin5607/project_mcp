@@ -1,34 +1,35 @@
 {
   "caseCode": "CSCO-WX-AIM-001",
   "slug": "webex-specialized-models",
-  "title": "Webex AI 특화 모델과 보안 제품 LLM 적용 거버넌스",
+  "title": "Governance plan for Webex specialized models and security-product LLM use",
   "titleEn": "Governance plan for Webex specialized models and security-product LLM use",
+  "vendor": "Cisco",
   "recordType": "reference_scenario",
   "fidelity": "public_composite",
-  "fidelityNote": "노이즈 제거, 가상 배경, 제스처, 책임 있는 AI 원칙은 Cisco Live와 AI 투명성 문서의 공개 설명이다. 보안 제품 LLM은 XDR 백서가 공개한 프롬프트 튜닝·전문가 평가 패턴이다. 고객 데이터로 기초 모형을 학습하는 절차는 공개되어 있지 않아 이 사례에 넣지 않았다. 일정과 금액은 협업 프로그램 계획 밴드다.",
+  "fidelityNote": "Noise removal, virtual backgrounds, gestures, and the responsible-AI notes are public Cisco Live and transparency descriptions. The security-product LLM pattern is the prompt-tuning and expert-review pattern in the public XDR material. A procedure for training a foundation model on customer content is not public and is not in this case. Amounts and durations are planning bands.",
   "status": "published",
   "confidentiality": "public",
-  "executiveSummary": "글로벌 협업 환경을 Webex AI 기능으로 열 때, 기능별로 데이터가 단말에 남는지 클라우드로 가는지, 학습에 고객 내용이 쓰이는지를 먼저 구분하는 프로그램입니다. 노이즈 제거는 단말 처리로 공개되어 있고, 가상 배경은 다양한 조명·인구 집단으로 학습하며 편향을 보완했다고 Cisco Live에서 설명합니다. 제스처 인식은 동의한 내부 데이터의 모형으로 설명됩니다. 보안 제품의 LLM은 고객 내용으로 기초 모형을 다시 학습하는 일이 아니라, XDR처럼 사건 요약·보고서 초안을 위해 프롬프트를 조정하고 전문가가 평가하는 패턴으로 계획합니다.",
-  "problemStatement": "협업 AI를 한 번에 켜면 개인정보, 편향, 외부 LLM으로 나가는 회의 내용이 한 위험으로 섞인다. 보안 조직이 자체 LLM을 만들겠다고 하면 학습 데이터 권리와 평가 방법이 없는 프로젝트가 된다. 기능마다 데이터 흐름이 다른데 정책은 하나뿐이다.",
-  "opportunity": "Cisco는 기능별로 AI Impact Assessment, 학습 데이터 검토, 단말 처리, 보안 LLM 프록시를 공개 자료에서 구분해 설명한다. PM은 그 구분을 요구사항과 시험 항목으로 옮기면 된다. 기본값은 고객 내용으로 모형을 학습하지 않는 것이다.",
-  "strategicAlignment": "협업 생산성과 보안 운영 자동화를 한 거버넌스 위원회에서 보되, 기술 트랙은 나눈다.",
-  "businessValue": "켜도 되는 기능과 추가 검토가 필요한 기능이 목록으로 남는다. 보안 LLM은 평가 셋이 있기 전에는 운영 자동 조치에 연결하지 않는다.",
+  "executiveSummary": "Turning on Webex AI features needs a per-feature data-flow table before a single policy. Cisco's public notes say noise removal runs on the device, virtual backgrounds were trained across lighting and groups and then tested for bias, and gesture recognition uses a model from consented internal data. Meeting summaries and a security-product LLM are a different path: prompts, a proxy, and a person. The default is that customer content is not used to train the model.",
+  "problemStatement": "Switching collaboration AI on as one feature mixes privacy, bias, and meeting content leaving for an external model. A security team that says it will build its own LLM then has a project with no data rights and no evaluation. Each feature moves data differently, and the policy is still one page.",
+  "opportunity": "Cisco's public material separates, by feature, an AI impact assessment, training-data review, on-device processing, and a security LLM proxy. A PM can turn that separation into requirements and tests.",
+  "strategicAlignment": "Features with a published on-device path can be piloted first. Anything that sends content to a model waits for the data-flow row and the impact assessment.",
+  "businessValue": "The organization keeps a list of features that may be on and features that need more review. The security LLM is not wired to an automatic action before an evaluation set exists.",
   "industry": "workplace",
-  "industryLabel": "협업",
+  "industryLabel": "Collaboration",
   "customerSegment": "enterprise",
-  "customerSegmentLabel": "대기업 협업·보안",
+  "customerSegmentLabel": "Enterprise",
   "region": "Global",
   "regulatoryContext": [
-    "개인정보보호법",
-    "Cisco Responsible AI 원칙",
-    "AI Impact Assessment"
+    "Privacy notice",
+    "Biometric-information caution",
+    "AI impact assessment"
   ],
-  "companySizeBand": "5000+",
+  "companySizeBand": "Enterprise",
   "deploymentModel": "hybrid",
-  "deploymentModelLabel": "단말 처리와 통제된 클라우드 LLM",
-  "architecturePattern": "노이즈 제거는 단말. 가상 배경은 단말 추론과 로컬 사용자 이미지. 회의 요약 등 LLM은 입력·출력 가드레일과 보안 프록시를 거치며 학습에 저장하지 않는다는 공개 설명. 보안 제품 LLM은 사건 데이터에 대한 조정된 프롬프트와 사람 검토.",
+  "deploymentModelLabel": "On-device processing and a controlled cloud LLM",
+  "architecturePattern": "Noise removal on the device. Virtual backgrounds as on-device inference plus a local user image. Meeting-summary LLMs pass input and output guardrails and a security proxy, and the public note says content is not kept for training. A security-product LLM is a tuned prompt on incident data plus human review.",
   "complexity": "medium",
-  "planningBandNote": "협업 구독과 거버넌스 프로그램의 계획 밴드입니다. 모형 학습 비용이 아닙니다.",
+  "planningBandNote": "Amounts and durations are planning bands for a collaboration program. They are not a list price.",
   "dealSizeLowUsd": 150000,
   "dealSizeHighUsd": 800000,
   "dealSizeBand": "M",
@@ -37,78 +38,74 @@
   "durationWeeksLow": 10,
   "durationWeeksHigh": 20,
   "ciscoSolutions": [
-    "Cisco Webex",
+    "Webex",
     "Webex AI",
-    "Cisco XDR"
+    "Cisco AI security proxy"
   ],
   "partnerTechnologies": [],
   "aiCapabilities": [
-    "단말 노이즈 제거",
-    "가상 배경",
-    "제스처 인식",
-    "회의 LLM 요약",
-    "보안 사건 요약 프롬프트"
+    "On-device noise removal",
+    "Virtual backgrounds",
+    "Gesture recognition",
+    "Meeting LLM summary",
+    "Security incident summary prompt"
   ],
   "securityCapabilities": [
-    "고객 내용 비학습 기본값",
-    "입력·출력 가드레일",
-    "사람 평가"
+    "Per-feature data flow",
+    "No training on customer content by default",
+    "Human review before a security action"
   ],
   "aliases": [
     "Webex",
-    "웹엑스",
-    "노이즈",
-    "noise",
-    "배경",
-    "제스처",
+    "noise removal",
+    "virtual background",
     "gesture",
     "LLM",
-    "학습",
-    "편향"
+    "bias"
   ],
   "scopeIn": [
-    "기능별 데이터 흐름표",
-    "편향·음역 보완이 공개된 기능의 수용 테스트",
-    "사용자 공지와 관리자 설정",
-    "보안 LLM은 프롬프트 버전과 평가 셋까지"
+    "A data-flow row per feature",
+    "An acceptance test where Cisco has published a bias or audio-range gap",
+    "User notice and administrator settings",
+    "For the security LLM, a prompt version and an evaluation set"
   ],
   "scopeOut": [
-    "고객 회의·티켓으로 기초 모형 추가 학습",
-    "제스처 기능의 수어 통역 용도",
-    "단말 밖에서의 제스처 모형 재사용"
+    "Training a foundation model on customer meetings",
+    "One policy that covers on-device and cloud features",
+    "Automatic containment from a security summary"
   ],
   "assumptions": [
     {
-      "statement": "관리자가 기능별로 켤 수 있는 Webex 컨트롤이 있다.",
-      "ownerRole": "협업 서비스 오너",
+      "statement": "The security LLM track shares the operating model with the XDR case and keeps its own schedule.",
+      "ownerRole": "Customer PM",
       "status": "open"
     },
     {
-      "statement": "보안 LLM 트랙은 XDR 사례의 운영 모델과 위원회만 공유하고 일정은 분리한다.",
-      "ownerRole": "고객 PM",
+      "statement": "Privacy will review the impact assessment before a cloud feature is enabled.",
+      "ownerRole": "Privacy",
       "status": "open"
     }
   ],
   "constraints": [
     {
-      "type": "privacy",
-      "statement": "기본 정책은 고객 내용을 모형 학습에 쓰지 않는 것이다. 예외는 법무 승인 없이 열지 않는다."
+      "type": "contractual",
+      "statement": "The default written into the pilot is that customer content is not used to train the model."
     },
     {
       "type": "technical",
-      "statement": "사용자 지정 배경 이미지는 클라우드에 올리지 않는 제품 동작을 교육에 그대로 적는다."
+      "statement": "A feature with no data-flow row stays off."
     }
   ],
   "successCriteria": [
-    "기능별 데이터 흐름표가 승인된다",
-    "편향·음역 수용 테스트 기록이 있다",
-    "보안 LLM은 평가 셋 없이 자동 조치에 연결되지 않는다"
+    "The per-feature data-flow table is approved",
+    "Bias and audio-range acceptance tests are recorded where Cisco published a gap",
+    "The security LLM is not connected to an automatic action without an evaluation set"
   ],
   "outcomeType": "published",
   "outcomes": [
-    "공개 설명: 노이즈 제거 처리는 단말에서 이루어져 해당 기능의 클라우드 전송 위험이 없다고 Cisco Live에서 설명",
-    "공개 설명: 초기 가상 배경은 머리 모양·피부 톤·조명에서, 노이즈 제거는 높은 음역에서 성능 차이가 있어 데이터와 테스트로 보완",
-    "공개 설명: Webex는 기본적으로 고객 내용으로 모형을 학습하지 않고, 기성 데이터·내부 데이터·합성 데이터를 쓰며 기능마다 AI Impact Assessment를 한다"
+    "Public description: Cisco Live material says noise-removal processing happens on the device, so that feature does not send the audio to the cloud.",
+    "Public description: early virtual backgrounds varied by hairstyle, skin tone, and lighting, and noise removal varied in the higher register. Cisco says later data and tests closed the gaps.",
+    "Public description: Webex does not by default train models on customer content. It uses licensed, internal, and synthetic data, and runs an AI impact assessment per feature."
   ],
   "sourceUrls": [
     {
@@ -121,13 +118,13 @@
       "title": "Cisco Live BRKCOL-1871 Cognitive Collaboration",
       "url": "https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2023/pdf/BRKCOL-1871.pdf",
       "publisher": "Cisco Live",
-      "publishedOn": "2023-01-01"
+      "publishedOn": null
     },
     {
       "title": "Cisco Live BRKCOL-2330 responsible AI examples",
       "url": "https://www.ciscolive.com/c/dam/r/ciscolive/global-event/docs/2023/pdf/BRKCOL-2330.pdf",
       "publisher": "Cisco Live",
-      "publishedOn": "2023-01-01"
+      "publishedOn": null
     },
     {
       "title": "Virtual backgrounds administration",
@@ -148,193 +145,177 @@
   "stakeholders": [
     {
       "roleCode": "SPONSOR",
-      "roleName": "협업·보안 스폰서",
-      "organization": "고객",
-      "interest": "기능을 켜되 학습 데이터 예외를 만들지 않음",
+      "roleName": "Collaboration sponsor",
+      "organization": "Customer",
+      "interest": "Features turn on only with a data-flow row",
       "influence": "high",
-      "engagement": "예외 승인",
-      "cadence": "월간"
+      "engagement": "The on-or-review list",
+      "cadence": "Monthly"
     },
     {
       "roleCode": "PM",
-      "roleName": "고객 PM",
-      "organization": "고객",
-      "interest": "기능 트랙이 섞이지 않게",
+      "roleName": "Customer PM",
+      "organization": "Customer",
+      "interest": "One table, not one slogan",
       "influence": "high",
-      "engagement": "데이터 흐름표",
-      "cadence": "주간"
+      "engagement": "Schedule",
+      "cadence": "Weekly"
     },
     {
       "roleCode": "COLLAB",
-      "roleName": "협업 서비스 오너",
-      "organization": "고객",
-      "interest": "관리자 설정과 교육",
+      "roleName": "Collaboration admin",
+      "organization": "Customer",
+      "interest": "Administrator settings match the table",
       "influence": "high",
-      "engagement": "롤아웃",
-      "cadence": "주간"
+      "engagement": "Feature flags",
+      "cadence": "Weekly"
     },
     {
       "roleCode": "PRIV",
-      "roleName": "개인정보",
-      "organization": "고객",
-      "interest": "고객 내용과 생체 정보",
+      "roleName": "Privacy",
+      "organization": "Customer",
+      "interest": "Customer content and biometric caution",
       "influence": "high",
-      "engagement": "영향평가 검토",
-      "cadence": "격주"
+      "engagement": "Impact assessment",
+      "cadence": "Fortnightly"
     },
     {
       "roleCode": "SOC",
-      "roleName": "보안 운영 리드",
-      "organization": "고객",
-      "interest": "LLM이 자동 조치를 하지 않을 것",
+      "roleName": "Security operations lead",
+      "organization": "Customer",
+      "interest": "The LLM does not take an automatic action",
       "influence": "medium",
-      "engagement": "평가 셋",
-      "cadence": "격주"
+      "engagement": "Evaluation set",
+      "cadence": "Fortnightly"
     },
     {
-      "roleCode": "HR",
-      "roleName": "변경 커뮤니케이션",
-      "organization": "고객",
-      "interest": "직원 고지",
+      "roleCode": "LEGAL",
+      "roleName": "Legal",
+      "organization": "Customer",
+      "interest": "The notice matches the data flow",
       "influence": "medium",
-      "engagement": "공지",
-      "cadence": "마일스톤"
+      "engagement": "Notice review",
+      "cadence": "At gates"
     }
   ],
   "requirements": [
     {
       "reqCode": "REQ-01",
-      "knowledgeArea": "ai_governance",
+      "knowledgeArea": "scope",
       "priority": "must",
-      "statement": "기능마다 입력, 처리 위치, 보관, 학습 사용 여부를 한 표로 적는다.",
-      "acceptance": "표와 출처 링크",
-      "source": "투명성 노트"
+      "statement": "Each feature has a row: on device or cloud, retained or not, trained or not.",
+      "acceptance": "Approved table",
+      "source": "Webex transparency notes"
     },
     {
       "reqCode": "REQ-02",
       "knowledgeArea": "quality",
       "priority": "must",
-      "statement": "가상 배경과 노이즈 제거의 공개된 편향 보완 항목을 수용 테스트에 넣는다.",
-      "acceptance": "테스트 기록",
-      "source": "BRKCOL-2330"
+      "statement": "Where Cisco published a bias or audio-range gap, the pilot records an acceptance test.",
+      "acceptance": "Test note",
+      "source": "Cisco Live responsible-AI examples"
     },
     {
       "reqCode": "REQ-03",
       "knowledgeArea": "security",
       "priority": "must",
-      "statement": "보안 LLM은 프롬프트 버전, 평가자, 사람 승인 없이 자동 차단에 연결하지 않는다.",
-      "acceptance": "운영 기준",
-      "source": "XDR 백서 패턴"
+      "statement": "The security LLM is not connected to automatic blocking without a prompt version, an evaluator, and a human approval.",
+      "acceptance": "Operating rule",
+      "source": "XDR paper pattern"
     }
   ],
   "raci": [
     {
-      "activity": "기능 목록과 데이터 흐름표",
-      "phase": "plan",
-      "knowledgeArea": "ai_governance",
-      "responsible": [
-        "고객 PM",
-        "협업 서비스 오너"
-      ],
-      "accountable": "개인정보",
-      "consulted": [
-        "보안 운영 리드"
-      ],
-      "informed": [
-        "협업·보안 스폰서"
-      ]
-    },
-    {
-      "activity": "학습 데이터 예외 심사",
-      "phase": "plan",
-      "knowledgeArea": "ai_governance",
-      "responsible": [
-        "개인정보"
-      ],
-      "accountable": "협업·보안 스폰서",
-      "consulted": [
-        "고객 PM"
-      ],
-      "informed": [
-        "협업 서비스 오너"
-      ]
-    },
-    {
-      "activity": "관리자 설정과 파일럿 조직",
-      "phase": "execute",
+      "activity": "Feature list",
+      "phase": "initiate",
       "knowledgeArea": "scope",
       "responsible": [
-        "협업 서비스 오너"
+        "Collaboration admin"
       ],
-      "accountable": "협업 서비스 오너",
+      "accountable": "Collaboration sponsor",
       "consulted": [
-        "고객 PM"
+        "Customer PM",
+        "Privacy"
       ],
       "informed": [
-        "변경 커뮤니케이션"
+        "Legal"
       ]
     },
     {
-      "activity": "편향·음역 수용 테스트",
+      "activity": "Data-flow table",
+      "phase": "plan",
+      "knowledgeArea": "ai_governance",
+      "responsible": [
+        "Privacy"
+      ],
+      "accountable": "Privacy",
+      "consulted": [
+        "Collaboration admin",
+        "Legal"
+      ],
+      "informed": [
+        "Customer PM"
+      ]
+    },
+    {
+      "activity": "On-device pilot",
       "phase": "execute",
       "knowledgeArea": "quality",
       "responsible": [
-        "협업 서비스 오너"
+        "Collaboration admin"
       ],
-      "accountable": "개인정보",
+      "accountable": "Customer PM",
       "consulted": [
-        "고객 PM"
+        "Privacy"
       ],
       "informed": [
-        "협업·보안 스폰서"
+        "Collaboration sponsor"
       ]
     },
     {
-      "activity": "직원 고지",
+      "activity": "Bias and audio tests",
       "phase": "execute",
-      "knowledgeArea": "communications",
+      "knowledgeArea": "quality",
       "responsible": [
-        "변경 커뮤니케이션"
+        "Collaboration admin"
       ],
-      "accountable": "고객 PM",
+      "accountable": "Privacy",
       "consulted": [
-        "개인정보",
-        "협업 서비스 오너"
+        "Customer PM"
       ],
       "informed": [
-        "파일럿 직원"
+        "Collaboration sponsor"
       ]
     },
     {
-      "activity": "보안 LLM 평가 셋",
-      "phase": "execute",
+      "activity": "Security LLM evaluation set",
+      "phase": "monitor",
       "knowledgeArea": "security",
       "responsible": [
-        "보안 운영 리드"
+        "Security operations lead"
       ],
-      "accountable": "보안 운영 리드",
+      "accountable": "Security operations lead",
       "consulted": [
-        "개인정보"
+        "Privacy"
       ],
       "informed": [
-        "고객 PM"
+        "Customer PM"
       ]
     },
     {
-      "activity": "전사 설정 승인",
+      "activity": "On or review decision",
       "phase": "close",
-      "knowledgeArea": "integration",
+      "knowledgeArea": "stakeholder",
       "responsible": [
-        "고객 PM"
+        "Customer PM"
       ],
-      "accountable": "협업·보안 스폰서",
+      "accountable": "Collaboration sponsor",
       "consulted": [
-        "개인정보",
-        "협업 서비스 오너",
-        "보안 운영 리드"
+        "Privacy",
+        "Security operations lead"
       ],
       "informed": [
-        "변경 커뮤니케이션"
+        "Collaboration admin"
       ]
     }
   ],
@@ -344,14 +325,14 @@
       "parentCode": null,
       "phase": "initiate",
       "knowledgeArea": "scope",
-      "name": "기능 후보",
-      "description": "노이즈, 배경, 제스처, 회의 요약, 보안 요약을 각각 켜기/보류로 표시한다.",
-      "deliverable": "후보 목록",
-      "ownerRole": "고객 PM",
+      "name": "Feature list",
+      "description": "Name noise removal, backgrounds, gestures, summaries, and the security LLM as separate rows.",
+      "deliverable": "List",
+      "ownerRole": "Collaboration admin",
       "durationDaysLow": 3,
       "durationDaysHigh": 5,
       "predecessors": [],
-      "acceptance": "보류 이유가 적힘",
+      "acceptance": "Sponsor signs",
       "milestone": true,
       "sort": 10
     },
@@ -360,16 +341,16 @@
       "parentCode": null,
       "phase": "plan",
       "knowledgeArea": "ai_governance",
-      "name": "데이터 흐름표",
-      "description": "단말, 클라우드, 학습 사용 여부를 기능별로 적고 공개 문서를 링크한다.",
-      "deliverable": "흐름표",
-      "ownerRole": "개인정보",
+      "name": "Data-flow table",
+      "description": "For each row, write where data is processed and whether it is used for training.",
+      "deliverable": "Table",
+      "ownerRole": "Privacy",
       "durationDaysLow": 8,
       "durationDaysHigh": 12,
       "predecessors": [
         "1"
       ],
-      "acceptance": "출처가 비어 있는 칸이 없다",
+      "acceptance": "Legal has read the notice",
       "milestone": false,
       "sort": 20
     },
@@ -378,367 +359,381 @@
       "parentCode": null,
       "phase": "plan",
       "knowledgeArea": "communications",
-      "name": "고지 문안",
-      "description": "무엇이 단말에 남고 무엇을 사람이 승인하는지 적는다.",
-      "deliverable": "고지",
-      "ownerRole": "변경 커뮤니케이션",
+      "name": "User notice",
+      "description": "The notice matches the table. Biometric caution is explicit for gestures.",
+      "deliverable": "Notice",
+      "ownerRole": "Legal",
       "durationDaysLow": 5,
       "durationDaysHigh": 8,
       "predecessors": [
         "2.1"
       ],
-      "acceptance": "개인정보 검토",
+      "acceptance": "Privacy agrees",
       "milestone": false,
-      "sort": 21
+      "sort": 30
+    },
+    {
+      "wbsCode": "2.3",
+      "parentCode": null,
+      "phase": "plan",
+      "knowledgeArea": "security",
+      "name": "Evaluation set",
+      "description": "The security LLM gets a prompt version and a set of incidents a person will score.",
+      "deliverable": "Evaluation set",
+      "ownerRole": "Security operations lead",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "1"
+      ],
+      "acceptance": "No automatic action in the design",
+      "milestone": false,
+      "sort": 40
     },
     {
       "wbsCode": "3.1",
       "parentCode": null,
       "phase": "execute",
-      "knowledgeArea": "scope",
-      "name": "파일럿 조직 설정",
-      "description": "관리자 정책으로 한 조직에만 켠다.",
-      "deliverable": "설정 기록",
-      "ownerRole": "협업 서비스 오너",
-      "durationDaysLow": 5,
-      "durationDaysHigh": 10,
+      "knowledgeArea": "quality",
+      "name": "On-device pilot",
+      "description": "Enable noise removal for a named group. Confirm the table's on-device row.",
+      "deliverable": "Pilot note",
+      "ownerRole": "Collaboration admin",
+      "durationDaysLow": 10,
+      "durationDaysHigh": 15,
       "predecessors": [
-        "2.2"
+        "2.1"
       ],
-      "acceptance": "롤백 방법",
+      "acceptance": "Admin settings match the row",
       "milestone": false,
-      "sort": 30
+      "sort": 50
     },
     {
       "wbsCode": "3.2",
       "parentCode": null,
       "phase": "execute",
       "knowledgeArea": "quality",
-      "name": "수용 테스트",
-      "description": "배경의 다양한 조건과 노이즈의 음역 차이를 공개 사례처럼 테스트 항목으로 둔다.",
-      "deliverable": "테스트 기록",
-      "ownerRole": "협업 서비스 오너",
-      "durationDaysLow": 8,
-      "durationDaysHigh": 12,
+      "name": "Acceptance tests",
+      "description": "Record the bias and audio-range checks Cisco's material says were the gaps.",
+      "deliverable": "Test note",
+      "ownerRole": "Privacy",
+      "durationDaysLow": 5,
+      "durationDaysHigh": 10,
       "predecessors": [
         "3.1"
       ],
-      "acceptance": "실패 항목은 이슈",
+      "acceptance": "A result per published gap",
       "milestone": false,
-      "sort": 31
-    },
-    {
-      "wbsCode": "3.3",
-      "parentCode": null,
-      "phase": "execute",
-      "knowledgeArea": "security",
-      "name": "보안 LLM 평가",
-      "description": "사건 요약 프롬프트 버전을 고정하고 분석가 평가를 받는다. 자동 조치와 분리한다.",
-      "deliverable": "평가 표",
-      "ownerRole": "보안 운영 리드",
-      "durationDaysLow": 10,
-      "durationDaysHigh": 15,
-      "predecessors": [
-        "2.1"
-      ],
-      "acceptance": "자동 조치 연결 없음",
-      "milestone": true,
-      "sort": 32
-    },
-    {
-      "wbsCode": "3.4",
-      "parentCode": null,
-      "phase": "execute",
-      "knowledgeArea": "communications",
-      "name": "고지 배포",
-      "description": "파일럿 조직에 데이터 흐름 고지를 보내고 질문을 로그로 남긴다.",
-      "deliverable": "배포 기록",
-      "ownerRole": "변경 커뮤니케이션",
-      "durationDaysLow": 3,
-      "durationDaysHigh": 5,
-      "predecessors": [
-        "2.2",
-        "3.1"
-      ],
-      "acceptance": "질문 로그",
-      "milestone": false,
-      "sort": 33
+      "sort": 60
     },
     {
       "wbsCode": "4",
       "parentCode": null,
+      "phase": "monitor",
+      "knowledgeArea": "security",
+      "name": "Human review of summaries",
+      "description": "Score the evaluation set. Do not connect a passing score to containment.",
+      "deliverable": "Scores",
+      "ownerRole": "Security operations lead",
+      "durationDaysLow": 8,
+      "durationDaysHigh": 12,
+      "predecessors": [
+        "2.3"
+      ],
+      "acceptance": "A person is named",
+      "milestone": false,
+      "sort": 70
+    },
+    {
+      "wbsCode": "5",
+      "parentCode": null,
       "phase": "close",
-      "knowledgeArea": "integration",
-      "name": "전사 결정",
-      "description": "기능별 켜기, 보류, 추가 검토를 스폰서가 승인한다.",
-      "deliverable": "결정 기록",
-      "ownerRole": "고객 PM",
+      "knowledgeArea": "stakeholder",
+      "name": "On or review",
+      "description": "Each feature is on, off, or still in review.",
+      "deliverable": "Decision",
+      "ownerRole": "Collaboration sponsor",
       "durationDaysLow": 3,
       "durationDaysHigh": 5,
       "predecessors": [
         "3.2",
-        "3.3",
-        "3.4"
+        "4",
+        "2.2"
       ],
-      "acceptance": "예외 없음 또는 예외의 만료일",
+      "acceptance": "No blank row",
       "milestone": true,
-      "sort": 40
+      "sort": 80
     }
   ],
   "milestones": [
     {
-      "name": "후보 고정",
+      "name": "Feature list",
       "phase": "initiate",
       "weekOffsetLow": 1,
       "weekOffsetHigh": 2,
-      "criteria": "기능별 켜기/보류"
+      "criteria": "Rows are separate"
     },
     {
-      "name": "흐름표 승인",
+      "name": "Data-flow table",
       "phase": "plan",
-      "weekOffsetLow": 4,
+      "weekOffsetLow": 3,
       "weekOffsetHigh": 6,
-      "criteria": "개인정보 서명"
+      "criteria": "Privacy approval"
     },
     {
-      "name": "파일럿 종료",
+      "name": "On-device pilot",
+      "phase": "execute",
+      "weekOffsetLow": 6,
+      "weekOffsetHigh": 12,
+      "criteria": "Named group"
+    },
+    {
+      "name": "Decision",
       "phase": "close",
       "weekOffsetLow": 10,
       "weekOffsetHigh": 20,
-      "criteria": "전사 결정"
+      "criteria": "Every row is on, off, or in review"
     }
   ],
   "risks": [
     {
       "riskCode": "R1",
-      "title": "고객 내용 학습 예외",
-      "description": "품질을 이유로 회의 원문을 학습에 넣자는 요청이 나온다.",
-      "category": "privacy",
+      "title": "One switch enables every feature",
+      "description": "The data paths are not the same.",
+      "category": "scope",
       "probability": 3,
-      "impact": 5,
-      "response": "avoid",
-      "mitigation": "예외는 스폰서와 개인정보의 서면 승인 없으면 범위 밖이다.",
-      "contingency": "해당 기능은 보류한다.",
-      "ownerRole": "개인정보",
-      "trigger": "학습 데이터에 고객 내용이 포함된 설계"
+      "impact": 4,
+      "response": "mitigate",
+      "mitigation": "Administrator settings follow the table, one feature at a time.",
+      "contingency": "Turn the unset features off.",
+      "ownerRole": "Collaboration admin",
+      "trigger": "A change enables a row with no data-flow"
     },
     {
       "riskCode": "R2",
-      "title": "제스처 기능의 용도 확대",
-      "description": "수어 통역이나 단말 밖 분석으로 해석될 수 있다.",
+      "title": "Customer meetings become training data",
+      "description": "The public default is that they do not.",
       "category": "ai_governance",
       "probability": 2,
-      "impact": 4,
+      "impact": 5,
       "response": "avoid",
-      "mitigation": "고지와 요구사항에 사용 한계를 적는다. 공개 설명은 Webex와 Cisco 기기 밖 사용과 수어 통역을 용도로 두지 않는다.",
-      "contingency": "기능을 켜지 않는다.",
-      "ownerRole": "개인정보",
-      "trigger": "요구사항에 통역 또는 외부 시스템이 등장"
+      "mitigation": "The pilot contract repeats the default.",
+      "contingency": "Disable the cloud feature.",
+      "ownerRole": "Privacy",
+      "trigger": "A term allows training on customer content"
     },
     {
       "riskCode": "R3",
-      "title": "보안 LLM의 자동 조치",
-      "description": "요약 품질이 좋아 보이면 격리 조치까지 자동으로 연결하려 한다.",
+      "title": "A good summary is wired to containment",
+      "description": "The security pattern is a draft plus a person.",
       "category": "security",
       "probability": 3,
       "impact": 5,
       "response": "mitigate",
-      "mitigation": "평가 셋과 사람 승인을 성공 기준으로 둔다. 조치는 XDR 사례의 플레이북 승인 모델을 따른다.",
-      "contingency": "LLM 트랙을 요약 초안까지만 축소한다.",
-      "ownerRole": "보안 운영 리드",
-      "trigger": "자동 격리 요구"
+      "mitigation": "The evaluation set has no action connector.",
+      "contingency": "Remove the connector.",
+      "ownerRole": "Security operations lead",
+      "trigger": "An automation rule listens to the summary"
     },
     {
       "riskCode": "R4",
-      "title": "편향 테스트를 생략",
-      "description": "일정 때문에 수용 테스트를 데모로 대체한다.",
-      "category": "quality",
-      "probability": 3,
-      "impact": 3,
+      "title": "Gesture recognition is treated as an ordinary camera filter",
+      "description": "Cisco's biometrics response treats this class of feature as sensitive.",
+      "category": "ai_governance",
+      "probability": 2,
+      "impact": 4,
       "response": "mitigate",
-      "mitigation": "공개된 보완 항목(조명, 머리 모양, 피부 톤, 음역)을 최소 세트로 고정한다.",
-      "contingency": "해당 기능의 전사 켜기를 미룬다.",
-      "ownerRole": "협업 서비스 오너",
-      "trigger": "테스트 기록 없이 종료 회의"
+      "mitigation": "The notice names it.",
+      "contingency": "Leave gestures off.",
+      "ownerRole": "Legal",
+      "trigger": "The notice does not mention gestures"
     }
   ],
   "issues": [
     {
       "issueCode": "I1",
-      "title": "제스처 투명성 노트의 사내 열람 권한",
+      "title": "Which group pilots noise removal",
       "status": "open",
-      "ownerRole": "개인정보",
-      "nextAction": "Trust Portal의 해당 노트를 확보하기 전에는 제스처를 보류로 둔다"
+      "ownerRole": "Collaboration admin",
+      "nextAction": "Name the group before the on-device task starts"
     }
   ],
   "kpis": [
     {
-      "name": "흐름표 완성도",
-      "baseline": "없음",
-      "target": "후보 기능 100%에 출처",
-      "unit": "%",
-      "method": "계획 목표",
-      "ownerRole": "개인정보",
-      "cadence": "계획 게이트"
+      "name": "Rows with a data flow",
+      "baseline": "One generic policy",
+      "target": "Every feature",
+      "unit": "percent",
+      "method": "Table review",
+      "ownerRole": "Privacy",
+      "cadence": "At the plan gate"
     },
     {
-      "name": "학습 예외 건수",
-      "baseline": "0",
-      "target": "승인 없는 예외 0",
-      "unit": "건",
-      "method": "결정 로그",
-      "ownerRole": "협업·보안 스폰서",
-      "cadence": "종료"
+      "name": "Automatic actions from the LLM",
+      "baseline": "Not allowed",
+      "target": "Zero",
+      "unit": "count",
+      "method": "Automation review",
+      "ownerRole": "Security operations lead",
+      "cadence": "Weekly once the set exists"
     },
     {
-      "name": "보안 LLM 자동 조치",
-      "baseline": "없음",
-      "target": "0건 연결",
-      "unit": "건",
-      "method": "플레이북 검토",
-      "ownerRole": "보안 운영 리드",
-      "cadence": "종료"
+      "name": "Features enabled with no row",
+      "baseline": "Unknown",
+      "target": "Zero",
+      "unit": "count",
+      "method": "Admin settings",
+      "ownerRole": "Collaboration admin",
+      "cadence": "Weekly"
     }
   ],
   "costs": [
     {
       "category": "software",
-      "name": "Webex AI 포함 구독 증분",
+      "name": "Webex AI entitlements for the pilot group",
       "costType": "opex",
-      "lowUsd": 80000,
-      "highUsd": 400000,
-      "notes": "기존 계약에 포함되면 하한이 낮다. 계획 밴드."
+      "lowUsd": 40000,
+      "highUsd": 250000,
+      "notes": "Planning band."
     },
     {
       "category": "services",
-      "name": "영향평가와 수용 테스트",
+      "name": "Privacy review and tests",
       "costType": "opex",
-      "lowUsd": 40000,
+      "lowUsd": 30000,
       "highUsd": 150000,
-      "notes": "내부 개인정보 조직이 하면 인건비로 이동"
+      "notes": "Internal privacy time can replace part of this."
     },
     {
-      "category": "training",
-      "name": "관리자·헬프데스크 교육",
+      "category": "services",
+      "name": "Security evaluation set",
       "costType": "opex",
-      "lowUsd": 15000,
-      "highUsd": 40000,
-      "notes": "고지 문안 포함"
+      "lowUsd": 20000,
+      "highUsd": 80000,
+      "notes": "Analyst time. Not a model-training budget."
     }
   ],
   "qualityGates": [
     {
       "phase": "plan",
-      "name": "흐름표 게이트",
-      "criteria": "학습 사용 칸이 비어 있지 않다.",
-      "ownerRole": "개인정보"
+      "name": "Table gate",
+      "criteria": "No feature is on without a data-flow row.",
+      "owner": "PRIV",
+      "ownerRole": "Privacy"
     },
     {
       "phase": "execute",
-      "name": "테스트 게이트",
-      "criteria": "수용 테스트 실패는 이슈로 남는다.",
-      "ownerRole": "협업 서비스 오너"
+      "name": "Test gate",
+      "criteria": "Published bias and audio gaps have a recorded result.",
+      "owner": "COLLAB",
+      "ownerRole": "Collaboration admin"
     },
     {
       "phase": "close",
-      "name": "예외 게이트",
-      "criteria": "고객 내용 학습 예외가 없거나 만료일이 있다.",
-      "ownerRole": "협업·보안 스폰서"
+      "name": "Action gate",
+      "criteria": "The security LLM has no automatic containment path.",
+      "owner": "SOC",
+      "ownerRole": "Security operations lead"
     }
   ],
   "communications": [
     {
-      "audience": "파일럿 직원",
-      "message": "어떤 기능이 단말에서 처리되는지, 배경 이미지가 클라우드에 올라가지 않는지",
-      "channel": "고지",
-      "cadence": "켜기 전",
-      "ownerRole": "변경 커뮤니케이션"
+      "audience": "Pilot users",
+      "message": "Which feature is on, and that meetings are not training data",
+      "channel": "Notice",
+      "cadence": "Before enablement",
+      "owner": "LEGAL",
+      "ownerRole": "Legal"
     },
     {
-      "audience": "헬프데스크",
-      "message": "기능별 끄는 방법",
-      "channel": "스크립트",
-      "cadence": "파일럿 시작",
-      "ownerRole": "협업 서비스 오너"
+      "audience": "Administrators",
+      "message": "One feature at a time",
+      "channel": "Change note",
+      "cadence": "Each enablement",
+      "owner": "COLLAB",
+      "ownerRole": "Collaboration admin"
     },
     {
-      "audience": "보안 운영",
-      "message": "LLM 출력은 초안이다",
-      "channel": "운영 기준",
-      "cadence": "평가 전",
-      "ownerRole": "보안 운영 리드"
+      "audience": "Security operations",
+      "message": "Summaries are drafts",
+      "channel": "Operating rule",
+      "cadence": "At the evaluation start",
+      "owner": "SOC",
+      "ownerRole": "Security operations lead"
     }
   ],
   "procurement": [
     {
-      "item": "Webex 구독 옵션",
+      "item": "Webex AI add-on for a named group",
       "vendorType": "Cisco",
-      "strategy": "기능 플래그가 있는 파일럿 조직",
+      "strategy": "Pilot group only",
       "leadWeeks": 4,
-      "notes": "전사 수량 약정은 종료 결정 후"
+      "notes": "Do not enable tenant-wide"
     },
     {
-      "item": "평가 인력",
-      "vendorType": "내부",
-      "strategy": "분석가 시간 확보",
-      "leadWeeks": 2,
-      "notes": "보안 LLM 트랙"
+      "item": "Security proxy path",
+      "vendorType": "Cisco",
+      "strategy": "Use the existing security stack",
+      "leadWeeks": 6,
+      "notes": "No new foundation-model contract"
     }
   ],
   "decisions": [
     {
       "decisionCode": "D1",
-      "title": "학습 기본값",
-      "choice": "고객 내용은 학습에 쓰지 않는다.",
-      "rationale": "Webex 공개 기본값과 같다. 예외는 별도 사업이 된다.",
-      "date": null,
-      "ownerRole": "협업·보안 스폰서"
+      "title": "Training default",
+      "choice": "Customer content is not used to train the model.",
+      "rationale": "That is the public Webex position. The pilot repeats it.",
+      "owner": "PRIV",
+      "ownerRole": "Privacy",
+      "date": null
     },
     {
       "decisionCode": "D2",
-      "title": "보안 LLM의 정의",
-      "choice": "기초 모형 학습이 아니라 프롬프트 조정, 다중 프롬프트, 전문가 평가, 사람 승인이다.",
-      "rationale": "XDR 백서가 공개한 사건 요약·보고서 초안 방식이다. 하이퍼파라미터 레시피는 공개되어 있지 않다.",
-      "date": null,
-      "ownerRole": "보안 운영 리드"
+      "title": "What the security LLM is",
+      "choice": "A prompt, a review, and a human approval. Not foundation-model training and not an automatic action.",
+      "rationale": "The public XDR material describes draft summaries. It does not publish a training recipe.",
+      "owner": "SOC",
+      "ownerRole": "Security operations lead",
+      "date": null
     }
   ],
   "lessons": [
     {
-      "theme": "분리",
-      "statement": "단말 음성 모델과 클라우드 LLM을 한 위험 문장으로 쓰지 않는다.",
-      "applicability": "협업 AI 차터"
+      "theme": "Per feature",
+      "statement": "A collaboration AI program is a table of data flows. A single enablement switch hides the risk.",
+      "applicability": "Workplace AI"
     },
     {
-      "theme": "편향",
-      "statement": "Cisco가 공개한 보완 이력(머리 모양, 피부 톤, 조명, 음역)을 고객 수용 테스트의 최소 세트로 재사용한다.",
-      "applicability": "품질 계획"
+      "theme": "Defaults",
+      "statement": "Write the training default into the pilot. Do not leave it in a PDF.",
+      "applicability": "Any meeting assistant"
     }
   ],
   "benefits": [
     {
-      "name": "켜도 되는 기능 목록",
-      "measure": "승인된 기능 수 / 보류 수",
-      "beneficiary": "협업 서비스",
-      "timing": "종료"
+      "name": "Features that are allowed to be on",
+      "measure": "Decision list",
+      "beneficiary": "Sponsor and administrators",
+      "timing": "Close"
     },
     {
-      "name": "보안 LLM 안전 경계",
-      "measure": "자동 조치 0",
-      "beneficiary": "보안 운영",
-      "timing": "종료"
+      "name": "A security summary that cannot act alone",
+      "measure": "Evaluation set",
+      "beneficiary": "Security operations",
+      "timing": "Monitor"
     }
   ],
   "narrative": [
     {
       "section": "architecture",
-      "heading": "기능별로 다른 모델",
-      "body": "Cisco Live BRKCOL-1871은 Webex 노이즈 제거를 사람 목소리와 배경 소음을 가르는 신경망으로 설명하고, 언어와 무관하게 음성을 살린다고 적는다. 같은 자료는 처리가 단말에서 이루어져 그 기능에 대해 클라우드 보안·프라이버시 위험이 없다고 말한다. 품질 비교에는 PESQ와 Interspeech 2020 DNS 챌린지 데이터에서 BabbleLabs 계열 딥러닝이 전통 DSP를 앞선다는 연구 맥락이 있다. 타이핑, 개 짖는 소리, 교통, 가전, 사람 웅성거림을 음성에서 분리하는 용도다.\n\nBRKCOL-2330은 가상 배경의 초기 모형이 머리 모양, 헤어스타일, 피부 톤, 조명에서 성능 차이가 있어 해당 데이터를 보강했다고 적는다. 노이즈 제거는 높은 음역에서 성능이 떨어져 음역 균형 테스트 셋과 데이터, 주관 평가를 늘렸다고 적는다. 관리자 도움말은 사용자 지정 배경을 기기 로컬에 두고 클라우드로 올리지 않는다고 설명한다.\n\nCisco의 OSTP 제출 문서는 Webex 얼굴 검출·인식과 손 제스처 기능을, 고객 데이터로 사전 학습하지 않고 균형 잡힌 학습 셋과 자원한 내부 기여자를 쓰는 방향으로 설명한다. 제스처 기능의 제품 투명성 노트는 동의한 내부 데이터, Webex 애플리케이션과 Cisco 기기 안의 사용, 수어 통역이 아니라는 한계로 요약되어 공개되어 있다. 노트를 직접 열람하기 전에는 제스처를 보류로 두는 것이 이 사례의 이슈 I1이다.\n\nAI 투명성 문서는 기본적으로 고객 내용을 학습에 쓰지 않고, 기성·내부·합성 데이터를 쓰며, 기능마다 AI Impact Assessment를 한다고 적는다. Cisco Live PSOCOL-1795는 요약 경로를 보안 LLM 프록시와 입력·출력 가드레일로 그리고, 제3자 모니터링을 끄며 학습에 저장하지 않는다고 노트한다.\n\n보안 제품의 맞춤 LLM은 별개다. XDR 백서는 사건 제목·설명·요약을 위해 조정된 프롬프트를 여러 변형으로 보내고 전문가가 유용한지 평가했으며, 같은 방식으로 보고서 초안을 만든다고 설명한다. 분석가가 초안을 고친다. 이 사례는 그 패턴을 협업 프로그램의 거버넌스와 같은 위원회에서 보게 하되, 학습 레시피나 가중치를 지어내지 않는다."
+      "heading": "What Cisco has published about Webex AI",
+      "body": "Cisco Live sessions on cognitive collaboration and responsible AI, and the Webex transparency notes, separate features. Noise removal is described as on-device processing. Virtual backgrounds are described as trained across lighting conditions and demographic groups, after early models performed differently by hairstyle, skin tone, and lighting. Noise removal had a similar gap in higher vocal registers, which Cisco says later data and tests addressed. Gesture recognition is described as a model built from consented internal data, and Cisco's response on AI-enabled biometrics treats that class of feature as sensitive.\n\nThe same material says Webex does not by default train on customer content, uses licensed, internal, and synthetic data, and runs an AI impact assessment per feature. A security-product LLM, as described in the public XDR paper, is prompt tuning and expert review for summaries and draft reports. It is not a recipe for training a foundation model on customer incidents."
     },
     {
       "section": "delivery",
-      "heading": "PM 산출물",
-      "body": "필수 산출물은 기능별 데이터 흐름표, 고지 문안, 수용 테스트, 보안 LLM 평가 표다. 흐름표의 학습 칸이 비어 있으면 계획 게이트를 통과하지 못한다. 보안 트랙의 자동 대응은 CSCO-XDR-SOC-001의 사람 승인 모델을 그대로 참조한다."
+      "heading": "The table",
+      "body": "One row per feature. On-device features can move first. Cloud and security features wait for the row, the notice, and, for the security LLM, a person who approves the draft. The XDR case owns the security operating model. This case owns the collaboration schedule."
     }
   ]
 }
